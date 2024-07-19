@@ -18,19 +18,12 @@ import TootSDK
 // TODO: AppDelegate
 @main struct DiverApp: App {
     var body: some Scene {
-        // TODO: Move to a service.
-        let client = TootClient(
-            instanceURL: URL(string: "https://fosstodon.org")!,
-            accessToken: accessToken
-        )
-        // TODO: Move into an AppController?
-        let repo = PostsRepository(client: client)
-        let postsController = PostsController(repo: repo)
-        let postDetailController = PostDetailController(repo: repo)
+        let appController = AppController()
+        let navigator = Navigator(appController: appController)
         WindowGroup {
             ContentView()
-                .environment(postsController)
-                .environment(postDetailController)
+                .environment(appController.postsController)
+                .environment(navigator)
         }
     }
 }

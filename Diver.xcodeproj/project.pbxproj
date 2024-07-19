@@ -25,6 +25,8 @@
 		A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE102C45BF9400CA3139 /* PostDetailView.swift */; };
 		A776EE132C45C3AF00CA3139 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE122C45C3AF00CA3139 /* PostDetailController.swift */; };
 		A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */; };
+		A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */; };
+		A7BB5BC42C4ABFA300B6DFA1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC32C4ABFA300B6DFA1 /* AppController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		A776EE122C45C3AF00CA3139 /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		A7BB5BBA2C49AFD700B6DFA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		A7BB5BC32C4ABFA300B6DFA1 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,8 @@
 		A776EE032C459D3E00CA3139 /* Observables */ = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BC32C4ABFA300B6DFA1 /* AppController.swift */,
+				A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */,
 				A776EE122C45C3AF00CA3139 /* PostDetailController.swift */,
 				A776EDF82C457DE500CA3139 /* PostsController.swift */,
 			);
@@ -334,6 +340,7 @@
 				A776EE0F2C45B29800CA3139 /* Timeline.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
+				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
 				A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */,
 				A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */,
@@ -343,6 +350,7 @@
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,
 				A776EE012C45973600CA3139 /* PostInfo.swift in Sources */,
+				A7BB5BC42C4ABFA300B6DFA1 /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@ import SwiftUI
 
 /// The detail screen for a post. It shows the post and its replies.
 struct PostDetailView: View {
-    @Environment(PostDetailController.self) var postDetailController
+    @State var postDetailController: PostDetailController
     let post: PostInfo
     var body: some View {
         List {
@@ -36,6 +36,5 @@ struct PostDetailView: View {
 #Preview {
     let repo = MockPostsRepository()
     let controller = PostDetailController(repo: repo)
-    return PostDetailView(post: PostInfo.mock())
-        .environment(controller)
+    return PostDetailView(postDetailController: controller, post: PostInfo.mock())
 }
