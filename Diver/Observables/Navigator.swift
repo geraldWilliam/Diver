@@ -31,24 +31,24 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     enum Destination: Hashable {
         case postDetail(PostInfo)
     }
-    
+
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
-    
+
     /// The AppController provides other controllers that the Navigator can use to set up content view for destinations.
     private let appController: AppController
 
     init(appController: AppController) {
         self.appController = appController
     }
-    
+
     /// Use this method to prompt navigation without using a NavigationLink.
     ///
     /// - Parameter destination: The destination view of the transition.
     func go(to destination: Destination) {
         path.append(destination)
     }
-    
+
     /// Get the content view for a navigation destination. This strategy keeps controller instantiation out of views. The Navigator requests a controller from the
     /// AppController and creates a view for the destination.
     ///
@@ -65,7 +65,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             }
         }
     }
-    
+
     /// Handle a deep link from AppDelegate.
     /// 
     /// - Parameter value: The deep link value indicating the navigation to perform.

@@ -20,12 +20,12 @@ import TootSDK
     let postsRepository: PostsRepository
     /// This controller populates the Timeline.
     var postsController: PostsController
-    
+
     init() {
         postsRepository = PostsRepository(client: client)
         postsController = PostsController(repo: postsRepository)
     }
-    
+
     /// A source of truth for the PostDetailView.
     /// - Parameter post: The post to display in the detail view.
     /// - Returns: An instance of PostDetailController.
@@ -33,4 +33,3 @@ import TootSDK
         return PostDetailController(repo: postsRepository)
     }
 }
-

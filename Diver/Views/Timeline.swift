@@ -46,5 +46,5 @@ struct Timeline: View {
     let controller = PostsController(repo: mockRepo)
     return Timeline()
         .environment(controller)
-    
+
 }

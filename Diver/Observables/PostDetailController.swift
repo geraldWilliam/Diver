@@ -17,19 +17,19 @@ import Foundation
     var failure: Failure?
     /// The repository used to fetch replies.
     private let repo: PostsRepositoryProtocol
-    
+
     // MARK: - Initialization
-    
+
     init(repo: PostsRepositoryProtocol) {
         self.repo = repo
     }
-    
+
     // MARK: - Methods
 
     func getReplies(for post: PostInfo) {
         Task {
             do {
-               replies  = try await repo.getReplies(for: post)
+                replies  = try await repo.getReplies(for: post)
             } catch {
                 failure = Failure(error)
             }

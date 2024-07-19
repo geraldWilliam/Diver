@@ -46,9 +46,9 @@ struct PostInfo: Identifiable, Hashable {
     }
     /// Storage of the external `Post` model backing the `boost` property.
     private let repost: Post?
-    
+
     // MARK: - Initialization
-    
+
     init(post: TootSDK.Post) {
         self.account = post.account
         self.repost = post.repost
@@ -67,7 +67,7 @@ struct PostInfo: Identifiable, Hashable {
         }
         self.replyCount = post.repliesCount
     }
-    
+
     init(
         id: String,
         authorName: String,
@@ -86,9 +86,9 @@ struct PostInfo: Identifiable, Hashable {
         self.previews = previews
         self.replyCount = 0
     }
-    
+
     // MARK: - Mock
-    
+
     static func mock() -> PostInfo {
         PostInfo(
             id: UUID().uuidString,

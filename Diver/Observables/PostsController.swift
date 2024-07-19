@@ -29,17 +29,17 @@ import Foundation
     var failure: Failure?
     /// The repository used to fetch posts.
     private let repo: PostsRepositoryProtocol
-    
+
     // MARK: - Initialization
-    
+
     init(repo: PostsRepositoryProtocol) {
         self.repo = repo
         /// Monitor the `failure` property to update the `showingError` flag.
         observeFailure()
     }
-    
+
     // MARK: - Methods
-    
+
     func getPosts() {
         Task {
             do {
@@ -49,7 +49,7 @@ import Foundation
             }
         }
     }
-    
+
     func getNextPage() {
         Task {
             do {
@@ -59,9 +59,9 @@ import Foundation
             }
         }
     }
-    
+
     // MARK: - Private
-    
+
     private func observeFailure() {
         withObservationTracking {
             /// In this case, all errors are displayed. In some cases, you might examine the error to determine whether it should show an alert.

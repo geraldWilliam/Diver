@@ -15,7 +15,7 @@ struct PostView: View {
     let post: PostInfo
     /// The detail screen re-uses this view but shouldn‘t show the number of replies. Boosts of other posts also hide the reply count.
     let hideReplyCount: Bool
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {

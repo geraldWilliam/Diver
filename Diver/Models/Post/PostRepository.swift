@@ -28,19 +28,19 @@ actor PostsRepository: PostsRepositoryProtocol {
     /// `PostsRepository` has a direct dependency on the TootClient package. The package does not need to be mockable. The repository _is_ the
     /// mockable interface by which the application accesses this package.
     let client: TootClient
-    
+
     init(client: TootClient) {
         self.client = client
     }
-    
+
     func getPosts() async throws -> [PostInfo] {
         try await client.getTimeline(.home).result.map { PostInfo(post: $0) }
     }
-    
+
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
     }
-    
+
     func getNextPage() async throws -> [PostInfo] {
         let nextPage = try await client.getTimeline(.home).nextPage
         return try await client.getTimeline(.home, pageInfo: nextPage).result.map { PostInfo(post: $0) }
@@ -50,19 +50,19 @@ actor PostsRepository: PostsRepositoryProtocol {
 // MARK: - Mock Implementation
 
 struct MockPostsRepository: PostsRepositoryProtocol {
-    
+
     func getPosts() async throws -> [PostInfo] {
         return (0..<12).map { _ in
             PostInfo.mock()
         }
     }
-    
+
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         return (0..<12).map { _ in
             PostInfo.mock()
         }
     }
-    
+
     func getNextPage() async throws -> [PostInfo] {
         return (0..<12).map { _ in
             PostInfo.mock()
