@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// A wrapper for AsyncImage. This takes a String for the image path so we don‘t need to instantiate a URL at the call site. It shows a placeholder if a URL cannot
+/// be constructed or an image is not found at the URL. A retrieved image is clipped to a circle of the specified diameter. A white border and drop shadow are
+/// applied.
 struct AvatarView: View {
     let path: String
     let diameter: CGFloat

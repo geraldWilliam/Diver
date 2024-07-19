@@ -10,6 +10,8 @@ import Foundation
 /// This is a member of the “Observable“ layer.
 ///
 /// For details on the type‘s annotations, see PostsController.
+///
+// TODO: Consider using PostsController here instead.
 @MainActor @Observable final class PostDetailController {
     /// Replies to the post. This should be displayed as a list below a post in the detail view.
     var replies: [PostInfo] = []
@@ -29,7 +31,7 @@ import Foundation
     func getReplies(for post: PostInfo) {
         Task {
             do {
-                replies  = try await repo.getReplies(for: post)
+                replies = try await repo.getReplies(for: post)
             } catch {
                 failure = Failure(error)
             }
