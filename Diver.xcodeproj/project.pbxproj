@@ -14,6 +14,17 @@
 		A776EDDD2C457BB900CA3139 /* DiverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDDC2C457BB900CA3139 /* DiverTests.swift */; };
 		A776EDE72C457BB900CA3139 /* DiverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDE62C457BB900CA3139 /* DiverUITests.swift */; };
 		A776EDE92C457BB900CA3139 /* DiverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDE82C457BB900CA3139 /* DiverUITestsLaunchTests.swift */; };
+		A776EDF72C457C0300CA3139 /* TootSDK in Frameworks */ = {isa = PBXBuildFile; productRef = A776EDF62C457C0300CA3139 /* TootSDK */; };
+		A776EDF92C457DE500CA3139 /* PostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDF82C457DE500CA3139 /* PostsController.swift */; };
+		A776EE012C45973600CA3139 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE002C45973600CA3139 /* PostInfo.swift */; };
+		A776EE062C459DDA00CA3139 /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE052C459DDA00CA3139 /* Failure.swift */; };
+		A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE082C459DF900CA3139 /* PostRepository.swift */; };
+		A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0A2C459FFC00CA3139 /* PostView.swift */; };
+		A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */; };
+		A776EE0F2C45B29800CA3139 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0E2C45B29800CA3139 /* Timeline.swift */; };
+		A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE102C45BF9400CA3139 /* PostDetailView.swift */; };
+		A776EE132C45C3AF00CA3139 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE122C45C3AF00CA3139 /* PostDetailController.swift */; };
+		A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +56,17 @@
 		A776EDE22C457BB900CA3139 /* DiverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiverUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A776EDE62C457BB900CA3139 /* DiverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiverUITests.swift; sourceTree = "<group>"; };
 		A776EDE82C457BB900CA3139 /* DiverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiverUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A776EDF82C457DE500CA3139 /* PostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsController.swift; sourceTree = "<group>"; };
+		A776EE002C45973600CA3139 /* PostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
+		A776EE052C459DDA00CA3139 /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
+		A776EE082C459DF900CA3139 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		A776EE0A2C459FFC00CA3139 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		A776EE0E2C45B29800CA3139 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		A776EE102C45BF9400CA3139 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		A776EE122C45C3AF00CA3139 /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
+		A7BB5BBA2C49AFD700B6DFA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A776EDF72C457C0300CA3139 /* TootSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +98,7 @@
 		A776EDBE2C457BB800CA3139 = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BBA2C49AFD700B6DFA1 /* README.md */,
 				A776EDC92C457BB800CA3139 /* Diver */,
 				A776EDDB2C457BB900CA3139 /* DiverTests */,
 				A776EDE52C457BB900CA3139 /* DiverUITests */,
@@ -95,8 +119,11 @@
 		A776EDC92C457BB800CA3139 /* Diver */ = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
 				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
-				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
+				A776EE032C459D3E00CA3139 /* Observables */,
+				A776EE022C459D3800CA3139 /* Models */,
+				A776EE042C459D4B00CA3139 /* Views */,
 				A776EDCE2C457BB900CA3139 /* Assets.xcassets */,
 				A776EDD02C457BB900CA3139 /* Diver.entitlements */,
 				A776EDD12C457BB900CA3139 /* Preview Content */,
@@ -129,6 +156,45 @@
 			path = DiverUITests;
 			sourceTree = "<group>";
 		};
+		A776EE022C459D3800CA3139 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A776EE072C459DE900CA3139 /* Post */,
+				A776EE052C459DDA00CA3139 /* Failure.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A776EE032C459D3E00CA3139 /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				A776EE122C45C3AF00CA3139 /* PostDetailController.swift */,
+				A776EDF82C457DE500CA3139 /* PostsController.swift */,
+			);
+			path = Observables;
+			sourceTree = "<group>";
+		};
+		A776EE042C459D4B00CA3139 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
+				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
+				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
+				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
+				A776EE0E2C45B29800CA3139 /* Timeline.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A776EE072C459DE900CA3139 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				A776EE002C45973600CA3139 /* PostInfo.swift */,
+				A776EE082C459DF900CA3139 /* PostRepository.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +211,9 @@
 			dependencies = (
 			);
 			name = Diver;
+			packageProductDependencies = (
+				A776EDF62C457C0300CA3139 /* TootSDK */,
+			);
 			productName = Diver;
 			productReference = A776EDC72C457BB800CA3139 /* Diver.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +286,9 @@
 				Base,
 			);
 			mainGroup = A776EDBE2C457BB800CA3139;
+			packageReferences = (
+				A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */,
+			);
 			productRefGroup = A776EDC82C457BB800CA3139 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +331,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A776EE0F2C45B29800CA3139 /* Timeline.swift in Sources */,
+				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
+				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
+				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
+				A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */,
 				A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */,
+				A776EDF92C457DE500CA3139 /* PostsController.swift in Sources */,
+				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
+				A776EE132C45C3AF00CA3139 /* PostDetailController.swift in Sources */,
+				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,
+				A776EE012C45973600CA3139 /* PostInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,6 +699,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TootSDK/TootSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A776EDF62C457C0300CA3139 /* TootSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */;
+			productName = TootSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A776EDBF2C457BB800CA3139 /* Project object */;
 }
