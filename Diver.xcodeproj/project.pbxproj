@@ -27,6 +27,7 @@
 		A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */; };
 		A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */; };
 		A7BB5BC42C4ABFA300B6DFA1 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC32C4ABFA300B6DFA1 /* AppController.swift */; };
+		A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		A7BB5BC32C4ABFA300B6DFA1 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A7BB5BC92C4B04E900B6DFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +126,10 @@
 		A776EDC92C457BB800CA3139 /* Diver */ = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BC92C4B04E900B6DFA1 /* Info.plist */,
 				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
 				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
+				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
 				A776EE032C459D3E00CA3139 /* Observables */,
 				A776EE022C459D3800CA3139 /* Models */,
 				A776EE042C459D4B00CA3139 /* Views */,
@@ -340,6 +345,7 @@
 				A776EE0F2C45B29800CA3139 /* Timeline.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
+				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
 				A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */,
@@ -514,6 +520,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Diver/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -552,6 +559,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Diver/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

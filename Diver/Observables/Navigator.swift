@@ -66,13 +66,16 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         }
     }
 
-    /// Handle a deep link from AppDelegate.
-    /// 
+    /// Handle a deep link. Attach the `onOpenURL` modifier to the root view of the application. In this example project, I attach the modifier in the `body` of
+    /// DiverApp because that‘s the earliest point at which I have a reference to the Navigator. In the `onOpenURL` modifier, pass the received URL to this
+    /// method.
+    ///
+    /// Centralizing deep link handling in Navigator makes sense. We already create views in `content(for destination:)`, so we already have access to
+    /// the services and controllers we need.
+    ///
     /// - Parameter value: The deep link value indicating the navigation to perform.
-    func deepLink(_ value: String) {
-        /// Implementation here depends entirely on how you have deep links set up. This assumes a simple string value. This shows how useful the Navigator
-        /// type is: since we already create views in `content(for destination:)`, we already have access to the services and controllers we need.
-        switch value {
+    func deepLink(_ value: URL) {
+        switch value.lastPathComponent {
         case "first_post":
             if let first = appController.postsController.posts.first {
                 go(to: .postDetail(first))

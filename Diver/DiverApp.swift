@@ -21,13 +21,21 @@ import TootSDK
 /// put it in the environment.
 // TODO: AppDelegate
 @main struct DiverApp: App {
+    /// Allows the application to use UIApplicationDelegate callbacks for monitoring lifecycle events, remote notifications, etc.
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     var body: some Scene {
         let appController = AppController()
         let navigator = Navigator(appController: appController)
         WindowGroup {
             ContentView()
+                // Add required observables to the environment.
                 .environment(appController.postsController)
                 .environment(navigator)
+                // Register a deep link handler.
+                .onOpenURL { url in
+                    navigator.deepLink(url)
+                }
         }
     }
 }

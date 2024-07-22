@@ -1,0 +1,11 @@
+{
+    "Simulator Target Bundle": "com.nerdery.Diver",
+    "aps": {
+        "alert": {
+            "title": "This is a test deep link notification title",
+            "body": "This is a test deep link notification body"
+        },
+        "category": "DEEP_LINK"
+    },
+    "url": "diver://deep_link/first_post"
+}

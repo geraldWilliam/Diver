@@ -8,7 +8,7 @@
 import Foundation
 import TootSDK
 
-/// This type is responsible for setting up shared services and providing instances of other controllers.
+/// This type is responsible for providing instances of other controllers.
 @MainActor @Observable class AppController {
     /// The external fediverse client.
     // TODO: We can‘t mock this dependency. Is that a problem? Yes, for UI tests.
