@@ -1,5 +1,5 @@
 //
-//  PostsController.swift
+//  Posts.swift
 //  Diver
 //
 //  Created by Gerald Burke on 7/15/24.
@@ -20,9 +20,11 @@ import Foundation
 ///
 /// final
 /// This type is marked final simply to indicate that it is not intended for subclassing.
-@MainActor @Observable final class PostsController {
+@MainActor @Observable final class Posts {
     /// The posts to be displayed. Note, we use a domain-specific model here instead of the external `Post` model provided by TootSDK.
-    var posts: [PostInfo] = []
+    var timeline: [PostInfo] = []
+    /// A dictionary of replies, keyed by their parent posts.
+    var replies: [PostInfo.ID: [PostInfo]] = [:]
     /// A boolean to indicate whether an error should be displayed.
     var showingError: Bool = false
     /// An error, wrapped in a Failure. See `Failure.swift` for more details.
@@ -43,7 +45,7 @@ import Foundation
     func getPosts() {
         Task {
             do {
-                posts = try await repo.getPosts()
+                timeline = try await repo.getPosts()
             } catch {
                 failure = Failure(error)
             }
@@ -53,7 +55,17 @@ import Foundation
     func getNextPage() {
         Task {
             do {
-                posts.append(contentsOf: try await repo.getNextPage())
+                timeline.append(contentsOf: try await repo.getNextPage())
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func getReplies(for post: PostInfo) {
+        Task {
+            do {
+                replies[post.id] = try await repo.getReplies(for: post)
             } catch {
                 failure = Failure(error)
             }

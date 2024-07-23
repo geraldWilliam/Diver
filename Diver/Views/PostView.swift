@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A composable view representing a single post. Under a header with the author‘s avatar and display name, the post‘s content is displayed.
 ///
-/// Note, this view does not access the PostsController. The post is passed in at initialization and no logic is performed. This view is just layout.
+/// Note, this view does not access the Posts. The post is passed in at initialization and no logic is performed. This view is just layout.
 struct PostView: View {
     /// The post.
     let post: PostInfo
@@ -49,7 +49,7 @@ struct PostView: View {
                         .aspectRatio(contentMode: .fit)
                 }
             }
-            ///
+            /// The main post of a PostDetailView hides the reply count. Posts in the TimelineView that are simply boosts also hide the reply count.
             if !hideReplyCount, post.boost == nil {
                 Text("\(post.replyCount) replies")
                     .font(.caption)

@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         @Bindable var navigator = navigator
         NavigationStack(path: $navigator.path) {
-            Timeline()
+            TimelineView()
                 .navigationDestination(for: Navigator.Destination.self) { destination in
                     navigator.content(for: destination)
                 }
@@ -24,7 +24,7 @@ struct ContentView: View {
 
 #Preview {
     let mockRepo = MockPostsRepository()
-    let controller = PostsController(repo: mockRepo)
+    let posts = Posts(repo: mockRepo)
     return ContentView()
-        .environment(controller)
+        .environment(posts)
 }

@@ -13,10 +13,10 @@ import TootSDK
 /// save us a little work later.
 ///
 /// `Identifiable`
-/// Models should conform to Identifiable if they need to be displayed in SwiftUI Lists.
+/// Models should conform to Identifiable if they need to be displayed in SwiftUI Lists, ForEach, etc.
 ///
 /// `Hashable`
-/// Models should conform to Hashable if they need to be selectable in SwiftUI Lists.
+/// Models should conform to Hashable if they need to be selectable in SwiftUI Lists, enumerable by ForEach, etc.
 ///
 /// In many cases, your domain model will be parsed not from an external model type but from raw JSON data. In such cases, declare `Codable` conformance in
 /// addition to `Identifiable` and `Hashable`.

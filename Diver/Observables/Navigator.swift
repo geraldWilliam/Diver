@@ -18,7 +18,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 /// Modal presentations are not managed by this class.
 // TODO: Can we make modals work with this?
 @MainActor @Observable final class Navigator {
-    /// Use Destination values to drive transitions.
+    /// Use Destination values to drive transitions. This strategy allows us to centralize instantiation of navigation destinations here in Navigator.
+    /// See `content(for destination:)`. Establishing a convention of using `Navigator.Destination` values also improves clarity at the call site.
     ///
     /// In a NavigationLink:
     ///
@@ -35,12 +36,16 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
 
-    /// The AppController provides other controllers that the Navigator can use to set up content view for destinations.
-    private let appController: AppController
+    /// Required for executing deep link navigation.
+    let postsController: Posts
 
-    init(appController: AppController) {
-        self.appController = appController
+    // MARK: - Initialization
+
+    init(postsController: Posts) {
+        self.postsController = postsController
     }
+
+    // MARK: - Navigation
 
     /// Use this method to prompt navigation without using a NavigationLink.
     ///
@@ -49,8 +54,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         path.append(destination)
     }
 
-    /// Get the content view for a navigation destination. This strategy keeps controller instantiation out of views. The Navigator requests a controller from the
-    /// AppController and creates a view for the destination.
+    /// Get the content view for a navigation destination. This strategy keeps complex view instantiation out of layout code.
     ///
     /// - Parameter destination: The destination of the navigation event.
     /// - Returns: The view to be displayed by the navigation event.
@@ -59,9 +63,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         Group {
             switch destination {
             case .postDetail(let post):
-                let post = post.boost ?? post
-                let controller = appController.postDetailController(for: post)
-                PostDetailView(postDetailController: controller, post: post)
+                /// This is a simple example but here you might access a service and instantiate any required initialization values for a view.
+                PostDetailView(post: post.boost ?? post)
             }
         }
     }
@@ -70,14 +73,12 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     /// DiverApp because that‘s the earliest point at which I have a reference to the Navigator. In the `onOpenURL` modifier, pass the received URL to this
     /// method.
     ///
-    /// Centralizing deep link handling in Navigator makes sense. We already create views in `content(for destination:)`, so we already have access to
-    /// the services and controllers we need.
-    ///
     /// - Parameter value: The deep link value indicating the navigation to perform.
     func deepLink(_ value: URL) {
         switch value.lastPathComponent {
+        /// The example deep link just takes us to the first post.
         case "first_post":
-            if let first = appController.postsController.posts.first {
+            if let first = postsController.timeline.first {
                 go(to: .postDetail(first))
             }
         default:

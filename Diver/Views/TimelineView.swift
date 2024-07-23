@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct Timeline: View {
-    @Environment(PostsController.self) var postsController
+struct TimelineView: View {
+    @Environment(Posts.self) var posts
     var body: some View {
-        @Bindable var controller = postsController
-        List(controller.posts) { post in
+        @Bindable var posts = posts
+        List(posts.timeline) { post in
             /// NavigationLink‘s value is appended to the navigation stack‘s path. See the `navigationDestination` modifier for handling.
             NavigationLink(value: Navigator.Destination.postDetail(post)) {
                 /// The “label“ for the navigation link. This is the view displayed in the list row.
@@ -27,24 +27,24 @@ struct Timeline: View {
                 }
             }
         }
-        .alert(isPresented: $controller.showingError, error: controller.failure) {
-            Button(action: { controller.failure = nil }) {
+        .alert(isPresented: $posts.showingError, error: posts.failure) {
+            Button(action: { posts.failure = nil }) {
                 Text("OK")
             }
         }
         .task {
-            controller.getPosts()
+            posts.getPosts()
         }
         .refreshable {
-            controller.getPosts()
+            posts.getPosts()
         }
     }
 }
 
 #Preview {
     let mockRepo = MockPostsRepository()
-    let controller = PostsController(repo: mockRepo)
-    return Timeline()
-        .environment(controller)
+    let posts = Posts(repo: mockRepo)
+    return TimelineView()
+        .environment(posts)
 
 }

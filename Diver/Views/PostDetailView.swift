@@ -9,17 +9,22 @@ import SwiftUI
 
 /// The detail screen for a post. It shows the post and its replies.
 struct PostDetailView: View {
-    @State var postDetailController: PostDetailController
+    /// This view uses the same observable as the TimelineView.
+    @Environment(Posts.self) var posts: Posts
+    /// The main post being displayed.
     let post: PostInfo
+
     var body: some View {
         List {
             Section {
+                /// Show the main post as a header section.
                 PostView(post: post, hideReplyCount: true)
             }
             Section {
-                ForEach(postDetailController.replies) { post in
-                    NavigationLink(value: post) {
-                        PostView(post: post, hideReplyCount: false)
+                /// Show a list of replies below the main post.
+                ForEach(posts.replies[post.id] ?? []) { reply in
+                    NavigationLink(value: reply) {
+                        PostView(post: reply, hideReplyCount: false)
                     }
                 }
             }
@@ -28,13 +33,14 @@ struct PostDetailView: View {
         .toolbarTitleDisplayMode(.inline)
         .listStyle(.plain)
         .task {
-            postDetailController.getReplies(for: post)
+            posts.getReplies(for: post)
         }
     }
 }
 
 #Preview {
     let repo = MockPostsRepository()
-    let controller = PostDetailController(repo: repo)
-    return PostDetailView(postDetailController: controller, post: PostInfo.mock())
+    let posts = Posts(repo: repo)
+    return PostDetailView(post: PostInfo.mock())
+        .environment(posts)
 }

@@ -11,8 +11,13 @@ import SwiftUI
 /// be constructed or an image is not found at the URL. A retrieved image is clipped to a circle of the specified diameter. A white border and drop shadow are
 /// applied.
 struct AvatarView: View {
+    /// A string representation of a valid URL that points to a remote image asset.
     let path: String
+    /// The diameter of the circle in which the image is displayed.
     let diameter: CGFloat
+    
+    private let placeholderName = "person.fill"
+
     var body: some View {
         if let url = URL(string: path) {
             AsyncImage(url: url) { result in
@@ -28,11 +33,11 @@ struct AvatarView: View {
                                 .stroke(Color.white, lineWidth: 2)
                         }
                 } else {
-                    Image(systemName: "person.fill")
+                    Image(systemName: placeholderName)
                 }
             }
         } else {
-            Image(systemName: "person.fill")
+            Image(systemName: placeholderName)
         }
     }
 }

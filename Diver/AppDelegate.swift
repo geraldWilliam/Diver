@@ -10,28 +10,30 @@ import UIKit
 /// An AppDelegate class. Here, you can implement application lifecycle hooks just like you would in UIApplicationDelegate. In this example, the class implements
 /// `application(_:didFinishLaunchingWithOptions:)` and handles push notifications.
 class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-    
+    /// Type-safe declarations of category identifiers for notifications. Remote notifications may use these one of these values for the "category" key.
     struct NotificationCategory {
         static let deepLink = "DEEP_LINK"
     }
-    
+
     private let notificationCenter: UNUserNotificationCenter = .current()
-    
+
     func application(
         _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        UNUserNotificationCenter.current().delegate = self
+        /// Handle any UI-test specific requirements for app setup.
+        if CommandLine.arguments.contains("testing") {
+            /// Speed up UI tests by disabling animations.
+            UIView.setAnimationsEnabled(false)
+        }
+        /// UNUserNotificationCenter‘s delegate must be set before the application finishes launching.
+        /// https://developer.apple.com/documentation/usernotifications/unusernotificationcenter/delegate
+        notificationCenter.delegate = self
         // TODO: This shouldn't happen on launch.
         requestNotificationPermission()
         return true
     }
-    
-    override init() {
-        super.init()
-        notificationCenter.delegate = self
-    }
-    
+
     func requestNotificationPermission() {
         Task {
             do {
@@ -42,17 +44,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
             }
         }
     }
-    
-    private func navigate(for content: UNNotificationContent) {
-        guard let entry = content.userInfo["url"] as? String, let url = URL(string: entry) else {
-            return
-        }
-        UIApplication.shared.open(url, options: [:])
-    }
-    
+
     // MARK: - UNUserNotificationCenterDelegate
-    
-    /// This function allows us to view notifications in the app even with it in the foreground.
+
+    /// This allows us to view notifications while the app is in the foreground.
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
@@ -69,11 +64,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         @unknown default:
             [.sound, .badge, .banner]
         }
-        
         completionHandler(options)
     }
-    
-    /// This function lets us do something when the user interacts with a notification, like log that they clicked it, or navigate to a specific screen.
+
+    /// This lets us respond when the user interacts with a notification.
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
@@ -87,5 +81,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
             break
         }
         completionHandler()
+    }
+    
+    /// A helper to parse the deep link URL from a notification and route to it.
+    ///
+    /// - Parameter content: The notification's content.
+    private func navigate(for content: UNNotificationContent) {
+        guard let entry = content.userInfo["url"] as? String, let url = URL(string: entry) else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:])
     }
 }
