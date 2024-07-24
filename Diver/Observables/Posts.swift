@@ -55,7 +55,8 @@ import Foundation
     func getNextPage() {
         Task {
             do {
-                timeline.append(contentsOf: try await repo.getNextPage())
+                let more = try await repo.getNextPage()
+                timeline.append(contentsOf: more)
             } catch {
                 failure = Failure(error)
             }

@@ -15,6 +15,13 @@ struct PostView: View {
     let post: PostInfo
     /// The detail screen re-uses this view but shouldn‘t show the number of replies. Boosts of other posts also hide the reply count.
     let hideReplyCount: Bool
+    /// A formatter to prepare the created date of a post for presentation.
+    private let dateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -50,11 +57,14 @@ struct PostView: View {
                 }
             }
             /// The main post of a PostDetailView hides the reply count. Posts in the TimelineView that are simply boosts also hide the reply count.
-            if !hideReplyCount, post.boost == nil {
-                Text("\(post.replyCount) replies")
-                    .font(.caption)
-                    .fontWeight(.light)
+            HStack {
+                if !hideReplyCount, post.boost == nil {
+                    Text("\(post.replyCount) replies")
+                }
+                Text(dateFormatter.string(from: post.createdDate))
             }
+            .font(.caption)
+            .fontWeight(.light)
         }
         .padding(.vertical)
     }
