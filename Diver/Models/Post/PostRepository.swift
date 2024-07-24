@@ -42,7 +42,7 @@ actor PostsRepository: PostsRepositoryProtocol {
     }
 
     func getNextPage() async throws -> [PostInfo] {
-        let nextPage = try await client.getTimeline(.home).nextPage
+        let nextPage = try await client.getTimeline(.home).previousPage
         return try await client.getTimeline(.home, pageInfo: nextPage).result.map { PostInfo(post: $0) }
     }
 }
