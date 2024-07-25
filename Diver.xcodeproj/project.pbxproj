@@ -126,16 +126,16 @@
 		A776EDC92C457BB800CA3139 /* Diver */ = {
 			isa = PBXGroup;
 			children = (
-				A7BB5BC92C4B04E900B6DFA1 /* Info.plist */,
-				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
-				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
-				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
-				A776EE032C459D3E00CA3139 /* Observables */,
-				A776EE022C459D3800CA3139 /* Models */,
-				A776EE042C459D4B00CA3139 /* Views */,
 				A776EDCE2C457BB900CA3139 /* Assets.xcassets */,
 				A776EDD02C457BB900CA3139 /* Diver.entitlements */,
+				A7BB5BC92C4B04E900B6DFA1 /* Info.plist */,
+				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
+				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
+				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
+				A776EE022C459D3800CA3139 /* Models */,
+				A776EE032C459D3E00CA3139 /* Observables */,
 				A776EDD12C457BB900CA3139 /* Preview Content */,
+				A776EE042C459D4B00CA3139 /* Views */,
 			);
 			path = Diver;
 			sourceTree = "<group>";
@@ -179,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */,
-				A776EDF82C457DE500CA3139 /* Posts.swift */,
 				A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */,
+				A776EDF82C457DE500CA3139 /* Posts.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
