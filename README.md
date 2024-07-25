@@ -4,18 +4,22 @@ This project provides an example of an architecture that fits naturally with Swi
 
 ## Layered Architecture
 
-The best fit for an iOS application written in SwiftUI is a layered architecture like MVC or MVVM. Views, like view controllers in UIKit, can become dumping grounds for code. This leads to problems like fragmented application state. A layered architecture with proper separation of concerns helps eliminate these problems. 
+The best fit for an iOS application written in SwiftUI is a layered architecture like MVC or MVVM. Views, like view controllers in UIKit, can become dumping grounds for code. This leads to problems like fragmented application state. A layered architecture with proper separation of concerns helps eliminate these problems. SwiftUI imposes some requirements on how we design such an architecture. Whether MVC, MVVM, or some other pattern, the bridge between model and view in your layered architecture must serve as the _source of truth_ for your user interface.
 
 ## Source of Truth
 
-Apple’s documentation emphasizes the importance of this concept. The source of truth for a view is just an dynamic value to which the view is bound. When the value changes, the view reloads to present the new state. In a very simple feature, this might just be a property of a view marked with the @State annotation. In a non-trivial context, the source of truth is typically an separate observable class with multiple published properties, often provided to the view via dependency injection.
+Apple’s documentation emphasizes the importance of this concept. The source of truth for a view is a dynamic value to which the view is bound. When the value changes, the view reloads to present the new state. In a very simple feature, this might just be a property of a view marked with the `@State` annotation. In a non-trivial context, the source of truth is typically a separate observable class with multiple published properties, often provided to the view via dependency injection.
 
 The responsibilities of such a type are as follows:
 
 - Interact with the data layer
 - Publish changes to be reflected in the view
 
-This might be a controller, a view model, etc. This document intentionally avoids these terms and instead refers to the bridge between models and views as the “observable“ layer.
+Your source of truth might be a controller, a view model, etc. This document avoids these terms and instead refers to the bridge between models and views as the “observable“ layer.
+
+## Model-View-Observable
+
+The layers of our architecture are familiar to anyone with experience in MVC or MVVM. We are not proposing “Model-View-Observable“ as its own architecture pattern but rather as a generalized description of how MVC, MVVM, and related patterns fit into a SwiftUI project.
 
 ### Models
 

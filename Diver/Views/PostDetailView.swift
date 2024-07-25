@@ -23,7 +23,7 @@ struct PostDetailView: View {
             Section {
                 /// Show a list of replies below the main post.
                 ForEach(posts.replies[post.id] ?? []) { reply in
-                    NavigationLink(value: reply) {
+                    NavigationLink(value: Navigator.Destination.postDetail(reply)) {
                         PostView(post: reply, hideReplyCount: false)
                     }
                 }

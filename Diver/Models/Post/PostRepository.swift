@@ -13,11 +13,10 @@ import TootSDK
 /// The repository provides a protocol that declares its interface. Observables that depend on the repository should use the protocol so the dependency can be
 /// satisfied by a mock repository in tests and previews.
 protocol PostsRepositoryProtocol {
-    /// Get the first page of the timeline.
-    // TODO: Can I just remove this and use getNextPage?
-    func getPosts() async throws -> [PostInfo]
-    /// Get the next page of the timeline.
-    func getNextPage() async throws -> [PostInfo]
+    /// Get the latest posts in the timeline.
+    func getLatestPosts() async throws -> [PostInfo]
+    /// Get a page of earlier posts in the timeline.
+    func getEarlierPosts() async throws -> [PostInfo]
     /// Get the replies to a post.
     func getReplies(for post: PostInfo) async throws -> [PostInfo]
 }
@@ -29,21 +28,30 @@ actor PostsRepository: PostsRepositoryProtocol {
     /// mockable interface by which the application accesses this package.
     let client: TootClient
 
+    private var earliestPost: String?
+    
     init(client: TootClient) {
         self.client = client
     }
 
-    func getPosts() async throws -> [PostInfo] {
-        try await client.getTimeline(.home).result.map { PostInfo(post: $0) }
+    func getLatestPosts() async throws -> [PostInfo] {
+        earliestPost = nil
+        return try await fetchPosts()
     }
 
+    func getEarlierPosts() async throws -> [PostInfo] {
+        return try await fetchPosts()
+    }
+    
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
     }
-
-    func getNextPage() async throws -> [PostInfo] {
-        let nextPage = try await client.getTimeline(.home).previousPage
-        return try await client.getTimeline(.home, pageInfo: nextPage).result.map { PostInfo(post: $0) }
+    
+    private func fetchPosts() async throws -> [PostInfo] {
+        let pageInfo = PagedInfo(maxId: earliestPost)
+        let posts = try await client.getTimeline(.home, pageInfo: pageInfo)
+        earliestPost = posts.previousPage?.maxId
+        return posts.result.map { PostInfo(post: $0) }
     }
 }
 
@@ -51,7 +59,7 @@ actor PostsRepository: PostsRepositoryProtocol {
 
 struct MockPostsRepository: PostsRepositoryProtocol {
 
-    func getPosts() async throws -> [PostInfo] {
+    func getLatestPosts() async throws -> [PostInfo] {
         return (0..<12).map { _ in
             PostInfo.mock()
         }
@@ -63,7 +71,7 @@ struct MockPostsRepository: PostsRepositoryProtocol {
         }
     }
 
-    func getNextPage() async throws -> [PostInfo] {
+    func getEarlierPosts() async throws -> [PostInfo] {
         return (0..<12).map { _ in
             PostInfo.mock()
         }

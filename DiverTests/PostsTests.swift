@@ -17,7 +17,7 @@ final class PostsTests: DiverTests {
         } onChange: {
             itHasExpectedPostsCount.fulfill()
         }
-        subject.getPosts()
+        subject.getLatestPosts()
         await fulfillment(of: [itHasExpectedPostsCount], timeout: 1)
         XCTAssertEqual(12, subject.timeline.count)
     }

@@ -16,6 +16,8 @@ import UIKit
     
     var canRequestAuthorization: Bool = false
     
+    var failure: Failure?
+    
     private let app: UIApplication
 
     private let notificationCenter: UNUserNotificationCenter = .current()
@@ -31,8 +33,7 @@ import UIKit
             do {
                 try await notificationCenter.requestAuthorization(options: [.alert, .badge, .sound])
             } catch {
-                // TODO: Actually handle this error, probably by throwing it.
-                print("Request authorization error")
+                failure = Failure(error)
             }
         }
     }

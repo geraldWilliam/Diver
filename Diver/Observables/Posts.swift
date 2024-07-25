@@ -42,20 +42,20 @@ import Foundation
 
     // MARK: - Methods
 
-    func getPosts() {
+    func getLatestPosts() {
         Task {
             do {
-                timeline = try await repo.getPosts()
+                timeline = try await repo.getLatestPosts()
             } catch {
                 failure = Failure(error)
             }
         }
     }
 
-    func getNextPage() {
+    func getEarlierPosts() {
         Task {
             do {
-                let more = try await repo.getNextPage()
+                let more = try await repo.getEarlierPosts()
                 timeline.append(contentsOf: more)
             } catch {
                 failure = Failure(error)

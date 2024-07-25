@@ -19,11 +19,15 @@ struct TimelineView: View {
                     /// The “label“ for the navigation link. This is the view displayed in the list row.
                     PostView(post: post, hideReplyCount: false)
                 }
-            }
-            Button(action: { posts.getNextPage() }) {
-                Text("Get More")
+                // Infinite scroll
+                .onAppear {
+                    if post == posts.timeline.last {
+                        posts.getEarlierPosts()
+                    }
+                }
             }
         }
+        .animation(.easeInOut, value: posts.timeline)
         .navigationTitle("Home")
         .listStyle(.plain)
         .toolbar {
@@ -46,10 +50,10 @@ struct TimelineView: View {
             }
         }
         .task {
-            posts.getPosts()
+            posts.getLatestPosts()
         }
         .refreshable {
-            posts.getPosts()
+            posts.getLatestPosts()
         }
     }
 }
