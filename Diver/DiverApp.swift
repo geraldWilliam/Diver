@@ -51,6 +51,7 @@ import TootSDK
                 // Add required observables to the environment.
                 .environment(postsController)
                 .environment(navigator)
+                .environment(appDelegate.notifications)
                 // Register a deep link handler.
                 .onOpenURL { url in
                     navigator.deepLink(url)

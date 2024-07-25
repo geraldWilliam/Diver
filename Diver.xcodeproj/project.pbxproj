@@ -27,6 +27,7 @@
 		A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */; };
 		A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */; };
 		A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */; };
+		A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7BB5BC92C4B04E900B6DFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTests.swift; sourceTree = "<group>"; };
+		A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 			children = (
 				A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */,
 				A776EDF82C457DE500CA3139 /* Posts.swift */,
+				A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
 				A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */,
 				A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */,
+				A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */,
 				A776EDF92C457DE500CA3139 /* Posts.swift in Sources */,
 				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,

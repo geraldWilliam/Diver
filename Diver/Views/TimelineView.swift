@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimelineView: View {
     @Environment(Posts.self) var posts
+    @Environment(Notifications.self) var notifications
     var body: some View {
         @Bindable var posts = posts
         List {
@@ -26,9 +27,11 @@ struct TimelineView: View {
         .navigationTitle("Home")
         .listStyle(.plain)
         .toolbar {
-            ToolbarItem {
-                Button(action: { /* TODO: Request Notification Permission */}) {
-                    Image(systemName: "app.badge")
+            if notifications.canRequestAuthorization {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: { notifications.requestAuthorization() }) {
+                        Image(systemName: "app.badge")
+                    }
                 }
             }
             ToolbarItem {
