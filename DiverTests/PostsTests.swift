@@ -9,7 +9,7 @@ import XCTest
 @testable import Diver
 
 final class PostsTests: DiverTests {
-    @MainActor func testItGetsFollowedAuthors() async throws {
+    @MainActor func testItGetsTimeline() async throws {
         let subject = Posts(repo: MockPostsRepository())
         let itHasExpectedPostsCount = expectation(description: #function)
         withObservationTracking {
