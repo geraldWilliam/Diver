@@ -38,6 +38,8 @@ import Foundation
         self.repo = repo
         /// Monitor the `failure` property to update the `showingError` flag.
         observeFailure()
+        /// Get initial content.
+        getLatestPosts()
     }
 
     // MARK: - Methods
@@ -55,7 +57,7 @@ import Foundation
     func getEarlierPosts() {
         Task {
             do {
-                let more = try await repo.getEarlierPosts()
+                let more = try await repo.getEarlierPosts().filter { !timeline.contains($0) }
                 timeline.append(contentsOf: more)
             } catch {
                 failure = Failure(error)

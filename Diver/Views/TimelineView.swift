@@ -28,7 +28,7 @@ struct TimelineView: View {
             }
         }
         .animation(.easeInOut, value: posts.timeline)
-        .navigationTitle("Home")
+        .navigationTitle("Diver")
         .listStyle(.plain)
         .toolbar {
             if notifications.canRequestAuthorization {
@@ -48,9 +48,6 @@ struct TimelineView: View {
             Button(action: { posts.failure = nil }) {
                 Text("OK")
             }
-        }
-        .task {
-            posts.getLatestPosts()
         }
         .refreshable {
             posts.getLatestPosts()
