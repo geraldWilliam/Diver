@@ -111,7 +111,7 @@ This project provides an example of creating an AppDelegate for an application w
 
 To test push notifications, use the `send-push.sh` script in the `push` folder. There are some example push payloads there. For example:
 
-    `cd push && ./send-push.sh deep-link-push.apns`
+    cd push && ./send-push.sh deep-link-push.apns
     
 ### Localization
 
