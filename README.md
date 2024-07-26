@@ -65,7 +65,7 @@ Importantly, observables in a SwiftUI context should have no knowledge of the vi
 
 Note on iOS 16 support:
 
-The (Observation framework)[https://developer.apple.com/documentation/Observation] requires a minimum deployment target of iOS 17 or higher. If your application targets iOS 16, observables should conform to the `ObservableObject` protocol. Properties to which views must bind should be annotated `@Published`. When binding views to these properties, the @Bindable annotation is not required. @Published automatically provides a binding that can be accessed by prefixing the property with `$`.
+The [Observation framework](https://developer.apple.com/documentation/Observation) requires a minimum deployment target of iOS 17 or higher. If your application targets iOS 16, observables should conform to the `ObservableObject` protocol. Properties to which views must bind should be annotated `@Published`. When binding views to these properties, the @Bindable annotation is not required. @Published automatically provides a binding that can be accessed by prefixing the property with `$`.
 
 ## Common Tasks
 
