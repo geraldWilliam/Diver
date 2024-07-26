@@ -18,6 +18,9 @@ struct ContentView: View {
                 .navigationDestination(for: Navigator.Destination.self) { destination in
                     navigator.content(for: destination)
                 }
+                .sheet(item: $navigator.modal) { modal in
+                    navigator.content(for: modal)
+                }
         }
     }
 }

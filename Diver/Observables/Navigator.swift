@@ -15,8 +15,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 ///
 /// See how we bind the path and use the view construction method in ContentView.swift.
 ///
-/// Modal presentations are not managed by this class.
-// TODO: Can we make modals work with this?
+/// TODO: Notes on modal presentation
 @MainActor @Observable final class Navigator {
     /// Use Destination values to drive transitions. This strategy allows us to centralize instantiation of navigation destinations here in Navigator.
     /// See `content(for destination:)`. Establishing a convention of using `Navigator.Destination` values also improves clarity at the call site.
@@ -32,9 +31,25 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     enum Destination: Hashable {
         case postDetail(PostInfo)
     }
+    
+    enum Modal: String, Identifiable {
+        var id: String { rawValue }
+        case postComposer
+    }
 
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
+    
+    var modal: Modal?
+    
+    func content(for modal: Modal) -> some View {
+        Group {
+            switch modal {
+            case .postComposer:
+                Text("Write a post!")
+            }
+        }
+    }
 
     /// Required for executing deep link navigation.
     let postsController: Posts
@@ -52,6 +67,10 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     /// - Parameter destination: The destination view of the transition.
     func go(to destination: Destination) {
         path.append(destination)
+    }
+    
+    func present(_ modal: Modal) {
+        self.modal = modal
     }
 
     /// Get the content view for a navigation destination. This strategy keeps complex view instantiation out of layout code.

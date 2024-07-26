@@ -71,11 +71,21 @@ The (Observation framework)[https://developer.apple.com/documentation/Observatio
 
 ### Navigation
 
-This example app centralizes navigation in a Navigator type. SwiftUI offers a flexible solution for navigation in `NavigationStack` and `NavigationPath`. The NavigationStack must be created in the view layer but the Navigator provides a globally available type (via injection in the Environment) that can create content for navigation destinations and append values to the app‘s navigation path to prompt navigation programmatically. 
+This example app centralizes navigation in a Navigator type. SwiftUI offers a flexible solution for navigation in `NavigationStack` and `NavigationPath`. The NavigationStack must be created in the view layer but the Navigator provides a globally available type (via injection in the Environment) that can create content for navigation destinations and append values to the app‘s navigation path to prompt navigation programmatically.
+
+#### Push / Pop
+
+TODO: Describe the `go(to destination:)` method, Destination type, etc. 
+
+#### Modals
+
+TODO: Improve this draft section.
+
+This project demonstrates a strategy for centralizing modal presentations. Not all applications need such an approach. Many modal presentations are specific to the context of their presenting view. For such cases, simply use the sheet modifier in the presenting view. There are many examples of how to do this. The centralized strategy is useful if you have modals that could be presented from different contexts. 
 
 #### Deep Links
 
-Since Navigator centralizes navigation handling, it is the best place to handle deep links. SwiftUI provides the `onOpenURL` modifier. Attach this modifier to the root view of the application and pass the received value to the Navigator‘s `deepLink` method. See `DiverApp.swift` and `Navigator.swift` for an example. 
+Since Navigator centralizes navigation handling, it is the best place to handle deep links. SwiftUI provides the `onOpenURL` modifier. Attach this modifier to the root view of the application and pass the received value to the Navigator‘s `deepLink` method. See `DiverApp.swift` and `Navigator.swift` for an example.
 
 ### Push Notifications
 
@@ -83,7 +93,7 @@ This project provides an example of creating an AppDelegate for an application w
 
 To test push notifications, use the `send-push.sh` script at the root of the project. There are some example push payloads there. For example:
 
-    `./send-push.sh deep-link-push.apns`
+    `cd push && ./send-push.sh deep-link-push.apns`
     
 ### Localization
 

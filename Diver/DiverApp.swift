@@ -28,7 +28,7 @@ import TootSDK
     /// A repository for accessing content.
     private var postsRepository: PostsRepositoryProtocol {
         if CommandLine.arguments.contains("ui-testing") {
-            /// Use a mock repository for UI tests.
+            /// For UI tests, use a mock repository.
             return MockPostsRepository()
         } else {
             /// For live runs of the application, use a repository that accesses content via TootClient.

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct TimelineView: View {
     @Environment(Posts.self) var posts
+    @Environment(Navigator.self) var navigator
     @Environment(Notifications.self) var notifications
+
     var body: some View {
         @Bindable var posts = posts
         List {
@@ -39,7 +41,7 @@ struct TimelineView: View {
                 }
             }
             ToolbarItem {
-                Button(action: { /* TODO: Present Post Composer */}) {
+                Button(action: { navigator.present(.postComposer) }) {
                     Image(systemName: "square.and.pencil")
                 }
             }
