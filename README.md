@@ -89,26 +89,28 @@ Since Navigator centralizes navigation handling, it is the best place to handle 
 
 This project provides an example of creating an AppDelegate for an application with the SwiftUI lifecycle. The `DiverApp` is the app‘s entry point and cannot conform to UIApplicationDelegate. If an app delegate is needed (e.g., for app lifecycle callbacks or push notification handling) you must create a custom type and provide it to your SwiftUI app via the @UIApplicationDelegateAdaptor property wrapper. See `AppDelegate.swift` and `DiverApp.swift` for an example.
 
-To test push notifications, use the `send-push.sh` script at the root of the project. There are some example push payloads there. For example:
+To test push notifications, use the `send-push.sh` script in the `push` folder. There are some example push payloads there. For example:
 
     `cd push && ./send-push.sh deep-link-push.apns`
     
-## Localization
+### Localization
 
 TODO: Complete this section.
 
-## Previews
+## Validation
+
+### Previews
 
 For simple views, previews are trivial to configure. For complex views, provide an observable for the source of truth. This observable should be set up to supply mock data. In TimelineView, for example, we do this by initializing a `Posts` object with a `MockPostsRepository`. For some views, the source of truth is supplied as an initialization argument. For others, the source of truth is injected into the environment. In this example application, we use the environment for both the TimelineView and the PostDetailView.
 
 For many developers, previews are unstable. They often fail to load for complex views. When they do fail, the error messaging is not always helpful. If you encounter a failure, make sure that you have supplied all required dependencies for the view. If that doesn‘t fix it, try splitting your complex view into smaller components. 
 
-## Unit Tests
+### Unit Tests
 
 The observable layer of your application should be well-tested. Use `withObservationTracking` and XCTestExpectation as seen in `PostsTests.swift` to test asynchronous updates to published properties.
 
 Testing the observable layer is likely to incidentally verify some attributes of your models but it‘s usually worth it to write dedicated tests for the model layer also. Tests for entities are likely to just instantiate a value and verify its properties. Tests for repositories require a mock data source. // TODO: DO THIS?
 
-## UI Tests
+### UI Tests
 
 Configure the observable layer to use mock repositories when running UI tests. These mocks could be the same you use for previews or you might want separate, dedicated mocks for UI tests. Pass a flag in XCUIApplication‘s launch arguments and, in your application code, provide mock repositories to your observables if the flag is true. See DiverUITests.swift and DiverApp.swift for a minimal example. 
