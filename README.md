@@ -41,7 +41,7 @@ Simple views are small, focused components. Often, these are custom controls or 
 
 ### Observables
 
-Observables are the bridge between model and view layers. For complex views, observables are the source of truth. You might conceptualize these as Controllers, View Models, Stores, or some other abstraction. Observables should be decoupled from views and available to share between views. They may have a to-one relationship with a model type or may represent a bounded context that accesses various model types. They may be orchestrated to enforce consistent state TODO: (say more, add example in code).
+Observables are the bridge between model and view layers. For complex views, observables are the source of truth. You might conceptualize these as Controllers, View Models, Stores, or some other abstraction. Observables should be decoupled from views and available to share between views. They may have a to-one relationship with a model type or may represent a bounded context that accesses various model types. They may be orchestrated to enforce consistent state TODO: More on orchestration.
 
 This example project refers to the types in this layer simply as "observables". They are found in Diver/Observables and named for the segment of application state they represent (Navigator.swift and Posts.swift). For your application, you might take a similar approach or choose the abstraction that best suits your need. Whether controllers, view models, or otherwise, observables should follow a few rules:
 
@@ -75,11 +75,9 @@ This example app centralizes navigation in a Navigator type. SwiftUI offers a fl
 
 #### Push / Pop
 
-TODO: Describe the `go(to destination:)` method, Destination type, etc. 
+Navigator defines a Destination subtype, an enumeration of all views in the application that are reachable by a standard push transition. Navigator‘s `go(to destination:)` method appends a `Destination` to the app‘s navigation path and the `content(for destination:)` method provides the target view for the transition. See `Timeline.swift` or `PostDetailView.swift` for usage. 
 
 #### Modals
-
-TODO: Improve this draft section.
 
 This project demonstrates a strategy for centralizing modal presentations. Not all applications need such an approach. Many modal presentations are specific to the context of their presenting view. For such cases, simply use the sheet modifier in the presenting view. There are many examples of how to do this. The centralized strategy is useful if you have modals that could be presented from different contexts. 
 
