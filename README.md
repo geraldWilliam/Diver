@@ -45,21 +45,23 @@ Observables are the bridge between model and view layers. For complex views, obs
 
 This example project refers to the types in this layer simply as "observables". They are found in Diver/Observables and named for the segment of application state they represent (Navigator.swift and Posts.swift). For your application, you might take a similar approach or choose the abstraction that best suits your need. Whether controllers, view models, or otherwise, observables should follow a few rules:
 
-**Annotate @Observable**
+1. Annotate @Observable
     
-This macro synthesizes conformance to the `Observable` protocol, causing the class to emit notifications when its properties are modified. This is required so views can respond to data changes.
+    This macro synthesizes conformance to the `Observable` protocol, causing the class to emit notifications when its properties are modified. This is required so views can respond to data changes.
     
-**Annotate @MainActor**
+2. Annotate @MainActor
 
-This property wrapper ensures that updates to the class‘s properties are published on the main actor, where view updates must occur.
+    This property wrapper ensures that updates to the class‘s properties are published on the main actor, where view updates must occur.
 
-**Mark final**
+3. Mark final
 
-Not a requirement but a recommendation. Other classes should not inherit from Observables. Use protocol conformance if you need to share functionality across observables.
+    Not a requirement but a recommendation. Other classes should not inherit from Observables. Use protocol conformance if you need to share functionality across observables.
 
-**Synchronous methods returning void**
+4. Synchronous methods returning void
 
-To keep the call site tidy, the methods of an observable should not be asynchronous, throw errors, or return values. Asynchronous operations within these methods should be wrapped in [tasks](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Tasks-and-Task-Groups). The return values of these operations, or any errors they raise, should be assigned to published properties of the observable. 
+    To keep the call site tidy, the methods of an observable should not be asynchronous, throw errors, or return values. Asynchronous operations within these methods should be wrapped in [tasks](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Tasks-and-Task-Groups). The return values of these operations, or any errors they raise, should be assigned to published properties of the observable.
+
+--- 
 
 Importantly, observables in a SwiftUI context should have no knowledge of the view layer whatsoever. The bridge between observable and view is provided opaquely by the Observation framework. An observable should receive actions forwarded from the view, access the model layer (via a repository in this example), perform any necessary transformations, and update its published properties. The observable is completely decoupled from the view.
 
