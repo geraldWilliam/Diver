@@ -23,11 +23,11 @@ The layers of our architecture are familiar to anyone with experience in MVC or 
 
 ### Models
 
-Naturally, we need to model our domain data. Your entities should conform to the `Identifiable` and `Hashable` protocols to allow SwiftUI to use them in `List`, `ForEach`, etc. This project leverages the Repository pattern and considers the repository part of the model layer.
+Naturally, we need to represent data as entities (models) within the application‘s domain. Entities should conform to the `Identifiable` and `Hashable` protocols to allow SwiftUI to use them in `List`, `ForEach`, etc. Prefer value types for entities as this simplifies `Hashable` and `Equatable` conformance. Entities are often also `Codable`. Entities should provide methods or initializers that support transforming to and from other types such as JSON or DTOs. An entity may contain business logic but if the logic is complex or needs to be mocked, consider using a repository to perform this work. 
 
 #### Repositories
 
-Repositories are classes in the model layer that provide access to data stores. They typically provide methods to Create, Read, Update, and Delete data. When fetching data, repositories are responsible for transforming that data to instances of your application‘s entities. See PostRepository for an example.
+This project leverages the Repository pattern and considers the repository part of the model layer. Repositories are classes in the model layer that provide access to data stores. They typically provide methods to Create, Read, Update, and Delete data. Repositories are responsible for transforming fetched data to instances of your application‘s entities. See PostRepository for an example.
 
 Each repository should define a protocol by which it is accessed. This allows us to create observable types with mock data. This is useful for unit testing, UI testing, and populating Xcode previews. 
 
