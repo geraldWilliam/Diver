@@ -1,5 +1,5 @@
 //
-//  PostRepository.swift
+//  PostsRepository.swift
 //  Diver
 //
 //  Created by Gerald Burke on 7/15/24.

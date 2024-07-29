@@ -18,7 +18,7 @@
 		A776EDF92C457DE500CA3139 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDF82C457DE500CA3139 /* Posts.swift */; };
 		A776EE012C45973600CA3139 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE002C45973600CA3139 /* PostInfo.swift */; };
 		A776EE062C459DDA00CA3139 /* Failure.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE052C459DDA00CA3139 /* Failure.swift */; };
-		A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE082C459DF900CA3139 /* PostRepository.swift */; };
+		A776EE092C459DF900CA3139 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE082C459DF900CA3139 /* PostsRepository.swift */; };
 		A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0A2C459FFC00CA3139 /* PostView.swift */; };
 		A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */; };
 		A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0E2C45B29800CA3139 /* TimelineView.swift */; };
@@ -28,6 +28,8 @@
 		A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */; };
 		A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */; };
 		A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */; };
+		A7BB5BD22C582F5500B6DFA1 /* SwiftHTMLtoMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */; };
+		A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +64,7 @@
 		A776EDF82C457DE500CA3139 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		A776EE002C45973600CA3139 /* PostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
 		A776EE052C459DDA00CA3139 /* Failure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Failure.swift; sourceTree = "<group>"; };
-		A776EE082C459DF900CA3139 /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		A776EE082C459DF900CA3139 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 		A776EE0A2C459FFC00CA3139 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		A776EE0E2C45B29800CA3139 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		A7BB5BC92C4B04E900B6DFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTests.swift; sourceTree = "<group>"; };
 		A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostInfo+AttributedBody.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A776EDF72C457C0300CA3139 /* TootSDK in Frameworks */,
+				A7BB5BD22C582F5500B6DFA1 /* SwiftHTMLtoMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +136,11 @@
 				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
 				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
 				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
+				A7BB5BD32C58341E00B6DFA1 /* Extensions */,
 				A776EE022C459D3800CA3139 /* Models */,
 				A776EE032C459D3E00CA3139 /* Observables */,
-				A776EDD12C457BB900CA3139 /* Preview Content */,
 				A776EE042C459D4B00CA3139 /* Views */,
+				A776EDD12C457BB900CA3139 /* Preview Content */,
 			);
 			path = Diver;
 			sourceTree = "<group>";
@@ -201,9 +206,17 @@
 			isa = PBXGroup;
 			children = (
 				A776EE002C45973600CA3139 /* PostInfo.swift */,
-				A776EE082C459DF900CA3139 /* PostRepository.swift */,
+				A776EE082C459DF900CA3139 /* PostsRepository.swift */,
 			);
 			path = Post;
+			sourceTree = "<group>";
+		};
+		A7BB5BD32C58341E00B6DFA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +237,7 @@
 			name = Diver;
 			packageProductDependencies = (
 				A776EDF62C457C0300CA3139 /* TootSDK */,
+				A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */,
 			);
 			productName = Diver;
 			productReference = A776EDC72C457BB800CA3139 /* Diver.app */;
@@ -299,6 +313,7 @@
 			mainGroup = A776EDBE2C457BB800CA3139;
 			packageReferences = (
 				A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */,
+				A7BB5BD02C582F5500B6DFA1 /* XCRemoteSwiftPackageReference "SwiftHTMLToMarkdown" */,
 			);
 			productRefGroup = A776EDC82C457BB800CA3139 /* Products */;
 			projectDirPath = "";
@@ -343,12 +358,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
+				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
-				A776EE092C459DF900CA3139 /* PostRepository.swift in Sources */,
+				A776EE092C459DF900CA3139 /* PostsRepository.swift in Sources */,
 				A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */,
 				A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */,
 				A776EDF92C457DE500CA3139 /* Posts.swift in Sources */,
@@ -725,6 +741,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		A7BB5BD02C582F5500B6DFA1 /* XCRemoteSwiftPackageReference "SwiftHTMLToMarkdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ActuallyTaylor/SwiftHTMLToMarkdown";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -732,6 +756,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */;
 			productName = TootSDK;
+		};
+		A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7BB5BD02C582F5500B6DFA1 /* XCRemoteSwiftPackageReference "SwiftHTMLToMarkdown" */;
+			productName = SwiftHTMLtoMarkdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

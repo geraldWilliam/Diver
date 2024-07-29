@@ -1,0 +1,72 @@
+# Rule identifiers to opt in to optional rules
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - fatal_error_message
+  - closure_end_indentation
+  - closure_spacing
+  - implicitly_unwrapped_optional
+  - redundant_nil_coalescing
+  - empty_string
+  - file_name
+  - force_unwrapping
+  - operator_usage_whitespace
+  - overridden_super_call
+
+# Rules to ignore
+
+disabled_rules:
+  - multiple_closures_with_trailing_closure
+
+# Rule Configuration
+colon:
+  flexible_right_spacing: false
+  apply_to_dictionaries: true
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+  ignores_case_statements: false
+
+function_body_length:
+  warning: 40
+  error: 100
+
+function_parameter_count:
+  warning: 5
+  error: 8
+
+large_tuple:
+  warning: 3
+  error: 4
+
+line_length:
+  warning: 120
+  error: 200
+  ignores_urls: true
+  ignores_function_declarations: false
+  ignores_comments: true
+
+# Custom Rules
+# Note: If using custom rules alongside a whitelist, make sure to add custom_rules as an item under whitelist_rules.
+custom_rules:
+  prefer_weak_self:
+    include: "*.swift"
+    name: "Prefer [weak self]"
+    regex: '\[\bunowned\b\s\bself\b\]'
+    message: "[weak self] with guard let 'self' = self else { return } is preferred"
+    severity: warning
+
+  type_annotation_preferred:
+    include: "*.swift"
+    name: "Type annotation preferred for empty array and dictionary"
+    regex: '\[[.|\s|\w|\d|\:]*\]\(\)'
+    message: "For empty dictionaries and arrays, type annotation is preferred (ex- var x: [String] = [])"
+    severity: warning
+
+  prefer_for_in:
+    include: "*.swift"
+    name: "Prefer for-in control flow"
+    regex: '\bwhile\b\s*[\w]\w+\s*(<=|>=|<|>|==|!=|==|<=)'
+    message: "Prefer the for-in style of for loop over the while-condition-increment style"
+    severity: warning

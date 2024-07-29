@@ -32,6 +32,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         case postDetail(PostInfo)
     }
 
+    /// Use Modal values to prompt sheet presentations. This strategy allows us to centralize management of sheets. See `content(for modal:)`.
     enum Modal: String, Identifiable {
         var id: String { rawValue }
         case postComposer
@@ -40,16 +41,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
 
+    /// Assign a value to this property to present a modal. Pass a binding to this property to the `sheet` modifier on the app‘s root view.
     var modal: Modal?
-
-    func content(for modal: Modal) -> some View {
-        Group {
-            switch modal {
-            case .postComposer:
-                Text("Write a post!")
-            }
-        }
-    }
 
     /// Required for executing deep link navigation.
     let postsController: Posts
@@ -84,6 +77,15 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             case .postDetail(let post):
                 /// This is a simple example but here you might access a service and instantiate any required initialization values for a view.
                 PostDetailView(post: post.boost ?? post)
+            }
+        }
+    }
+
+    func content(for modal: Modal) -> some View {
+        Group {
+            switch modal {
+            case .postComposer:
+                Text("Write a post!")
             }
         }
     }
