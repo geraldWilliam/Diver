@@ -31,7 +31,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     enum Destination: Hashable {
         case postDetail(PostInfo)
     }
-    
+
     enum Modal: String, Identifiable {
         var id: String { rawValue }
         case postComposer
@@ -39,9 +39,9 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
-    
+
     var modal: Modal?
-    
+
     func content(for modal: Modal) -> some View {
         Group {
             switch modal {
@@ -68,7 +68,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     func go(to destination: Destination) {
         path.append(destination)
     }
-    
+
     func present(_ modal: Modal) {
         self.modal = modal
     }

@@ -29,7 +29,7 @@ actor PostsRepository: PostsRepositoryProtocol {
     let client: TootClient
 
     private var earliestPost: String?
-    
+
     init(client: TootClient) {
         self.client = client
     }
@@ -42,11 +42,11 @@ actor PostsRepository: PostsRepositoryProtocol {
     func getEarlierPosts() async throws -> [PostInfo] {
         return try await fetchPosts()
     }
-    
+
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
     }
-    
+
     private func fetchPosts() async throws -> [PostInfo] {
         let pageInfo = PagedInfo(maxId: earliestPost)
         let posts = try await client.getTimeline(.home, pageInfo: pageInfo)

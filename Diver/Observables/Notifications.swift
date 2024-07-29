@@ -8,20 +8,20 @@
 import UIKit
 
 @Observable class Notifications: NSObject, UNUserNotificationCenterDelegate {
-    
+
     /// Type-safe declarations of category identifiers for notifications. Remote notifications may use these one of these values for the "category" key.
     struct NotificationCategory {
         static let deepLink = "DEEP_LINK"
     }
-    
+
     var canRequestAuthorization: Bool = false
-    
+
     var failure: Failure?
-    
+
     private let app: UIApplication
 
     private let notificationCenter: UNUserNotificationCenter = .current()
-    
+
     init(app: UIApplication) {
         self.app = app
         super.init()
@@ -30,7 +30,7 @@ import UIKit
             await checkAuthorizationStatus()
         }
     }
-    
+
     func requestAuthorization() {
         Task {
             do {
@@ -41,7 +41,7 @@ import UIKit
             }
         }
     }
-    
+
     func checkAuthorizationStatus() async {
         let settings = await notificationCenter.notificationSettings()
         canRequestAuthorization = settings.authorizationStatus == .notDetermined
@@ -84,7 +84,7 @@ import UIKit
         }
         completionHandler()
     }
-    
+
     /// A helper to parse the deep link URL from a notification and route to it.
     ///
     /// - Parameter content: The notification's content.

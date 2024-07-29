@@ -13,7 +13,7 @@ final class PostsTests: DiverTests {
         let subject = Posts(repo: MockPostsRepository())
         let itHasExpectedPostsCount = expectation(description: #function)
         withObservationTracking {
-            let _ = subject.timeline
+            _ = subject.timeline
         } onChange: {
             itHasExpectedPostsCount.fulfill()
         }

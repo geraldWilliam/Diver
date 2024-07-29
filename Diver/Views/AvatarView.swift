@@ -15,7 +15,7 @@ struct AvatarView: View {
     let path: String
     /// The diameter of the circle in which the image is displayed.
     let diameter: CGFloat
-    
+
     private let placeholderName = "person.fill"
 
     var body: some View {
