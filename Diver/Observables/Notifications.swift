@@ -26,12 +26,16 @@ import UIKit
         self.app = app
         super.init()
         notificationCenter.delegate = self
+        Task {
+            await checkAuthorizationStatus()
+        }
     }
     
     func requestAuthorization() {
         Task {
             do {
                 try await notificationCenter.requestAuthorization(options: [.alert, .badge, .sound])
+                await checkAuthorizationStatus()
             } catch {
                 failure = Failure(error)
             }
