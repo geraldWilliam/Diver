@@ -56,7 +56,7 @@ Simple views are small, focused components. Often, these are custom controls or 
 
 Observables are the bridge between model and view layers. For complex views, observables are the source of truth. You might conceptualize these as Controllers, View Models, Stores, or some other abstraction. Observables should be decoupled from views and available to share between views. They may have a to-one relationship with a model type or may represent a bounded context that accesses various model types. They may be orchestrated to enforce consistent state TODO: More on orchestration.
 
-This example project refers to the types in this layer simply as "observables". They are found in Diver/Observables and named for the segment of application state they represent (Navigator.swift and Posts.swift). For your application, you might take a similar approach or choose the abstraction that best suits your need. Whether controllers, view models, or otherwise, observables should follow a few rules:
+This example project refers to the types in this layer simply as "observables". They are found in Diver/Observables and named for the segment of application state they represent (Navigator.swift, Posts.swift, etc.). For your application, you might take a similar approach or choose the abstraction that best suits your need. Whether controllers, view models, or otherwise, observables should follow a few rules:
 
 1. Annotate @Observable
     
