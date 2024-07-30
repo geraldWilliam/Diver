@@ -105,6 +105,18 @@ Configure the observable layer to use mock repositories when running UI tests. T
 
 ## Common Tasks
 
+### Accessibility
+
+Developing accessible applications is a broad topic but we can start to make a meaningful impact with only a basic understanding of the topic.
+
+For the essentials, review Apple‘s SwiftUI Accessibility Fundamentals: 
+https://developer.apple.com/documentation/swiftui/accessibility-fundamentals
+
+For deeper insight on various mobile accessibility topics, see Rob Whitaker‘s site:
+https://mobilea11y.com
+
+The best approach is to rely on Apple‘s framework to provide good default behaviors. Then, carefully audit each view for any issues that need to be addressed. Use Accessibility Inspector to identify issues (Xcode → Open Developer Tool → Accessibility Inspector). This tool can be used to read your UI as VoiceOver would, to inspect an element‘s accessibility attributes, to detect text that will truncate badly at larger sizes, to identify content with insufficient color contrast, and to modify the behavior of your application to reflect common accessibility settings. Remember to localize accessibility labels if your app supports more than one language.
+
 ### Navigation
 
 This example app centralizes navigation in a Navigator type. SwiftUI offers a flexible solution for navigation in `NavigationStack` and `NavigationPath`. The NavigationStack must be created in the view layer but the Navigator provides a globally available type (via injection in the Environment) that can create content for navigation destinations and append values to the app‘s navigation path to prompt navigation programmatically.
