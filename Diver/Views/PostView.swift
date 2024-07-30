@@ -49,14 +49,8 @@ struct PostView: View {
             }
             /// An altered style if this post is a boost of another one.
             if let boost = post.boost {
-                HStack {
-                    Rectangle()
-                        .frame(maxWidth: 2)
-                        .foregroundStyle(Color.gray)
-                        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 1, height: 1)))
-                    PostView(post: boost, hideReplyCount: false)
-                        .padding(.leading)
-                }
+                PostView(post: boost, hideReplyCount: false)
+                    .blockQuote()
             }
             /// If there are images, show a preview of the first.
             if let preview = post.previews.first {
@@ -76,6 +70,7 @@ struct PostView: View {
             }
             .font(.caption)
             .fontWeight(.light)
+            .padding(.top, 5)
         }
         .padding(.vertical)
     }

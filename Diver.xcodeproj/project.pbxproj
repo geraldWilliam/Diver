@@ -30,6 +30,7 @@
 		A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */; };
 		A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */; };
 		A7BB5BD72C592AC800B6DFA1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */; };
+		A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostInfo+AttributedBody.swift"; sourceTree = "<group>"; };
 		A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockQuote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		A776EE042C459D4B00CA3139 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BD82C59370500B6DFA1 /* Modifiers */,
 				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
@@ -218,6 +221,14 @@
 				A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A7BB5BD82C59370500B6DFA1 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +373,7 @@
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
+				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
