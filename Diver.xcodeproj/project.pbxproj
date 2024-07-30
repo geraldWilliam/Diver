@@ -30,6 +30,7 @@
 		A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */; };
 		A7BB5BD22C582F5500B6DFA1 /* SwiftHTMLtoMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */; };
 		A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */; };
+		A7BB5BD72C592AC800B6DFA1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTests.swift; sourceTree = "<group>"; };
 		A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostInfo+AttributedBody.swift"; sourceTree = "<group>"; };
+		A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				A776EE032C459D3E00CA3139 /* Observables */,
 				A776EE042C459D4B00CA3139 /* Views */,
 				A776EDD12C457BB900CA3139 /* Preview Content */,
+				A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */,
 			);
 			path = Diver;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = A776EDBE2C457BB800CA3139;
 			packageReferences = (
@@ -333,6 +337,7 @@
 			files = (
 				A776EDD32C457BB900CA3139 /* Preview Assets.xcassets in Resources */,
 				A776EDCF2C457BB900CA3139 /* Assets.xcassets in Resources */,
+				A7BB5BD72C592AC800B6DFA1 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
