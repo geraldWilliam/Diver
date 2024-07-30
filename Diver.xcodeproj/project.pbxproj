@@ -28,7 +28,6 @@
 		A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */; };
 		A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */; };
 		A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */; };
-		A7BB5BD22C582F5500B6DFA1 /* SwiftHTMLtoMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */; };
 		A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */; };
 		A7BB5BD72C592AC800B6DFA1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
@@ -87,7 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A776EDF72C457C0300CA3139 /* TootSDK in Frameworks */,
-				A7BB5BD22C582F5500B6DFA1 /* SwiftHTMLtoMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +238,6 @@
 			name = Diver;
 			packageProductDependencies = (
 				A776EDF62C457C0300CA3139 /* TootSDK */,
-				A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */,
 			);
 			productName = Diver;
 			productReference = A776EDC72C457BB800CA3139 /* Diver.app */;
@@ -317,7 +314,6 @@
 			mainGroup = A776EDBE2C457BB800CA3139;
 			packageReferences = (
 				A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */,
-				A7BB5BD02C582F5500B6DFA1 /* XCRemoteSwiftPackageReference "SwiftHTMLToMarkdown" */,
 			);
 			productRefGroup = A776EDC82C457BB800CA3139 /* Products */;
 			projectDirPath = "";
@@ -748,14 +744,6 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		A7BB5BD02C582F5500B6DFA1 /* XCRemoteSwiftPackageReference "SwiftHTMLToMarkdown" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ActuallyTaylor/SwiftHTMLToMarkdown";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -763,11 +751,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */;
 			productName = TootSDK;
-		};
-		A7BB5BD12C582F5500B6DFA1 /* SwiftHTMLtoMarkdown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A7BB5BD02C582F5500B6DFA1 /* XCRemoteSwiftPackageReference "SwiftHTMLToMarkdown" */;
-			productName = SwiftHTMLtoMarkdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -6,17 +6,16 @@
 //
 
 import Foundation
-import SwiftHTMLtoMarkdown
-// SwiftHTMLtoMarkdown gets most of the way there but the attributed text rendering still isn‘t quite right.
-// Particularly, new lines are ignored.
+import TootSDK
+
 extension PostInfo {
     var attributedBody: AttributedString? {
-        guard let content = body else {
+        guard
+            let body,
+            let content = try? UIKitAttribStringRenderer().render(html: body, emojis: []).attributedString
+        else {
             return nil
         }
-        var document = MastodonHTML(rawHTML: content)
-        try? document.parse()
-        let markdown = try? document.asMarkdown()
-        return try? AttributedString(markdown: markdown ?? "")
+        return AttributedString(content)
     }
 }
