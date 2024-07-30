@@ -1,19 +1,22 @@
 # SwiftUI Architecture for iOS Applications
 
-This is a simple Fediverse client that provides an example of an architecture that fits naturally with SwiftUI‘s data binding mechanisms. For now, it only supports authenticating with a Mastodon server. Pleroma, Pixelfed, etc. might Just Work™ but I haven‘t checked.  
+This is a simple Fediverse client that provides an example of an architecture that fits naturally with SwiftUI‘s data binding mechanisms. At the time of this writing, it is only confirmed to support authenticating with a Mastodon server.
 
-## Local Setup
+<details>
+    <summary>Local Setup</summary>
+    <p>
+    Log in to Mastodon and go to Preferences → Development → New Application. Enter “Diver“ for the application name and leave the other settings at their defaults. Once you have submitted the form, view the Diver application and copy the value of “Your access token“.
 
-Log in to Mastodon and go to Preferences → Development → New Application. Enter “Diver“ for the application name and leave the other settings at their defaults. Once you have submitted the form, view the Diver application and copy the value of “Your access token“.
+    Create a new file at `Diver/Values.swift`:
 
-Create a new file at `Diver/Values.swift`:
+    ```swift
+    import Foundation
 
-```swift
-import Foundation
-
-let instanceURL = URL(string: "<mastodon-instance-url>")!
-let accessToken = "<your-access-token>"
-```
+    let instanceURL = URL(string: "<mastodon-instance-url>")!
+    let accessToken = "<your-access-token>"
+    ```
+    </p>
+</details>
 
 ## Layered Architecture
 
