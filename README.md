@@ -95,7 +95,7 @@ For many developers, previews are unstable. They often fail to load for complex 
 
 ### Unit Tests
 
-The observable layer of your application should be well-tested. Use `withObservationTracking` and XCTestExpectation as seen in `PostsTests.swift` to test asynchronous updates to published properties.
+The observable layer of your application should be well-tested. Use `withObservationTracking` and XCTestExpectation to test asynchronous updates to published properties. In `DiverTests.swift`, I define a convenience method for awaiting a change to a property of the subject under test.
 
 Testing the observable layer is likely to incidentally verify some attributes of your models but it‘s usually worth it to write dedicated tests for the model layer also. Tests for entities are likely to just instantiate a value and verify its properties. Tests for repositories require a mock data source. // TODO: DO THIS?
 
