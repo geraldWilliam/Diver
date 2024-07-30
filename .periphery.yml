@@ -1,0 +1,5 @@
+project: Diver.xcodeproj
+schemes:
+- Diver
+targets:
+- Diver
