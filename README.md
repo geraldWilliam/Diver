@@ -3,7 +3,7 @@
 This is a simple Fediverse client that provides an example of an architecture that fits naturally with SwiftUI‘s data binding mechanisms. At the time of this writing, it is only confirmed to support authenticating with a Mastodon server.
 
 <details>
-<summary>Local Setup</summary>
+<summary><h3>Local Setup</h3></summary>
 <p>
 Log in to Mastodon and go to Preferences → Development → New Application. Enter “Diver“ for the application name and leave the other settings at their defaults. Once you have submitted the form, view the Diver application and copy the value of “Your access token“.
 
