@@ -11,7 +11,6 @@ import SwiftUI
 ///
 /// Note, this view does not access the Posts. The post is passed in at initialization and no logic is performed. This view is just layout.
 struct PostView: View {
-    @Environment(Posts.self) var posts
     /// The post.
     let post: PostInfo
     /// The detail screen re-uses this view but shouldn‘t show the number of replies. Boosts of other posts also hide the reply count.
@@ -83,8 +82,5 @@ struct PostView: View {
 }
 
 #Preview {
-    let repo = MockPostsRepository()
-    let posts = Posts(repo: repo)
     return PostView(post: PostInfo.mock(), hideReplyCount: false)
-        .environment(posts)
 }
