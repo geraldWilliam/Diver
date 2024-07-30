@@ -121,6 +121,8 @@ This project demonstrates a strategy for centralizing modal presentations. Not a
 
 Since Navigator centralizes navigation handling, it is the best place to handle deep links. SwiftUI provides the `onOpenURL` modifier. Attach this modifier to the root view of the application and pass the received value to the Navigator‘s `deepLink` method. See `DiverApp.swift` and `Navigator.swift` for an example.
 
+In the Diver Target‘s Info pane, review the example of the custom URL scheme required for deep link support.
+
 ### Push Notifications
 
 This project provides an example of creating an AppDelegate for an application with the SwiftUI lifecycle. The `DiverApp` is the app‘s entry point and cannot conform to UIApplicationDelegate. If an app delegate is needed (e.g., for app lifecycle callbacks or push notification handling) you must create a custom type and provide it to your SwiftUI app via the @UIApplicationDelegateAdaptor property wrapper. See `AppDelegate.swift` and `DiverApp.swift` for an example.

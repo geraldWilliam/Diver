@@ -133,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				A776EDCE2C457BB900CA3139 /* Assets.xcassets */,
+				A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */,
 				A776EDD02C457BB900CA3139 /* Diver.entitlements */,
 				A7BB5BC92C4B04E900B6DFA1 /* Info.plist */,
 				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
@@ -143,7 +144,6 @@
 				A776EE032C459D3E00CA3139 /* Observables */,
 				A776EE042C459D4B00CA3139 /* Views */,
 				A776EDD12C457BB900CA3139 /* Preview Content */,
-				A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */,
 			);
 			path = Diver;
 			sourceTree = "<group>";
