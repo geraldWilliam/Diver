@@ -31,6 +31,7 @@
 		A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */; };
 		A7BB5BD72C592AC800B6DFA1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */; };
 		A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */; };
+		A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		A7BB5BD42C58342F00B6DFA1 /* PostInfo+AttributedBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostInfo+AttributedBody.swift"; sourceTree = "<group>"; };
 		A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockQuote.swift; sourceTree = "<group>"; };
+		A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				A7BB5BD82C59370500B6DFA1 /* Modifiers */,
+				A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */,
 				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
@@ -372,6 +375,7 @@
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
+				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,

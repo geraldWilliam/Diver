@@ -25,24 +25,7 @@ struct PostView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                let isBoost = post.boost != nil
-                let diameter: CGFloat = isBoost ? 30 : 40
-                AvatarView(path: post.avatarPath, diameter: diameter)
-                VStack(alignment: .leading) {
-                    Text(post.authorName)
-                        .fontWeight(isBoost ? .light : .bold)
-                        .truncationMode(.tail)
-                        .lineLimit(2)
-                    if let account = post.account?.acct, !isBoost {
-                        Text(account)
-                            .fontWeight(.light)
-                            .foregroundStyle(Color.gray)
-                            .truncationMode(.tail)
-                            .lineLimit(1)
-                    }
-                }
-            }
+            AuthorHeader(post: post)
             /// Not all posts have text content.
             if let content = post.attributedBody {
                 Text(content)

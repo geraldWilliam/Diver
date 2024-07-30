@@ -15,7 +15,6 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 ///
 /// See how we bind the path and use the view construction method in ContentView.swift.
 ///
-/// TODO: Notes on modal presentation
 @MainActor @Observable final class Navigator {
     /// Use Destination values to drive transitions. This strategy allows us to centralize instantiation of navigation destinations here in Navigator.
     /// See `content(for destination:)`. Establishing a convention of using `Navigator.Destination` values also improves clarity at the call site.
@@ -37,15 +36,15 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         var id: String { rawValue }
         case postComposer
     }
+    
+    /// Required for executing deep link navigation.
+    let postsController: Posts
 
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
 
     /// Assign a value to this property to present a modal. Pass a binding to this property to the `sheet` modifier on the app‘s root view.
     var modal: Modal?
-
-    /// Required for executing deep link navigation.
-    let postsController: Posts
 
     // MARK: - Initialization
 
