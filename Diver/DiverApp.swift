@@ -42,14 +42,14 @@ import TootSDK
 
     var body: some Scene {
         /// A source of truth for the view.
-        let postsController = Posts(repo: postsRepository)
+        let posts = Posts(repo: postsRepository)
         /// A source of truth for navigation state.
-        let navigator = Navigator(postsController: postsController)
+        let navigator = Navigator(posts: posts)
         /// The actual content.
         WindowGroup {
             ContentView()
                 // Add required observables to the environment.
-                .environment(postsController)
+                .environment(posts)
                 .environment(navigator)
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.

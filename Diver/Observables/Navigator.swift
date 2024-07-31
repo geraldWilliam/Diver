@@ -38,7 +38,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     }
     
     /// Required for executing deep link navigation.
-    let postsController: Posts
+    let posts: Posts
 
     /// Instantiate your NavigationStack with this path.
     var path = NavigationPath()
@@ -48,8 +48,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 
     // MARK: - Initialization
 
-    init(postsController: Posts) {
-        self.postsController = postsController
+    init(posts: Posts) {
+        self.posts = posts
     }
 
     // MARK: - Navigation
@@ -98,7 +98,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         switch value.lastPathComponent {
         /// The example deep link just takes us to the first post.
         case "first_post":
-            if let first = postsController.timeline.first {
+            if let first = posts.timeline.first {
                 go(to: .postDetail(first))
             }
         default:
