@@ -56,11 +56,14 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 
     /// Use this method to prompt navigation without using a NavigationLink.
     ///
-    /// - Parameter destination: The destination view of the transition.
+    /// - Parameter destination: The destination of the transition.
     func go(to destination: Destination) {
         path.append(destination)
     }
-
+    
+    /// Use this method to show a sheet presentation.
+    ///
+    /// - Parameter modal: The destination to display in the sheet.
     func present(_ modal: Modal) {
         self.modal = modal
     }
@@ -79,7 +82,11 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             }
         }
     }
-
+    
+    /// Get the content view for a modal presentation. This strategy keeps complex view instantiation out of layout code.
+    ///
+    /// - Parameter modal: The destination of the modal presentation.
+    /// - Returns: The view to be displayed in the modal presentation.
     func content(for modal: Modal) -> some View {
         Group {
             switch modal {
