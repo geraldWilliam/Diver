@@ -22,24 +22,32 @@ import TootSDK
     // MARK: - Initialization
     
     init() {
+        /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")
-
-        let sessionRepo: SessionRepositoryProtocol = if isTesting {
-            MockSessionRepository()
-        } else {
-            SessionRepository(client: client)
-        }
-        session = Session(repo: sessionRepo)
-
-        let postsRepo: PostsRepositoryProtocol = if isTesting {
-            /// For UI tests, use a mock repository.
-            MockPostsRepository()
-        } else {
-            /// For app runs, use a real PostsRepository.
-            PostsRepository(client: client)
-        }
-        posts = Posts(repo: postsRepo)
         
+        /// A container for repositories to populate observables.
+        struct Repositories {
+            let session: SessionRepositoryProtocol
+            let posts: PostsRepositoryProtocol
+        }
+        
+        /// Set up repositories for instantiating observables.
+        let repos: Repositories = if isTesting {
+            /// Test runs use mock repositories.
+            Repositories(
+                session: MockSessionRepository(),
+                posts: MockPostsRepository()
+            )
+        } else {
+            /// Live runs use real repositories that leverage the client.
+            Repositories(
+                session: SessionRepository(client: client),
+                posts: PostsRepository(client: client)
+            )
+        }
+
+        session = Session(repo: repos.session)
+        posts = Posts(repo: repos.posts)
         navigator = Navigator(posts: posts)
 
         if session.isLoggedIn {
@@ -52,17 +60,19 @@ import TootSDK
     }
     
     // MARK: - Private
-    
+
     private func observeSession() {
         withObservationTracking {
+            // Track the session‘s logged in state.
             _ = session.isLoggedIn
         } onChange: {
             Task {
-                if await session.isLoggedIn == false {
-                    await observeSession()
-                } else {
+                if await session.isLoggedIn {
+                    // User is authenticated, get content.
                     await posts.getLatestPosts()
                 }
+                // Keep observing changes to `session.isLoggedIn`.
+                await observeSession()
             }
         }
     }
