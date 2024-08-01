@@ -32,6 +32,13 @@
 		A7BB5BD72C592AC800B6DFA1 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */; };
 		A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */; };
 		A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */; };
+		A7BB5BEF2C5AD1BC00B6DFA1 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BEE2C5AD1BC00B6DFA1 /* Session.swift */; };
+		A7BB5BF12C5AD20000B6DFA1 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BF02C5AD20000B6DFA1 /* AppService.swift */; };
+		A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BF32C5AD93C00B6DFA1 /* SessionRepository.swift */; };
+		A7BB5BF62C5AD94500B6DFA1 /* SessionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BF52C5AD94500B6DFA1 /* SessionInfo.swift */; };
+		A7BB5BF82C5BDFD900B6DFA1 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */; };
+		A7BB5BFB2C5C08BF00B6DFA1 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = A7BB5BFA2C5C08BF00B6DFA1 /* SwiftKeychainWrapper */; };
+		A7BB5BFE2C5C104800B6DFA1 /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +89,12 @@
 		A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockQuote.swift; sourceTree = "<group>"; };
 		A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorHeader.swift; sourceTree = "<group>"; };
+		A7BB5BEE2C5AD1BC00B6DFA1 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		A7BB5BF02C5AD20000B6DFA1 /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
+		A7BB5BF32C5AD93C00B6DFA1 /* SessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRepository.swift; sourceTree = "<group>"; };
+		A7BB5BF52C5AD94500B6DFA1 /* SessionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionInfo.swift; sourceTree = "<group>"; };
+		A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
+		A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7BB5BFB2C5C08BF00B6DFA1 /* SwiftKeychainWrapper in Frameworks */,
 				A776EDF72C457C0300CA3139 /* TootSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +155,7 @@
 				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
 				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
 				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
+				A7BB5BFC2C5C103E00B6DFA1 /* Services */,
 				A7BB5BD32C58341E00B6DFA1 /* Extensions */,
 				A776EE022C459D3800CA3139 /* Models */,
 				A776EE032C459D3E00CA3139 /* Observables */,
@@ -163,6 +178,7 @@
 			children = (
 				A776EDDC2C457BB900CA3139 /* DiverTests.swift */,
 				A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */,
+				A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */,
 			);
 			path = DiverTests;
 			sourceTree = "<group>";
@@ -179,6 +195,7 @@
 		A776EE022C459D3800CA3139 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BF22C5AD93100B6DFA1 /* Session */,
 				A776EE072C459DE900CA3139 /* Post */,
 				A776EE052C459DDA00CA3139 /* Failure.swift */,
 			);
@@ -188,9 +205,11 @@
 		A776EE032C459D3E00CA3139 /* Observables */ = {
 			isa = PBXGroup;
 			children = (
+				A7BB5BF02C5AD20000B6DFA1 /* AppService.swift */,
 				A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */,
 				A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */,
 				A776EDF82C457DE500CA3139 /* Posts.swift */,
+				A7BB5BEE2C5AD1BC00B6DFA1 /* Session.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -234,6 +253,23 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		A7BB5BF22C5AD93100B6DFA1 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				A7BB5BF52C5AD94500B6DFA1 /* SessionInfo.swift */,
+				A7BB5BF32C5AD93C00B6DFA1 /* SessionRepository.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		A7BB5BFC2C5C103E00B6DFA1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,6 +288,7 @@
 			name = Diver;
 			packageProductDependencies = (
 				A776EDF62C457C0300CA3139 /* TootSDK */,
+				A7BB5BFA2C5C08BF00B6DFA1 /* SwiftKeychainWrapper */,
 			);
 			productName = Diver;
 			productReference = A776EDC72C457BB800CA3139 /* Diver.app */;
@@ -328,6 +365,7 @@
 			mainGroup = A776EDBE2C457BB800CA3139;
 			packageReferences = (
 				A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */,
+				A7BB5BF92C5C08BF00B6DFA1 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = A776EDC82C457BB800CA3139 /* Products */;
 			projectDirPath = "";
@@ -378,17 +416,22 @@
 				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
+				A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
+				A7BB5BEF2C5AD1BC00B6DFA1 /* Session.swift in Sources */,
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
 				A776EE092C459DF900CA3139 /* PostsRepository.swift in Sources */,
 				A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */,
 				A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */,
+				A7BB5BF62C5AD94500B6DFA1 /* SessionInfo.swift in Sources */,
 				A776EDF92C457DE500CA3139 /* Posts.swift in Sources */,
+				A7BB5BF12C5AD20000B6DFA1 /* AppService.swift in Sources */,
 				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,
 				A776EE012C45973600CA3139 /* PostInfo.swift in Sources */,
+				A7BB5BFE2C5C104800B6DFA1 /* TokenService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7BB5BF82C5BDFD900B6DFA1 /* SessionTests.swift in Sources */,
 				A776EDDD2C457BB900CA3139 /* DiverTests.swift in Sources */,
 				A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */,
 			);
@@ -760,6 +804,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		A7BB5BF92C5C08BF00B6DFA1 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -767,6 +819,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A776EDF52C457C0300CA3139 /* XCRemoteSwiftPackageReference "TootSDK" */;
 			productName = TootSDK;
+		};
+		A7BB5BFA2C5C08BF00B6DFA1 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A7BB5BF92C5C08BF00B6DFA1 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

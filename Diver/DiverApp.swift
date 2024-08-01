@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TootSDK
 
 /// The entry point of the application. Keep this file brief. The App should perform the following tasks:
 ///
@@ -24,37 +23,22 @@ import TootSDK
 @main struct DiverApp: App {
     /// Allows the application to use UIApplicationDelegate callbacks for monitoring lifecycle events, remote notifications, etc.
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
-    /// A repository for accessing content.
-    private var postsRepository: PostsRepositoryProtocol {
-        if CommandLine.arguments.contains("ui-testing") {
-            /// For UI tests, use a mock repository.
-            return MockPostsRepository()
-        } else {
-            /// For live runs of the application, use a repository that accesses content via TootClient.
-            let client = TootClient(
-                instanceURL: instanceURL,
-                accessToken: accessToken
-            )
-            return PostsRepository(client: client)
-        }
-    }
+    /// A container for the app‘s dependencies.
+    let service = AppService()
 
     var body: some Scene {
-        /// A source of truth for the view.
-        let posts = Posts(repo: postsRepository)
-        /// A source of truth for navigation state.
-        let navigator = Navigator(posts: posts)
         /// The actual content.
         WindowGroup {
+            /// The root view of the application.
             ContentView()
                 // Add required observables to the environment.
-                .environment(posts)
-                .environment(navigator)
+                .environment(service.session)
+                .environment(service.posts)
+                .environment(service.navigator)
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.
                 .onOpenURL { url in
-                    navigator.deepLink(url)
+                    service.navigator.deepLink(url)
                 }
         }
     }

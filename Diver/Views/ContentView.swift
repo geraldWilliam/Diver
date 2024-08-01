@@ -10,17 +10,24 @@ import SwiftUI
 /// The root view of the application. A new SwiftUI project generates this file by default. Do not discard it. Instead, use it as the entry point of the UI. This is a good
 /// place to handle presentation of things like authentication UI, version lockouts, or global error alerts.
 struct ContentView: View {
+    @Environment(Session.self) var session
     @Environment(Navigator.self) var navigator
     var body: some View {
-        @Bindable var navigator = navigator
-        NavigationStack(path: $navigator.path) {
-            TimelineView()
-                .navigationDestination(for: Navigator.Destination.self) { destination in
-                    navigator.content(for: destination)
-                }
-                .sheet(item: $navigator.modal) { modal in
-                    navigator.content(for: modal)
-                }
+        if session.isLoggedIn {
+            @Bindable var navigator = navigator
+            NavigationStack(path: $navigator.path) {
+                TimelineView()
+                    .navigationDestination(for: Navigator.Destination.self) { destination in
+                        navigator.content(for: destination)
+                    }
+                    .sheet(item: $navigator.modal) { modal in
+                        navigator.content(for: modal)
+                    }
+            }
+        } else {
+            Button(action: { session.logIn() }) {
+                Text("Log In")
+            }
         }
     }
 }

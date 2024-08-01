@@ -38,8 +38,6 @@ import Foundation
         self.repo = repo
         /// Monitor the `failure` property to update the `showingError` flag.
         observeFailure()
-        /// Get initial content.
-        getLatestPosts()
     }
 
     // MARK: - Methods
