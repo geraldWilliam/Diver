@@ -29,7 +29,7 @@ actor SessionRepository: SessionRepositoryProtocol {
     }
     
     func logIn() async throws -> String {
-        if let token = TokenService.shared.token, client.isAnonymous {
+        if let token = TokenService.shared.token {
             return token
         }
         let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
@@ -42,6 +42,7 @@ actor SessionRepository: SessionRepositoryProtocol {
 // MARK: - Mock Implementation
 
 struct MockSessionRepository: SessionRepositoryProtocol {
+    var token: String?
     func logIn() async throws -> String {
         "fake-access-token"
     }

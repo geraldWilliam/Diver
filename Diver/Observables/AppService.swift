@@ -11,11 +11,11 @@ import TootSDK
 /// This struct is a container and coordinator for the app‘s observables. It is annotated @MainActor because it instantiates and accesses types isolated to the main actor.
 @MainActor struct AppService {
     /// A source of truth for the session, including authentication status.
-    private var session: Session
+    var session: Session
     /// A source of truth for timeline, post detail, and compose.
-    private var posts: Posts
+    var posts: Posts
     /// A source of truth for navigation state.
-    private var navigator: Navigator
+    var navigator: Navigator
     /// A provider for the client instance.
     private let client = TootClient(instanceURL: instanceURL, accessToken: TokenService.shared.token)
     

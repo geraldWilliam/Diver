@@ -51,6 +51,15 @@
         }
       }
     },
+    "A Fediverse Client" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Confirm" : {
+
+    },
     "Detail" : {
       "localizations" : {
         "es" : {
@@ -71,7 +80,7 @@
         }
       }
     },
-    "Log In" : {
+    "Log Out?" : {
 
     },
     "OK" : {
@@ -83,6 +92,12 @@
           }
         }
       }
+    },
+    "Sign In" : {
+
+    },
+    "Welcome to Diver" : {
+
     },
     "Write a post!" : {
       "localizations" : {

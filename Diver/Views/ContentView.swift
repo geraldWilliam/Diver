@@ -13,8 +13,8 @@ struct ContentView: View {
     @Environment(Session.self) var session
     @Environment(Navigator.self) var navigator
     var body: some View {
+        @Bindable var navigator = navigator
         if session.isLoggedIn {
-            @Bindable var navigator = navigator
             NavigationStack(path: $navigator.path) {
                 TimelineView()
                     .navigationDestination(for: Navigator.Destination.self) { destination in
@@ -25,16 +25,17 @@ struct ContentView: View {
                     }
             }
         } else {
-            Button(action: { session.logIn() }) {
-                Text("Log In")
-            }
+            LoginView()
         }
     }
 }
 
 #Preview {
-    let mockRepo = MockPostsRepository()
-    let posts = Posts(repo: mockRepo)
+    let session = Session(repo: MockSessionRepository())
+    let posts = Posts(repo: MockPostsRepository())
+    let navigator = Navigator(posts: posts)
     return ContentView()
+        .environment(session)
         .environment(posts)
+        .environment(navigator)
 }

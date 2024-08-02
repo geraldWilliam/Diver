@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct TimelineView: View {
+    @Environment(Session.self) var session
     @Environment(Posts.self) var posts
     @Environment(Navigator.self) var navigator
     @Environment(Notifications.self) var notifications
 
     var body: some View {
+        @Bindable var session = session
         @Bindable var posts = posts
         List {
             ForEach(posts.timeline) { post in
@@ -40,6 +42,11 @@ struct TimelineView: View {
                     }
                 }
             }
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: { session.requestLogout() }) {
+                    Image(systemName: "person.slash")
+                }
+            }
             ToolbarItem {
                 Button(action: { navigator.present(.postComposer) }) {
                     Image(systemName: "square.and.pencil")
@@ -49,6 +56,14 @@ struct TimelineView: View {
         .alert(isPresented: $posts.showingError, error: posts.failure) {
             Button(action: { posts.failure = nil }) {
                 Text("OK")
+            }
+        }
+        .alert("Log Out?", isPresented: $session.promptLogoutConfirmation) {
+            Button(action: { session.cancelLogout() }) {
+                Text("Cancel")
+            }
+            Button(action: { session.confirmLogout() }) {
+                Text("Confirm")
             }
         }
         .refreshable {
