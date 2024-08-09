@@ -20,6 +20,8 @@ import SwiftUI
 /// environment.
 ///
 /// Orchestrating Observables:
+///
+import TootSDK
 @main struct DiverApp: App {
     /// Allows the application to use UIApplicationDelegate callbacks for monitoring lifecycle events, remote notifications, etc.
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate

@@ -33,6 +33,7 @@ struct TimelineView: View {
         }
         .animation(.easeInOut, value: posts.timeline)
         .navigationTitle("Diver")
+        .navigationBarTitleDisplayMode(.inline)
         .listStyle(.plain)
         .toolbar {
             if notifications.canRequestAuthorization {
@@ -73,9 +74,18 @@ struct TimelineView: View {
 }
 
 #Preview {
-    let mockRepo = MockPostsRepository()
-    let posts = Posts(repo: mockRepo)
-    return TimelineView()
-        .environment(posts)
+    let sessionRepo = MockSessionRepository()
+    let session = Session(repo: sessionRepo)
+    let mockPostsRepo = MockPostsRepository()
+    let posts = Posts(repo: mockPostsRepo)
+    let navigator = Navigator(posts: posts)
+    let notifications = Notifications(app: .shared)
+    
+    posts.getLatestPosts()
 
+    return TimelineView()
+        .environment(session)
+        .environment(posts)
+        .environment(navigator)
+        .environment(notifications)
 }

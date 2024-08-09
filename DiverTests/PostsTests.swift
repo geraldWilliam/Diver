@@ -91,4 +91,8 @@ private struct FailingMockPostsRepository: PostsRepositoryProtocol {
     func getReplies(for post: Diver.PostInfo) async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
+    
+    func send(_ text: String) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
 }

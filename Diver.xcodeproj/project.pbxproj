@@ -42,6 +42,7 @@
 		A7BB5C022C5C1E2E00B6DFA1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */; };
 		A7BB5C042C5D5BC000B6DFA1 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */; };
 		A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C052C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift */; };
+		A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		A7BB5C052C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 				A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
+				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
 				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
@@ -422,6 +425,7 @@
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
+				A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */,
 				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,
 				A7BB5C022C5C1E2E00B6DFA1 /* LoginView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,

@@ -91,7 +91,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         Group {
             switch modal {
             case .postComposer:
-                Text("Write a post!")
+                PostComposer()
             }
         }
     }

@@ -19,6 +19,8 @@ protocol PostsRepositoryProtocol {
     func getEarlierPosts() async throws -> [PostInfo]
     /// Get the replies to a post.
     func getReplies(for post: PostInfo) async throws -> [PostInfo]
+    /// Send a simple text post with public visibility.
+    func send(_ text: String) async throws -> PostInfo
 }
 
 // MARK: - Concrete Implementation
@@ -44,6 +46,11 @@ actor PostsRepository: PostsRepositoryProtocol {
 
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         return try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
+    }
+    
+    func send(_ text: String) async throws -> PostInfo {
+        let response = try await client.publishPost(PostParams(post: text, visibility: .public))
+        return PostInfo(post: response)
     }
 
     private func fetchPosts() async throws -> [PostInfo] {
@@ -74,5 +81,9 @@ struct MockPostsRepository: PostsRepositoryProtocol {
         return (0..<12).map { _ in
             PostInfo.mock()
         }
+    }
+    
+    func send(_ text: String) async throws -> PostInfo {
+        return .mock()
     }
 }

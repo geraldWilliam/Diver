@@ -55,10 +55,34 @@
 
     },
     "Cancel" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
+    },
+    "Compose" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escribe"
+          }
+        }
+      }
     },
     "Confirm" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirma"
+          }
+        }
+      }
     },
     "Detail" : {
       "localizations" : {
@@ -81,7 +105,14 @@
       }
     },
     "Log Out?" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cerra sesión?"
+          }
+        }
+      }
     },
     "OK" : {
       "localizations" : {
@@ -93,13 +124,37 @@
         }
       }
     },
+    "Send" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envia"
+          }
+        }
+      }
+    },
     "Sign In" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inicia sesión"
+          }
+        }
+      }
     },
     "Welcome to Diver" : {
-
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenidos a Diver"
+          }
+        }
+      }
     },
-    "Write a post!" : {
+    "Write a post" : {
       "localizations" : {
         "es" : {
           "stringUnit" : {

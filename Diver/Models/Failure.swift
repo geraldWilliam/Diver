@@ -27,8 +27,8 @@ struct Failure: CustomNSError, LocalizedError {
         [NSUnderlyingErrorKey: error as Any]
     }
     /// Convenience getter for underlying error.
-    var underlyingError: LocalizedError? {
-        errorUserInfo[NSUnderlyingErrorKey] as? LocalizedError
+    var underlyingError: Error? {
+        errorUserInfo[NSUnderlyingErrorKey] as? Error
     }
     /// Convenience initializer to create a localized error with a string you provide.
     init(_ message: String) {

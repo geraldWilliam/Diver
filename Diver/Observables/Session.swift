@@ -53,12 +53,6 @@ import AuthenticationServices
                 isLoggedIn = try await repo.logIn().isEmpty == false
                 logout = .undetermined
             } catch {
-                /// The repository throws an error if the user cancels the login flow. Rather than obscuring that behind a custom error, I just import
-                /// AuthenticationServices in the observable and check for it here.
-                if (error as? ASWebAuthenticationSessionError)?.code == .canceledLogin {
-                    return
-                }
-                /// Any other errors should be presented to the user.
                 failure = Failure(error)
             }
         }
@@ -106,6 +100,12 @@ import AuthenticationServices
     
     private func observeFailure() {
         withObservationTracking {
+            /// The repository throws an error if the user cancels the login flow. Rather than obscuring that behind a custom error, I just import
+            /// AuthenticationServices here in the observable and check for the error I want to ignore.
+            if case .canceledLogin = (failure?.underlyingError as? ASWebAuthenticationSessionError)?.code {
+                return
+            }
+            /// Any other errors should be presented to the user.
             showingError = failure != nil
         } onChange: {
             Task {

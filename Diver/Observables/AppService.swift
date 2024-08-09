@@ -9,6 +9,11 @@ import Foundation
 import TootSDK
 
 /// This struct is a container and coordinator for the app‘s observables. It is annotated @MainActor because it instantiates and accesses types isolated to the main actor.
+///
+// TODO: Consider best location for global values.
+/// I am undecided whether to just make this stuff part of the DiverApp declaration. There‘s no real reason that the app file has to be super-short. We could just decide
+/// that‘s where global dependencies are instantiated and injected...
+///
 @MainActor struct AppService {
     /// A source of truth for the session, including authentication status.
     var session: Session

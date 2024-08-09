@@ -145,6 +145,8 @@ To test push notifications, use the `send-push.sh` script in the `push` folder. 
     
 ### Localization
 
+Disclaimer: I do not speak Spanish. My translations are probably not quite right.
+
 This project uses a [String Catalog](https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog) for localization. Follow the instructions in Apple‘s documentation to set up a new catalog. Once the catalog is created, building the project populates the default language with any static text found in code.
 
 Add a new language to the catalog. The catalog entry for the new language is automatically populated with rows for your localizable strings. Manually enter values for each row. The string catalog uses the static text it detected as the keys for localizable strings. Your code does not need to change. Modify the language in your scheme‘s run options and run the application to validate translations.

@@ -35,7 +35,7 @@ import SwiftUI
                         .fontWeight(.medium)
                         .padding(.horizontal)
                 }
-                .primaryStyle()
+                .primaryButtonStyle()
                 .padding(.top)
             }
         }

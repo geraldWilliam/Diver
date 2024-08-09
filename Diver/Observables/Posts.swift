@@ -72,6 +72,17 @@ import Foundation
             }
         }
     }
+    
+    func publish(_ text: String) {
+        Task {
+            do {
+                let post = try await repo.send(text)
+                timeline.insert(post, at: 0)
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
 
     // MARK: - Private
 

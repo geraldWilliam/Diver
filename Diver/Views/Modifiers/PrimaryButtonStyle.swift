@@ -11,7 +11,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(Color.white)
+            .background(Gradient(colors: [.white, Color(white: 0.95)]))
             .foregroundStyle(.primary)
             .clipShape(Capsule())
             .overlay {
@@ -21,8 +21,8 @@ struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
-extension Button {
-    func primaryStyle() -> some View {
+extension View {
+    func primaryButtonStyle() -> some View {
         buttonStyle(PrimaryButtonStyle())
     }
 }

@@ -13,7 +13,7 @@ import SwiftUI
 struct AvatarView: View {
     /// A string representation of a valid URL that points to a remote image asset.
     let path: String
-    /// The diameter of the circle in which the image is displayed.
+    /// The diameter of the image‘s frame. If the frame is square instead of circular, this is the side length.
     let diameter: CGFloat
 
     private let placeholderName = "person.fill"
@@ -26,11 +26,10 @@ struct AvatarView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: diameter, height: diameter)
-                        .clipShape(Circle())
-                        .shadow(radius: 2, x: -1, y: 1)
+                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
                         .overlay {
-                            Circle()
-                                .stroke(Color.white, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: 5.0)
+                                .stroke(Color.primary, lineWidth: 1)
                         }
                 } else {
                     Image(systemName: placeholderName)
