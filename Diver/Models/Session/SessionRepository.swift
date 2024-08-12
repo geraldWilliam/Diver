@@ -17,7 +17,7 @@ protocol SessionRepositoryProtocol {
 
 // MARK: - Concrete Implementation
 
-actor SessionRepository: SessionRepositoryProtocol {
+class SessionRepository: SessionRepositoryProtocol {
     let client: TootClient
 
     init(client: TootClient) {
