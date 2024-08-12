@@ -124,6 +124,12 @@
         }
       }
     },
+    "Profile" : {
+
+    },
+    "Profile View" : {
+
+    },
     "Send" : {
       "localizations" : {
         "es" : {
@@ -143,6 +149,9 @@
           }
         }
       }
+    },
+    "Timeline" : {
+
     },
     "Welcome to Diver" : {
       "localizations" : {

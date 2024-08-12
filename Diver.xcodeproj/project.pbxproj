@@ -42,6 +42,8 @@
 		A7BB5C042C5D5BC000B6DFA1 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */; };
 		A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C052C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift */; };
 		A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */; };
+		A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */; };
+		A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		A7BB5C052C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComposer.swift; sourceTree = "<group>"; };
+		A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNav.swift; sourceTree = "<group>"; };
+		A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNav.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,8 @@
 				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
 				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
+				A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */,
+				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
 			);
 			path = Views;
@@ -419,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */,
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
@@ -439,6 +446,7 @@
 				A7BB5BF62C5AD94500B6DFA1 /* SessionInfo.swift in Sources */,
 				A776EDF92C457DE500CA3139 /* Posts.swift in Sources */,
 				A7BB5C042C5D5BC000B6DFA1 /* BubbleView.swift in Sources */,
+				A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */,
 				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,

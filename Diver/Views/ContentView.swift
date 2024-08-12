@@ -15,14 +15,9 @@ struct ContentView: View {
     var body: some View {
         @Bindable var navigator = navigator
         if session.isLoggedIn {
-            NavigationStack(path: $navigator.path) {
-                TimelineView()
-                    .navigationDestination(for: Navigator.Destination.self) { destination in
-                        navigator.content(for: destination)
-                    }
-                    .sheet(item: $navigator.modal) { modal in
-                        navigator.content(for: modal)
-                    }
+            TabView(selection: $navigator.tabSelection) {
+                TimelineNav()
+                ProfileNav()
             }
         } else {
             LoginView()

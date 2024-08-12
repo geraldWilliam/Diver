@@ -10,12 +10,18 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 /// This is an Observable class that centralizes navigation logic.
 ///
 /// - Defines valid navigation destinations.
-/// - Provides a NavigationPath to which NavigationStack should bind.
-/// - Exposes a method to construct views for destinations.
-///
-/// See how we bind the path and use the view construction method in ContentView.swift.
+/// - Provides NavigationPaths to which NavigationStacks should bind. See TimelineNav.swift and ProfileNav.swift for usage.
+/// - Provides tracking of tab selection to which TabView should bind. See ContentView.swift for usage.
+/// - Exposes a method to construct views for destinations. See TimelineNav.swift and ProfileNav.swift for usage.
 ///
 @MainActor @Observable final class Navigator {
+    
+    /// Tabs of the application. ContentView is the root of the UI and if the person using the app is authenticated it shows a tabbed interface. List each tab here.
+    enum Tab {
+        case timeline
+        case profile
+    }
+    
     /// Use Destination values to drive transitions. This strategy allows us to centralize instantiation of navigation destinations here in Navigator.
     /// See `content(for destination:)`. Establishing a convention of using `Navigator.Destination` values also improves clarity at the call site.
     ///
@@ -29,9 +35,21 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     ///
     enum Destination: Hashable {
         case postDetail(PostInfo)
+        
+        /// Restrict a destination to a certain tab. This prevents push transitions to the destination in all but the associated tab. You could omit this if destinations
+        /// are reachable from all tabs. To permit navigation to your destination from a subset of tabs, make this property a collection.
+        /// In `go(to destination:)` this property is examined and the Navigator‘s `tabSelection` property is set to the associated tab before pushing
+        /// the view for the destination onto the stack.
+        var tab: Tab {
+            switch self {
+            case .postDetail:
+                .timeline
+            }
+        }
     }
 
     /// Use Modal values to prompt sheet presentations. This strategy allows us to centralize management of sheets. See `content(for modal:)`.
+    /// Identifiable conformance is required by the `sheet` modifier.
     enum Modal: String, Identifiable {
         var id: String { rawValue }
         case postComposer
@@ -39,10 +57,12 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 
     /// Required for executing deep link navigation.
     let posts: Posts
-
-    /// Instantiate your NavigationStack with this path.
-    var path = NavigationPath()
-
+    /// Instantiate your TabView with this selection value.
+    var tabSelection: Tab = .timeline
+    /// Instantiate the NavigationStack in the Timeline tab with this path.
+    var timelinePath = NavigationPath()
+    /// Instantiate the NavigationStack in the Profile tab with this path.
+    var profilePath = NavigationPath()
     /// Assign a value to this property to present a modal. Pass a binding to this property to the `sheet` modifier on the app‘s root view.
     var modal: Modal?
 
@@ -58,7 +78,15 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     ///
     /// - Parameter destination: The destination of the transition.
     func go(to destination: Destination) {
-        path.append(destination)
+        /// Make sure the right tab is selected. If a destination‘s tab is optional in your implementation, fall back on the current `tabSelection` here.
+        tabSelection = destination.tab
+        /// Navigate to the destination.
+        switch destination.tab {
+        case .timeline:
+            timelinePath.append(destination)
+        case .profile:
+            profilePath.append(destination)
+        }
     }
 
     /// Use this method to show a sheet presentation.
