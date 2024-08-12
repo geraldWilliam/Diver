@@ -75,6 +75,10 @@ This example project refers to the types in this layer simply as "observables". 
 4. Synchronous methods returning void
 
     To keep the call site tidy, the methods of an observable should not be asynchronous, throw errors, or return values. Asynchronous operations within these methods should be wrapped in [tasks](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Tasks-and-Task-Groups). The return values of these operations, or any errors they raise, should be assigned to published properties of the observable.
+    
+#### Subscribing to changes
+
+In Rx, Combine, and other reactive paradigms, value updates are typically received through a `subscribe` or `sink` operator. The Observation framework provides no such operator. Change tracking is achieved by the `withObservationTracking(apply:onChange:)` function. Importantly, this only receives the _next_ change to the values accessed in the apply block. For continuous tracking, define a function that invokes `withObservationTracking`. In the `onChange` closure, call the function again to re-subscribe for the next change. See examples in Posts.swift, Session.swift, and AppService.swift.  
 
 --- 
 
