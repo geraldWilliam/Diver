@@ -32,7 +32,7 @@ Your source of truth might be a controller, a view model, etc. This document avo
 
 ## Model-View-Observable
 
-The layers of our architecture are familiar to anyone with experience in MVC or MVVM. We are not proposing “Model-View-Observable“ as its own architecture pattern but rather as a generalized description of how MVC, MVVM, and related patterns fit into a SwiftUI project.
+The layers of our architecture are familiar to anyone with experience in MVC or MVVM. I am not proposing “Model-View-Observable“ as its own architecture pattern but rather as a generalized description of how MVC, MVVM, and related patterns fit into a SwiftUI project.
 
 ### Models
 
@@ -40,7 +40,7 @@ Naturally, we need to represent data as entities (models) within the application
 
 #### Repositories
 
-This project leverages the Repository pattern and considers the repository part of the model layer. Repositories are classes in the model layer that provide access to data stores. They typically provide methods to Create, Read, Update, and Delete data. Repositories are responsible for transforming fetched data to instances of your application‘s entities. See PostRepository for an example.
+This project leverages the Repository pattern. Repositories are classes in the model layer that provide access to data stores. They typically provide methods to Create, Read, Update, and Delete data. Repositories are responsible for transforming fetched data to instances of your application‘s entities. See PostRepository for an example.
 
 Each repository should define a protocol by which it is accessed. This allows us to create observable types with mock data. This is useful for unit testing, UI testing, and populating Xcode previews. 
 
