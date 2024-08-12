@@ -25,7 +25,7 @@ protocol PostsRepositoryProtocol {
 
 // MARK: - Concrete Implementation
 
-class PostsRepository: PostsRepositoryProtocol {
+final class PostsRepository: PostsRepositoryProtocol {
 
     let client: TootClient
 
