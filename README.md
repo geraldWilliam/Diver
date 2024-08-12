@@ -5,8 +5,6 @@ This is a simple Fediverse client that provides an example of an architecture th
 <details>
 <summary><b>Local Setup</b></summary>
 <p>
-Log in to Mastodon and go to Preferences → Development → New Application. Enter “Diver“ for the application name and leave the other settings at their defaults. Once you have submitted the form, view the Diver application and copy the value of “Your access token“.
-
 Create a new file at `Diver/Values.swift`:
 
 ```swift
