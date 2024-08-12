@@ -76,7 +76,7 @@ This example project refers to the types in this layer simply as "observables". 
     
 #### Subscribing to changes
 
-In Rx, Combine, and other reactive paradigms, value updates are typically received through a `subscribe` or `sink` operator. The Observation framework provides no such operator. Change tracking is achieved by the `withObservationTracking(apply:onChange:)` function. Importantly, this only receives the _next_ change to the values accessed in the apply block. For continuous tracking, define a function that invokes `withObservationTracking`. In the `onChange` closure, call the function again to re-subscribe for the next change. See examples in Posts.swift, Session.swift, and AppService.swift.  
+In Rx, Combine, and other reactive paradigms, value updates are typically received through a `subscribe` or `sink` operator. The Observation framework provides no such operator. Change tracking is achieved by the `withObservationTracking(apply:onChange:)` function. Importantly, this only receives the _next_ change to the values accessed in the apply block. For continuous tracking, define a function that invokes `withObservationTracking`. In the `onChange` closure, call the function again to re-subscribe for the next change. See examples in Posts.swift, and Session.swift.  
 
 --- 
 
