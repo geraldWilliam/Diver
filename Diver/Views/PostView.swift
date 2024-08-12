@@ -13,8 +13,8 @@ import SwiftUI
 struct PostView: View {
     /// The post.
     let post: PostInfo
-    /// The detail screen re-uses this view but shouldn‘t show the number of replies. Boosts of other posts also hide the reply count.
-    let hideReplyCount: Bool
+    /// Whether the post should be displayed as a preview or full view.
+    let isPreview: Bool
     /// A formatter to prepare the created date of a post for presentation.
     private let dateFormatter = {
         let formatter = DateFormatter()
@@ -32,21 +32,22 @@ struct PostView: View {
             }
             /// An altered style if this post is a boost of another one.
             if let boost = post.boost {
-                PostView(post: boost, hideReplyCount: false)
+                PostView(post: boost, isPreview: true)
                     .blockQuote()
             }
             /// If there are images, show a preview of the first.
-            if let preview = post.previews.first {
-                AsyncImage(url: preview) { result in
+
+            if let image = isPreview ? post.previews.first : post.media.first {
+                AsyncImage(url: image) { result in
                     result.image?
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                 }
-                .animation(.easeIn, value: preview)
+                .animation(.easeIn, value: image)
             }
             /// The main post of a PostDetailView hides the reply count. Posts in the TimelineView that are simply boosts also hide the reply count.
             HStack {
-                if !hideReplyCount, post.boost == nil {
+                if isPreview, post.boost == nil {
                     Text("\(post.replyCount) replies")
                 }
                 Text(dateFormatter.string(from: post.createdDate))
@@ -60,5 +61,5 @@ struct PostView: View {
 }
 
 #Preview {
-    return PostView(post: PostInfo.mock(), hideReplyCount: false)
+    return PostView(post: PostInfo.mock(), isPreview: false)
 }

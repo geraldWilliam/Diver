@@ -11,12 +11,12 @@ import SwiftUI
     // TODO: make an array of desired diameters and select randomly from them
     @Binding var isHidden: Bool
     @State private var animating: Bool = false
-    
+
     let horizontalOffset: CGFloat = .random(in: -200..<200)
     let diameter: CGFloat = .random(in: 30..<120)
     let duration: CGFloat = .random(in: 7..<10)
     let startAfter: TimeInterval
-    
+
     var body: some View {
         Circle()
             .fill(Color.white.opacity(0.25))
@@ -26,7 +26,7 @@ import SwiftUI
                 startAnimations()
             }
     }
-    
+
     private func startAnimations() {
         withAnimation(.easeInOut(duration: duration).delay(startAfter)) {
             animating = true

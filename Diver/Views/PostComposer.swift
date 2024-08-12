@@ -10,17 +10,17 @@ import SwiftUI
 @MainActor struct PostComposer: View {
     @Environment(Navigator.self) var navigator
     @Environment(Posts.self) var posts
-    
+
     @State private var textContent: String = ""
 
     @State private var attachedMedia: [(URL, UUID)] = [
         (URL(string: "https://picsum.photos/100/100")!, UUID()),
         (URL(string: "https://picsum.photos/100/100")!, UUID()),
-        (URL(string: "https://picsum.photos/100/100")!, UUID()),
+        (URL(string: "https://picsum.photos/100/100")!, UUID())
     ]
 
     @FocusState private var isFocused: Bool
-    
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -34,7 +34,7 @@ import SwiftUI
                                 .stroke(Color.gray, lineWidth: 1.0)
                         }
                         .padding(.horizontal)
-                    
+
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(attachedMedia, id: \.1) { item in
@@ -46,7 +46,7 @@ import SwiftUI
                                         RoundedRectangle(cornerRadius: 10)
                                             .stroke(Color.white)
                                     }
-                                    
+
                             }
                         }
                         .padding()
@@ -98,11 +98,11 @@ import SwiftUI
             }
         }
     }
-    
+
     private func cancelPost() {
         navigator.modal = nil
     }
-    
+
     private func sendPost() {
         posts.publish(textContent)
         navigator.modal = nil

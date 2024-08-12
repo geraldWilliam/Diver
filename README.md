@@ -13,7 +13,6 @@ Create a new file at `Diver/Values.swift`:
 import Foundation
 
 let instanceURL = URL(string: "<mastodon-instance-url>")!
-let accessToken = "<your-access-token>"
 ```
 </p>
 </details>

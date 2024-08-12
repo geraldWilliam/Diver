@@ -19,7 +19,7 @@ protocol SessionRepositoryProtocol {
 
 actor SessionRepository: SessionRepositoryProtocol {
     let client: TootClient
-    
+
     init(client: TootClient) {
         self.client = client
         Task {
@@ -27,7 +27,7 @@ actor SessionRepository: SessionRepositoryProtocol {
             try await client.connect()
         }
     }
-    
+
     func logIn() async throws -> String {
         if let token = TokenService.shared.token {
             return token
@@ -41,6 +41,7 @@ actor SessionRepository: SessionRepositoryProtocol {
 
 // MARK: - Mock Implementation
 
+// periphery:ignore
 struct MockSessionRepository: SessionRepositoryProtocol {
     var token: String?
     func logIn() async throws -> String {

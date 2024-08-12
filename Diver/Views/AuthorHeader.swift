@@ -25,7 +25,7 @@ struct AuthorHeader: View {
                     /// The author name in boost posts is displayed above the boosted. The author‘s role as booster is only indicated by this positioning. For
                     /// the accessibility label, append localized "boosted" so VoiceOver reads "<author-name> boosted ... "
                     .accessibilityLabel(isBoost ? String(localized: "\(post.authorName) boosted") : post.authorName)
-                
+
                 /// If this is an original post, not a boost, show the author‘s handle (e.g., @username@mastodon.social).
                 if let account = post.account?.acct, !isBoost {
                     Text(account)

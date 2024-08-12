@@ -23,7 +23,7 @@ import SwiftUI
                     Text("Welcome to Diver")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        
+
                     Text("A Fediverse Client")
                         .font(.headline)
                 }
@@ -54,5 +54,5 @@ import SwiftUI
     let session = Session(repo: MockSessionRepository())
     return LoginView()
         .environment(session)
-    
+
 }

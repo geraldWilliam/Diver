@@ -23,19 +23,19 @@ import TootSDK
     var navigator: Navigator
     /// A provider for the client instance.
     private let client = TootClient(instanceURL: instanceURL, accessToken: TokenService.shared.token)
-    
+
     // MARK: - Initialization
-    
+
     init() {
         /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")
-        
+
         /// A container for repositories to populate observables.
         struct Repositories {
             let session: SessionRepositoryProtocol
             let posts: PostsRepositoryProtocol
         }
-        
+
         /// Set up repositories for instantiating observables.
         let repos: Repositories = if isTesting {
             /// Test runs use mock repositories.
@@ -63,7 +63,7 @@ import TootSDK
             observeSession()
         }
     }
-    
+
     // MARK: - Private
 
     private func observeSession() {

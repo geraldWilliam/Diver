@@ -19,7 +19,7 @@ final class PostsTests: DiverTests {
         }
         XCTAssertEqual(12, subject.timeline.count)
     }
-    
+
     @MainActor func testItGetsEarlierPosts() async throws {
         let repo = MockPostsRepository()
         let subject = Posts(repo: repo)
@@ -32,7 +32,7 @@ final class PostsTests: DiverTests {
         }
         XCTAssertEqual(24, subject.timeline.count)
     }
-    
+
     @MainActor func testItGetsRepliesForPost() async throws {
         let repo = MockPostsRepository()
         let subject = Posts(repo: repo)
@@ -44,7 +44,7 @@ final class PostsTests: DiverTests {
         }
         XCTAssertEqual(12, subject.replies[post.id]?.count)
     }
-    
+
     @MainActor func testGetTimelineRaisesErrorOnFailure() async throws {
         let repo = FailingMockPostsRepository()
         let subject = Posts(repo: repo)
@@ -55,7 +55,7 @@ final class PostsTests: DiverTests {
         }
         XCTAssertNotNil(subject.failure)
     }
-    
+
     @MainActor func testGetEarlierPostsRaisesErrorOnFailure() async throws {
         let repo = FailingMockPostsRepository()
         let subject = Posts(repo: repo)
@@ -66,7 +66,7 @@ final class PostsTests: DiverTests {
         }
         XCTAssertNotNil(subject.failure)
     }
-    
+
     @MainActor func testGetRepliesForPostRaisesErrorOnFailure() async throws {
         let repo = FailingMockPostsRepository()
         let subject = Posts(repo: repo)
@@ -83,15 +83,15 @@ private struct FailingMockPostsRepository: PostsRepositoryProtocol {
     func getLatestPosts() async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
-    
+
     func getEarlierPosts() async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
-    
+
     func getReplies(for post: Diver.PostInfo) async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
-    
+
     func send(_ text: String) async throws -> Diver.PostInfo {
         throw Failure(#function)
     }

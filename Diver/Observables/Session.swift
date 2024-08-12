@@ -22,19 +22,19 @@ import AuthenticationServices
 
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
-    
+
     /// The state of the Session‘s logout process.
     var logout: Logout = .undetermined
-    
+
     /// A property for binding to a confirmation alert.
     var promptLogoutConfirmation: Bool = false
-    
+
     /// A Failure value for publishing errors.
     var failure: Failure?
-    
+
     /// A property for binding to an error alert.
     var showingError: Bool = false
-    
+
     // MARK: - Initialization
 
     init(repo: SessionRepositoryProtocol) {
@@ -44,9 +44,9 @@ import AuthenticationServices
         observeLogout()
         observeFailure()
     }
-    
+
     // MARK: - Methods
-    
+
     func logIn() {
         Task {
             do {
@@ -57,23 +57,23 @@ import AuthenticationServices
             }
         }
     }
-    
+
     /// Prompt logout. This should result in an alert with cancel and confirm actions.
     func requestLogout() {
         logout = .requested
         promptLogoutConfirmation = true
     }
-    
+
     /// An action to handle cancellation of logout request.
     func cancelLogout() {
         logout = .undetermined
     }
-    
+
     /// An action to confirm logout.
     func confirmLogout() {
         logout = .confirmed
     }
-    
+
     // MARK: - Private
 
     private func observeLogout() {
@@ -85,7 +85,7 @@ import AuthenticationServices
             }
         }
     }
-    
+
     private func handleLogoutChange() {
         switch logout {
         case .undetermined, .requested:
@@ -97,7 +97,7 @@ import AuthenticationServices
             isLoggedIn = false
         }
     }
-    
+
     private func observeFailure() {
         withObservationTracking {
             /// The repository throws an error if the user cancels the login flow. Rather than obscuring that behind a custom error, I just import

@@ -72,7 +72,7 @@ import Foundation
             }
         }
     }
-    
+
     func publish(_ text: String) {
         Task {
             do {

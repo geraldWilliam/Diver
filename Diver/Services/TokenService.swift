@@ -13,7 +13,7 @@ private let accessTokenKey = "access_token"
 
 final class TokenService {
     static let shared = TokenService()
-    
+
     private let keychain = KeychainWrapper(serviceName: serviceName)
 
     var token: String? {

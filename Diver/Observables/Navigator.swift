@@ -36,7 +36,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
         var id: String { rawValue }
         case postComposer
     }
-    
+
     /// Required for executing deep link navigation.
     let posts: Posts
 
@@ -60,7 +60,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     func go(to destination: Destination) {
         path.append(destination)
     }
-    
+
     /// Use this method to show a sheet presentation.
     ///
     /// - Parameter modal: The destination to display in the sheet.
@@ -82,7 +82,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             }
         }
     }
-    
+
     /// Get the content view for a modal presentation. This strategy keeps complex view instantiation out of layout code.
     ///
     /// - Parameter modal: The destination of the modal presentation.

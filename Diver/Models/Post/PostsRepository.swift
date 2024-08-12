@@ -26,11 +26,11 @@ protocol PostsRepositoryProtocol {
 // MARK: - Concrete Implementation
 
 actor PostsRepository: PostsRepositoryProtocol {
-    
+
     let client: TootClient
 
     private var earliestPost: String?
-    
+
     init(client: TootClient) {
         self.client = client
     }
@@ -47,7 +47,7 @@ actor PostsRepository: PostsRepositoryProtocol {
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         return try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
     }
-    
+
     func send(_ text: String) async throws -> PostInfo {
         let response = try await client.publishPost(PostParams(post: text, visibility: .public))
         return PostInfo(post: response)
@@ -63,6 +63,7 @@ actor PostsRepository: PostsRepositoryProtocol {
 
 // MARK: - Mock Implementation
 
+// periphery:ignore
 struct MockPostsRepository: PostsRepositoryProtocol {
 
     func getLatestPosts() async throws -> [PostInfo] {
@@ -82,7 +83,7 @@ struct MockPostsRepository: PostsRepositoryProtocol {
             PostInfo.mock()
         }
     }
-    
+
     func send(_ text: String) async throws -> PostInfo {
         return .mock()
     }

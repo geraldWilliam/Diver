@@ -16,7 +16,7 @@ final class SessionTests: DiverTests {
         try await logIn(subject: subject)
         XCTAssertTrue(subject.isLoggedIn)
     }
-    
+
     @MainActor func testItCanConfirmLogout() async throws {
         let repo = MockSessionRepository()
         let subject = Session(repo: repo)
@@ -36,7 +36,7 @@ final class SessionTests: DiverTests {
         }
         XCTAssertFalse(subject.isLoggedIn)
     }
-    
+
     @MainActor func testItCanCancelLogout() async throws {
         let repo = MockSessionRepository()
         let subject = Session(repo: repo)

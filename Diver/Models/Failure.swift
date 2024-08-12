@@ -23,7 +23,7 @@ struct Failure: CustomNSError, LocalizedError {
     /// LocalizedError conformance.
     var errorDescription: String? { message }
     /// CustomNSError conformance.
-    var errorUserInfo: [String : Any] {
+    var errorUserInfo: [String: Any] {
         [NSUnderlyingErrorKey: error as Any]
     }
     /// Convenience getter for underlying error.
