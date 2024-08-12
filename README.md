@@ -108,7 +108,7 @@ Configure the observable layer to use mock repositories when running UI tests. T
 
 ### Accessibility
 
-Developing accessible applications is a broad topic but we can start to make a meaningful impact with only a basic understanding of the topic.
+Developing accessible applications is a broad topic but we need not be experts to start making a meaningful impact.
 
 For the essentials, review Apple‘s SwiftUI Accessibility Fundamentals: 
 https://developer.apple.com/documentation/swiftui/accessibility-fundamentals
