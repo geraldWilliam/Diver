@@ -120,7 +120,7 @@ The best approach is to rely on Apple‘s framework to provide good default beha
 
 ### Navigation
 
-This example app centralizes navigation in a Navigator type. SwiftUI offers a flexible solution for navigation in `NavigationStack` and `NavigationPath`. The NavigationStack must be created in the view layer but the Navigator provides a globally available type (via injection in the Environment) that can create content for navigation destinations and append values to the app‘s navigation path to prompt navigation programmatically.
+This example project centralizes navigation in a Navigator type. The application has tab-based navigation and each tab hosts a navigation stack. `NavigationStack` and `NavigationPath` are the key components in SwiftUI navigation. The path is bound to the stack. It updates automatically in response to interactions and also allows direct modification of navigation state from code. The NavigationStack must be created in the view layer but the Navigator provides a globally available type (via injection in the Environment) that can create content for navigation destinations and append values to the app‘s navigation path to prompt navigation programmatically.
 
 #### Push / Pop
 
