@@ -33,11 +33,15 @@ import TootSDK
     /// A source of truth for navigation state.
     var navigator: Navigator
     /// A provider for the client instance.
-    private let client = TootClient(instanceURL: instanceURL, accessToken: TokenService.shared.token)
+    private let client: TootClient
 
     // MARK: - Initialization
 
     init() {
+        /// A service for caching the access token to the keychain.
+        let tokenService = TokenService()
+        /// Initialize the client.
+        client = TootClient(instanceURL: instanceURL, accessToken: tokenService.token)
         /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")
         /// A container type for the application‘s repositories.
@@ -47,7 +51,7 @@ import TootSDK
         )
         /// Set up repositories for instantiating observables. Test runs use mock repositories, live runs use real repositories that leverage the client.
         let repos: Repos = (
-            session: isTesting ? MockSessionRepository() : SessionRepository(client: client),
+            session: isTesting ? MockSessionRepository() : SessionRepository(client: client, tokenService: tokenService),
             posts: isTesting ? MockPostsRepository() : PostsRepository(client: client)
         )
         /// Instantiate observables to be injected in Environment.

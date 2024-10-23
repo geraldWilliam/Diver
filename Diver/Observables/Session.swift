@@ -39,7 +39,7 @@ import AuthenticationServices
 
     init(repo: SessionRepositoryProtocol) {
         self.repo = repo
-        self.isLoggedIn = TokenService.shared.token != nil
+        self.isLoggedIn = repo.isLoggedIn
         /// Observe logout
         observeLogout()
         observeFailure()
@@ -50,7 +50,8 @@ import AuthenticationServices
     func logIn() {
         Task {
             do {
-                isLoggedIn = try await repo.logIn().isEmpty == false
+                let session = try await repo.logIn()
+                isLoggedIn = session.token.isEmpty == false
                 logout = .undetermined
             } catch {
                 failure = Failure(error)
@@ -93,7 +94,7 @@ import AuthenticationServices
             observeLogout()
         case .confirmed:
             /// If logout is confirmed, clear the token and update the published `isLoggedIn` property.
-            TokenService.shared.token = nil
+            repo.logOut()
             isLoggedIn = false
         }
     }

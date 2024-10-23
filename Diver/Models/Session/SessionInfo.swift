@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct SessionInfo {
+    let token: String
+    let account: AccountInfo
+}
