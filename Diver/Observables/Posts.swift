@@ -31,6 +31,8 @@ import Foundation
     var failure: Failure?
     /// The repository used to fetch posts.
     private let repo: PostsRepositoryProtocol
+    
+    
 
     // MARK: - Initialization
 
@@ -78,6 +80,18 @@ import Foundation
             do {
                 let post = try await repo.send(text)
                 timeline.insert(post, at: 0)
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+    
+    // TODO: Support delete & redraft.
+    func delete(_ id: PostInfo.ID) {
+        Task {
+            do {
+                _ = try await repo.delete(id)
+                timeline.removeAll { $0.id == id }
             } catch {
                 failure = Failure(error)
             }

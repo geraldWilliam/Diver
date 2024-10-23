@@ -21,6 +21,8 @@ protocol PostsRepositoryProtocol {
     func getReplies(for post: PostInfo) async throws -> [PostInfo]
     /// Send a simple text post with public visibility.
     func send(_ text: String) async throws -> PostInfo
+    /// Delete a post.
+    func delete(_ id: PostInfo.ID) async throws -> PostInfo
 }
 
 // MARK: - Concrete Implementation
@@ -59,6 +61,11 @@ final class PostsRepository: PostsRepositoryProtocol {
         earliestPost = posts.previousPage?.maxId
         return posts.result.map { PostInfo(post: $0) }
     }
+    
+    func delete(_ id: PostInfo.ID) async throws -> PostInfo {
+        let post = try await client.deletePost(id: id)
+        return PostInfo(post: post)
+    }
 }
 
 // MARK: - Mock Implementation
@@ -68,23 +75,27 @@ struct MockPostsRepository: PostsRepositoryProtocol {
 
     func getLatestPosts() async throws -> [PostInfo] {
         return (0..<12).map { _ in
-            PostInfo.mock()
+            .mock()
         }
     }
 
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
         return (0..<12).map { _ in
-            PostInfo.mock()
+            .mock()
         }
     }
 
     func getEarlierPosts() async throws -> [PostInfo] {
         return (0..<12).map { _ in
-            PostInfo.mock()
+            .mock()
         }
     }
 
     func send(_ text: String) async throws -> PostInfo {
+        return .mock()
+    }
+    
+    func delete(_ id: PostInfo.ID) async throws -> PostInfo {
         return .mock()
     }
 }

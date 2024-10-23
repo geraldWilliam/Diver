@@ -9,12 +9,15 @@ import SwiftUI
 
 /// A composable view representing a single post. Under a header with the author‘s avatar and display name, the post‘s content is displayed.
 ///
-/// Note, this view does not access the Posts. The post is passed in at initialization and no logic is performed. This view is just layout.
 struct PostView: View {
+    @Environment(Posts.self) var posts
     /// The post.
     let post: PostInfo
     /// Whether the post should be displayed as a preview or full view.
     let isPreview: Bool
+    /// Whether the view is presenting an alert for the user to confirm they want to delete the post.
+    @State private var confirmingDelete: Bool = false
+    
     /// A formatter to prepare the created date of a post for presentation.
     private let dateFormatter = {
         let formatter = DateFormatter()
@@ -55,8 +58,17 @@ struct PostView: View {
             .font(.caption)
             .fontWeight(.light)
             .padding(.top, 5)
+            
+            Button(action: { confirmingDelete = true }) {
+                Text("Delete")
+            }
+            .buttonStyle(PrimaryButtonStyle())
         }
         .padding(.vertical)
+        .alert("Delete Post?", isPresented: $confirmingDelete) {
+            Button("Cancel") { }
+            Button("Delete") { posts.delete(post.id) }
+        }
     }
 }
 
