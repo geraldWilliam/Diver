@@ -60,7 +60,7 @@ struct PostView: View {
             .padding(.top, 5)
             
             HStack {
-                Button(action: { }) {
+                Button(action: { /* SHOW REPLY UI */ }) {
                     Image(systemName: "bubble.right")
                 }
                 
@@ -74,11 +74,18 @@ struct PostView: View {
                 }
                 .foregroundStyle(post.favorited ? Color.red : .accentColor)
                 
-                Button(action: { }) {
+                Button(action: { /* SHOW SHARE SHEET */ }) {
                     Image(systemName: "square.and.arrow.up")
                 }
-                Button(action: { }) {
+                Menu {
+                    Button(role: .destructive, action: { confirmingDelete = true }) {
+                        Label("Delete", systemImage: "trash")
+                    }
+                } label: {
                     Image(systemName: "gear")
+                }
+                .contextMenu {
+                    
                 }
             }
             .buttonStyle(BorderedButtonStyle())
