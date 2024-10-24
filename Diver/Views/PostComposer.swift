@@ -6,47 +6,81 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 @MainActor struct PostComposer: View {
     @Environment(Navigator.self) var navigator
     @Environment(Posts.self) var posts
+    
+    let post: PostInfo?
 
+    @State private var contentWarning: String = ""
     @State private var textContent: String = ""
 
-    @State private var attachedMedia: [(URL, UUID)] = [
-        (URL(string: "https://picsum.photos/100/100")!, UUID()),
-        (URL(string: "https://picsum.photos/100/100")!, UUID()),
-        (URL(string: "https://picsum.photos/100/100")!, UUID())
-    ]
+    @State private var attachedMedia: [PhotosPickerItem] = []
+    @State private var displayedImages: [Data] = []
 
-    @FocusState private var isFocused: Bool
+    @FocusState private var isComposeFieldFocused: Bool
+    
+    private var placeholder: String {
+        if post != nil {
+            "Write your reply"
+        } else {
+            "Write a post"
+        }
+    }
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    TextField("Write a post", text: $textContent, axis: .vertical)
-                        .padding()
-                        .lineLimit(8...)
-                        .focused($isFocused)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 1.0)
+                    /// The original post for replies
+                    if let post {
+                        ZStack {
+                            HStack {
+                                Text(post.attributedBody ?? "")
+                                Spacer()
+                            }
+                            .padding()
                         }
-                        .padding(.horizontal)
+                        .background(Color.black.opacity(0.05))
+                    }
+                    
+                    VStack {
+                        /// Content Warning
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle")
+                            TextField("Content Warning (Optional)", text: $contentWarning)
+                                .lineLimit(1)
+                        }
 
+                        Divider()
+
+                        /// Text Compose
+                        TextField(placeholder, text: $textContent, axis: .vertical)
+                            .lineLimit(8...)
+                            .focused($isComposeFieldFocused)
+                    }
+                    .padding()
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.black.opacity(0.2), lineWidth: 1.0)
+                    }
+                    .padding(.horizontal)
+                    
+                    /// Media attachment
+                    PhotosPicker("Choose Media", selection: $attachedMedia, matching: .images)
+                    
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(attachedMedia, id: \.1) { item in
-                                AsyncImage(url: item.0)
-                                    .clipShape(
-                                        RoundedRectangle(cornerRadius: 10)
-                                    )
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.white)
-                                    }
-
+                            ForEach(displayedImages, id: \.self) { data in
+                                if let uiImage = UIImage(data: data) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .aspectRatio(1, contentMode: .fit)
+                                        .scaledToFill()
+                                        .frame(width: 100, height: 100)
+                                }
                             }
                         }
                         .padding()
@@ -54,9 +88,9 @@ import SwiftUI
                     }
                 }
                 .onAppear {
-                    isFocused = true
+                    isComposeFieldFocused = true
                 }
-                .navigationTitle("Compose")
+                .navigationTitle(post == nil ? "Compose" : "Reply")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
@@ -68,31 +102,17 @@ import SwiftUI
                         Button(action: { sendPost() }) {
                             Text("Send")
                         }
+                        .disabled(textContent.isEmpty)
                     }
-                    ToolbarItemGroup(placement: .keyboard) {
-                        HStack {
-                            Button(action: { }) {
-                                Image(systemName: "number")
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                            }
-                            Button(action: { }) {
-                                Image(systemName: "photo")
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                            }
-                            Button(action: { }) {
-                                Image(systemName: "at")
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                            }
-                            Button(action: { }) {
-                                Image(systemName: "exclamationmark.triangle")
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
+                }
+                .onChange(of: attachedMedia) { oldValue, newValue in
+                    Task {
+                        displayedImages.removeAll()
+                        for item in newValue {
+                            if let image = try? await item.loadTransferable(type: Data.self) {
+                                displayedImages.append(image)
                             }
                         }
-                        .frame(maxWidth: .infinity)
                     }
                 }
             }
@@ -104,7 +124,10 @@ import SwiftUI
     }
 
     private func sendPost() {
-        posts.publish(textContent)
+        if textContent.isEmpty {
+            return
+        }
+        posts.publish(textContent, media: displayedImages, replyingTo: post)
         navigator.modal = nil
     }
 }
@@ -112,7 +135,7 @@ import SwiftUI
 #Preview {
     let posts = Posts(repo: MockPostsRepository())
     let navigator = Navigator(posts: posts)
-    return PostComposer()
+    return PostComposer(post: nil)
         .environment(posts)
         .environment(navigator)
 }

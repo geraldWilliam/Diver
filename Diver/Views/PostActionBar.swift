@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct PostActionBar: View {
+    @Environment(Navigator.self) var navigator
     let posts: Posts
     let post: PostInfo
     @State private var confirmingDelete: Bool = false
+    @State private var isReplying: PostInfo?
     var body: some View {
         HStack {
             /// Reply
-            Button(action: { /* SHOW REPLY UI */ }) {
+            Button(action: { navigator.present(.postComposer(post: post)) }) {
                 Image(systemName: "bubble.right")
             }
             /// Boost

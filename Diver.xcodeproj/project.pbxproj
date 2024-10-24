@@ -247,13 +247,13 @@
 				A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
+				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
 				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
 				A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */,
 				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
-				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -49,7 +49,7 @@ struct TimelineView: View {
                 }
             }
             ToolbarItem {
-                Button(action: { navigator.present(.postComposer) }) {
+                Button(action: { navigator.present(.postComposer(post: nil)) }) {
                     Image(systemName: "square.and.pencil")
                 }
             }

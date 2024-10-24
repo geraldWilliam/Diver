@@ -75,10 +75,10 @@ import Foundation
         }
     }
 
-    func publish(_ text: String) {
+    func publish(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) {
         Task {
             do {
-                let post = try await repo.send(text)
+                let post = try await repo.send(text, media: media, replyingTo: originalPost)
                 timeline.insert(post, at: 0)
             } catch {
                 failure = Failure(error)

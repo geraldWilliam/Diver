@@ -50,9 +50,14 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
 
     /// Use Modal values to prompt sheet presentations. This strategy allows us to centralize management of sheets. See `content(for modal:)`.
     /// Identifiable conformance is required by the `sheet` modifier.
-    enum Modal: String, Identifiable {
-        var id: String { rawValue }
-        case postComposer
+    enum Modal: Identifiable {
+        var id: String {
+            switch self {
+            case .postComposer:
+                "postComposer"
+            }
+        }
+        case postComposer(post: PostInfo?)
     }
 
     /// Required for executing deep link navigation.
@@ -118,8 +123,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     func content(for modal: Modal) -> some View {
         Group {
             switch modal {
-            case .postComposer:
-                PostComposer()
+            case .postComposer(let post):
+                PostComposer(post: post)
             }
         }
     }

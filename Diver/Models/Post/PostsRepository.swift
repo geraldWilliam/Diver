@@ -19,8 +19,8 @@ protocol PostsRepositoryProtocol {
     func getEarlierPosts() async throws -> [PostInfo]
     /// Get the replies to a post.
     func getReplies(for post: PostInfo) async throws -> [PostInfo]
-    /// Send a simple text post with public visibility.
-    func send(_ text: String) async throws -> PostInfo
+    /// Send a post.
+    func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo
     /// Delete a post.
     func delete(_ id: PostInfo.ID) async throws -> PostInfo
     /// Boost a post.
@@ -58,8 +58,26 @@ final class PostsRepository: PostsRepositoryProtocol {
         return try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
     }
 
-    func send(_ text: String) async throws -> PostInfo {
-        let response = try await client.publishPost(PostParams(post: text, visibility: .public))
+    func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo {
+        var attachments: [UploadedMediaAttachment] = []
+        for data in media {
+            let upload = UploadMediaAttachmentParams(file: data)
+            attachments.append(try await client.uploadMedia(upload, mimeType: "image/jpeg"))
+        }
+        // TODO: Enable all of these parameters.
+        let params = PostParams(
+            post: text,
+            mediaIds: attachments.map(\.id),
+            poll: nil,
+            inReplyToId: nil,
+            sensitive: false,
+            spoilerText: nil,
+            visibility: .public,
+            language: "en",
+            contentType: nil,
+            inReplyToConversationId: nil
+        )
+        let response = try await client.publishPost(params)
         return PostInfo(post: response)
     }
 
@@ -122,7 +140,7 @@ struct MockPostsRepository: PostsRepositoryProtocol {
         }
     }
 
-    func send(_ text: String) async throws -> PostInfo {
+    func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo {
         return .mock()
     }
     
