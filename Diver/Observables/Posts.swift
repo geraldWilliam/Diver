@@ -117,11 +117,10 @@ import Foundation
     func removeBoost(_ post: PostInfo) {
         Task {
             do {
-                // Un-boost the post. This returns the boost, not the original post.
+                // Un-boost the post.
                 let post = try await repo.removeBoost(post)
-                // Get the newly boosted post via the `boost` property of the action's result.
+                // Replace the old copy in the timeline.
                 if let index = timeline.firstIndex(where: { $0.id == post.id }) {
-                    // Replace the old copy in the timeline.
                     timeline[index] = post
                 }
             } catch {
