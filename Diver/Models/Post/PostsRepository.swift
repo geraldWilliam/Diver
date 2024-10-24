@@ -25,8 +25,12 @@ protocol PostsRepositoryProtocol {
     func delete(_ id: PostInfo.ID) async throws -> PostInfo
     /// Boost a post.
     func boost(_ post: PostInfo) async throws -> PostInfo
-    /// Boost a post.
+    /// Undo a boost of a post.
     func removeBoost(_ post: PostInfo) async throws -> PostInfo
+    /// Favorite a post.
+    func favorite(_ post: PostInfo) async throws -> PostInfo
+    /// Undo a favorite of a post.
+    func removeFavorite(_ post: PostInfo) async throws -> PostInfo
 }
 
 // MARK: - Concrete Implementation
@@ -84,13 +88,22 @@ final class PostsRepository: PostsRepositoryProtocol {
         }
         return PostInfo(post: response)
     }
+    
+    func favorite(_ post: PostInfo) async throws -> PostInfo {
+        let response = try await client.favouritePost(id: post.id)
+        return PostInfo(post: response)
+    }
+    
+    func removeFavorite(_ post: PostInfo) async throws -> PostInfo {
+        let response = try await client.unfavouritePost(id: post.id)
+        return PostInfo(post: response)
+    }
 }
 
 // MARK: - Mock Implementation
 
 // periphery:ignore
 struct MockPostsRepository: PostsRepositoryProtocol {
-
     func getLatestPosts() async throws -> [PostInfo] {
         return (0..<12).map { _ in
             .mock()
@@ -122,6 +135,14 @@ struct MockPostsRepository: PostsRepositoryProtocol {
     }
     
     func removeBoost(_ post: PostInfo) async throws -> PostInfo {
+        return .mock()
+    }
+    
+    func favorite(_ post: PostInfo) async throws -> PostInfo {
+        return .mock()
+    }
+    
+    func removeFavorite(_ post: PostInfo) async throws -> PostInfo {
         return .mock()
     }
 }

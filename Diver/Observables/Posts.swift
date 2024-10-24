@@ -129,6 +129,32 @@ import Foundation
             }
         }
     }
+    
+    func favorite(_ post: PostInfo) {
+        Task {
+            do {
+                let post = try await repo.favorite(post)
+                if let index = timeline.firstIndex(where: { $0.id == post.id }) {
+                    timeline[index] = post
+                }
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+    
+    func removeFavorite(_ post: PostInfo) {
+        Task {
+            do {
+                let post = try await repo.removeFavorite(post)
+                if let index = timeline.firstIndex(where: { $0.id == post.id }) {
+                    timeline[index] = post
+                }
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
 
     // MARK: - Private
 
