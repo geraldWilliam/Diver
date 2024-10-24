@@ -69,7 +69,7 @@ final class PostsRepository: PostsRepositoryProtocol {
             post: text,
             mediaIds: attachments.map(\.id),
             poll: nil,
-            inReplyToId: nil,
+            inReplyToId: originalPost?.id,
             sensitive: false,
             spoilerText: nil,
             visibility: .public,
