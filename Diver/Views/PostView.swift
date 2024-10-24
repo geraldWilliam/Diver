@@ -59,39 +59,9 @@ struct PostView: View {
             .fontWeight(.light)
             .padding(.top, 5)
             
-            HStack {
-                Button(action: { /* SHOW REPLY UI */ }) {
-                    Image(systemName: "bubble.right")
-                }
-                
-                Button(action: { post.boosted ? posts.removeBoost(post) : posts.boost(post) }) {
-                    Image(systemName: "arrow.2.squarepath")
-                }
-                .foregroundStyle(post.boosted ? Color.red : .accentColor)
-                
-                Button(action: { post.favorited ? posts.removeFavorite(post) : posts.favorite(post) }) {
-                    Image(systemName: "star")
-                }
-                .foregroundStyle(post.favorited ? Color.red : .accentColor)
-                
-                Button(action: { /* SHOW SHARE SHEET */ }) {
-                    Image(systemName: "square.and.arrow.up")
-                }
-                Menu {
-                    Button(role: .destructive, action: { confirmingDelete = true }) {
-                        Label("Delete", systemImage: "trash")
-                    }
-                } label: {
-                    Image(systemName: "gear")
-                }
-            }
-            .buttonStyle(BorderedButtonStyle())
+            PostActionBar(posts: posts, post: post)
         }
         .padding(.vertical)
-        .alert("Delete Post?", isPresented: $confirmingDelete) {
-            Button("Cancel") { }
-            Button("Delete") { posts.delete(post.id) }
-        }
     }
 }
 

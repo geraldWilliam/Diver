@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
 		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
+		A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC42CCACE5700492319 /* PostActionBar.swift */; };
 		A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDCA2C457BB800CA3139 /* DiverApp.swift */; };
 		A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDCC2C457BB800CA3139 /* ContentView.swift */; };
 		A776EDCF2C457BB900CA3139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A776EDCE2C457BB900CA3139 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		A775DAC42CCACE5700492319 /* PostActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionBar.swift; sourceTree = "<group>"; };
 		A776EDC72C457BB800CA3139 /* Diver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A776EDCA2C457BB800CA3139 /* DiverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiverApp.swift; sourceTree = "<group>"; };
 		A776EDCC2C457BB800CA3139 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */,
 				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
+				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */,
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
+				A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
 				A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */,
 				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,

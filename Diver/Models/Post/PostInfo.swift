@@ -22,6 +22,8 @@ import TootSDK
 struct PostInfo: Identifiable, Hashable {
     /// `Identifiable` conformance.
     let id: String
+    /// The URL of the post.
+    let url: URL?
     /// The time the post was created.
     let createdDate: Date
     /// The display name of the post author.
@@ -58,6 +60,7 @@ struct PostInfo: Identifiable, Hashable {
         self.account = post.account
         self.repost = post.repost
         self.id = post.id
+        self.url = if let path = post.url { URL(string: path) } else { nil }
         self.createdDate = post.createdAt
         self.authorName = post.account.displayName ?? "🀰🀰🀰🀰🀰🀰🀰🀰"
         self.avatarPath = post.account.avatar
@@ -89,6 +92,7 @@ struct PostInfo: Identifiable, Hashable {
         self.account = nil
         self.repost = nil
         self.id = id
+        self.url = nil
         self.createdDate = Date()
         self.authorName = authorName
         self.avatarPath = avatarPath
