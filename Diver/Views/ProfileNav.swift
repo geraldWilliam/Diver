@@ -25,7 +25,6 @@ struct ProfileNav: View {
 }
 
 #Preview {
-    let session = Session(repo: MockSessionRepository())
     let posts = Posts(repo: MockPostsRepository())
     let navigator = Navigator(posts: posts)
     return ProfileNav()

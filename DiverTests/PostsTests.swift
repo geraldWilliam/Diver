@@ -77,6 +77,17 @@ final class PostsTests: DiverTests {
         }
         XCTAssertNotNil(subject.failure)
     }
+    
+    @MainActor func testDeletePostRaisesErrorOnFailure() async throws {
+        let repo = FailingMockPostsRepository()
+        let subject = Posts(repo: repo)
+        try await expect("It should fail to get replies for a post") {
+            subject.delete(PostInfo.mock().id)
+        } toChange: {
+            _ = subject.failure
+        }
+        XCTAssertNotNil(subject.failure)
+    }
 }
 
 private struct FailingMockPostsRepository: PostsRepositoryProtocol {
@@ -93,6 +104,10 @@ private struct FailingMockPostsRepository: PostsRepositoryProtocol {
     }
 
     func send(_ text: String) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
+
+    func delete(_ id: Diver.PostInfo.ID) async throws -> Diver.PostInfo {
         throw Failure(#function)
     }
 }

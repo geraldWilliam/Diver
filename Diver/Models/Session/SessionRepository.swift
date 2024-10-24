@@ -11,6 +11,7 @@ import TootSDK
 // MARK: - Protocol
 
 protocol SessionRepositoryProtocol {
+    // TODO: currentSession instead of account?
     var account: AccountInfo? { get }
     /// Check is the user is logged in.
     var isLoggedIn: Bool { get }
@@ -30,6 +31,7 @@ final class SessionRepository: SessionRepositoryProtocol {
     
     private let accountService = AccountService()
     private let tokenService: TokenService
+    // TODO: Store a session object instead?
     private var token: String? {
         get {
             tokenService.token
@@ -81,17 +83,17 @@ final class SessionRepository: SessionRepositoryProtocol {
 // MARK: - Mock Implementation
 
 // periphery:ignore
-struct MockSessionRepository: SessionRepositoryProtocol {
-    var account: AccountInfo? {
-        .mock()
-    }
+class MockSessionRepository: SessionRepositoryProtocol {
+    var account: AccountInfo?
     var isLoggedIn: Bool {
-        true
+        account != nil
     }
     func logIn() async throws -> SessionInfo {
-        SessionInfo(token: "fake-access-token", account: .mock())
+        let account = AccountInfo.mock()
+        self.account = account
+        return SessionInfo(token: "fake-access-token", account: account)
     }
     func logOut() {
-        //
+        self.account = nil
     }
 }
