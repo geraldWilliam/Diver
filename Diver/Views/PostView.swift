@@ -84,9 +84,6 @@ struct PostView: View {
                 } label: {
                     Image(systemName: "gear")
                 }
-                .contextMenu {
-                    
-                }
             }
             .buttonStyle(BorderedButtonStyle())
         }
