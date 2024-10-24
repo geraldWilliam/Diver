@@ -127,7 +127,11 @@ import PhotosUI
         if textContent.isEmpty {
             return
         }
-        posts.publish(textContent, media: displayedImages, replyingTo: post)
+        if let post {
+            posts.reply(textContent, media: displayedImages, to: post)
+        } else {
+            posts.publish(textContent, media: displayedImages)
+        }
         navigator.modal = nil
     }
 }

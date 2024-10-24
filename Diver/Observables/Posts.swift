@@ -75,11 +75,25 @@ import Foundation
         }
     }
 
-    func publish(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) {
+    func publish(_ text: String, media: [Data]) {
+        Task {
+            do {
+                let post = try await repo.send(text, media: media, replyingTo: nil)
+                timeline.insert(post, at: 0)
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+    
+    func reply(_ text: String, media: [Data], to originalPost: PostInfo) {
         Task {
             do {
                 let post = try await repo.send(text, media: media, replyingTo: originalPost)
-                timeline.insert(post, at: 0)
+                let op = try await repo.getPost(originalPost.id)
+                if let index = timeline.firstIndex(of: originalPost) {
+                    timeline[index] = op
+                }
             } catch {
                 failure = Failure(error)
             }

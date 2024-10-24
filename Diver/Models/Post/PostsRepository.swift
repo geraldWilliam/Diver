@@ -17,6 +17,8 @@ protocol PostsRepositoryProtocol {
     func getLatestPosts() async throws -> [PostInfo]
     /// Get a page of earlier posts in the timeline.
     func getEarlierPosts() async throws -> [PostInfo]
+    /// Get a post by id, use for refreshing.
+    func getPost(_ id: PostInfo.ID) async throws -> PostInfo
     /// Get the replies to a post.
     func getReplies(for post: PostInfo) async throws -> [PostInfo]
     /// Send a post.
@@ -52,6 +54,11 @@ final class PostsRepository: PostsRepositoryProtocol {
 
     func getEarlierPosts() async throws -> [PostInfo] {
         return try await fetchPosts()
+    }
+    
+    func getPost(_ id: PostInfo.ID) async throws -> PostInfo {
+        let post = try await client.getPost(id: id)
+        return PostInfo(post: post)
     }
 
     func getReplies(for post: PostInfo) async throws -> [PostInfo] {
@@ -138,6 +145,10 @@ struct MockPostsRepository: PostsRepositoryProtocol {
         return (0..<12).map { _ in
             .mock()
         }
+    }
+    
+    func getPost(_ id: PostInfo.ID) async throws -> PostInfo {
+        return .mock()
     }
 
     func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo {
