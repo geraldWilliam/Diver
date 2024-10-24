@@ -59,10 +59,24 @@ struct PostView: View {
             .fontWeight(.light)
             .padding(.top, 5)
             
-            Button(action: { confirmingDelete = true }) {
-                Text("Delete")
+            HStack {
+                Button(action: { }) {
+                    Image(systemName: "bubble.right")
+                }
+                Button(action: { }) {
+                    Image(systemName: "arrow.2.squarepath")
+                }
+                Button(action: { }) {
+                    Image(systemName: "star")
+                }
+                Button(action: { }) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                Button(action: { }) {
+                    Image(systemName: "gear")
+                }
             }
-            .buttonStyle(PrimaryButtonStyle())
+            .buttonStyle(BorderedButtonStyle())
         }
         .padding(.vertical)
         .alert("Delete Post?", isPresented: $confirmingDelete) {
