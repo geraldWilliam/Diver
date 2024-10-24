@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
+		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
 		A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDCA2C457BB800CA3139 /* DiverApp.swift */; };
 		A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EDCC2C457BB800CA3139 /* ContentView.swift */; };
 		A776EDCF2C457BB900CA3139 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A776EDCE2C457BB900CA3139 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		A776EDC72C457BB800CA3139 /* Diver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A776EDCA2C457BB800CA3139 /* DiverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiverApp.swift; sourceTree = "<group>"; };
 		A776EDCC2C457BB800CA3139 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		A7BB5BFC2C5C103E00B6DFA1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A775DAC22CCA8BD200492319 /* AccountService.swift */,
 				A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */,
 			);
 			path = Services;
@@ -446,6 +449,7 @@
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
 				A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
+				A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */,
 				A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,

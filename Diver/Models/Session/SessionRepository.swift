@@ -11,6 +11,7 @@ import TootSDK
 // MARK: - Protocol
 
 protocol SessionRepositoryProtocol {
+    var account: AccountInfo? { get }
     /// Check is the user is logged in.
     var isLoggedIn: Bool { get }
     /// Get a session.
@@ -24,8 +25,10 @@ protocol SessionRepositoryProtocol {
 final class SessionRepository: SessionRepositoryProtocol {
     let client: TootClient
     var isLoggedIn: Bool {
-        token != nil
+        token != nil && account != nil
     }
+    
+    private let accountService = AccountService()
     private let tokenService: TokenService
     private var token: String? {
         get {
@@ -36,7 +39,14 @@ final class SessionRepository: SessionRepositoryProtocol {
         }
     }
     // Don't I need to cache this?
-    private var account: AccountInfo?
+    var account: AccountInfo? {
+        get {
+            accountService.account
+        }
+        set {
+            accountService.account = newValue
+        }
+    }
 
     init(client: TootClient, tokenService: TokenService) {
         self.client = client
@@ -51,12 +61,11 @@ final class SessionRepository: SessionRepositoryProtocol {
         if let token, let account {
             return SessionInfo(token: token, account: account)
         }
+
         let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
-        // Cache the token in the keychain.
         self.token = token
         
         let account = AccountInfo(account: try await client.verifyCredentials())
-        // TODO: Cache the account?!?!
         self.account = account
         
         let session = SessionInfo(token: token, account: account)
@@ -73,7 +82,12 @@ final class SessionRepository: SessionRepositoryProtocol {
 
 // periphery:ignore
 struct MockSessionRepository: SessionRepositoryProtocol {
-    var isLoggedIn: Bool { true }
+    var account: AccountInfo? {
+        .mock()
+    }
+    var isLoggedIn: Bool {
+        true
+    }
     func logIn() async throws -> SessionInfo {
         SessionInfo(token: "fake-access-token", account: .mock())
     }

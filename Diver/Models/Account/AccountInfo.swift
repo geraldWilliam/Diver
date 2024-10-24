@@ -8,7 +8,7 @@
 import Foundation
 import TootSDK
 
-struct AccountInfo {
+struct AccountInfo: Codable {
     let id: String
     
     init(account: Account) {

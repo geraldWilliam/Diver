@@ -22,6 +22,10 @@ import AuthenticationServices
 
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
+    
+    var accountId: String? {
+        repo.account?.id
+    }
 
     /// The state of the Session‘s logout process.
     var logout: Logout = .undetermined
