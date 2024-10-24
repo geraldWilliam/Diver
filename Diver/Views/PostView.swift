@@ -63,9 +63,10 @@ struct PostView: View {
                 Button(action: { }) {
                     Image(systemName: "bubble.right")
                 }
-                Button(action: { }) {
+                Button(action: { post.boosted ? posts.removeBoost(post) : posts.boost(post) }) {
                     Image(systemName: "arrow.2.squarepath")
                 }
+                .foregroundStyle(post.boosted ? Color.red : .accentColor)
                 Button(action: { }) {
                     Image(systemName: "star")
                 }

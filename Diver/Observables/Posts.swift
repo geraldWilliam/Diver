@@ -97,6 +97,38 @@ import Foundation
             }
         }
     }
+    
+    func boost(_ post: PostInfo) {
+        Task {
+            do {
+                // Boost the post. This returns the boost, not the original post.
+                let post = try await repo.boost(post)
+                // Get the newly boosted post via the `boost` property of the action's result.
+                if let boost = post.boost, let index = timeline.firstIndex(where: { $0.id == boost.id }) {
+                    // Replace the old copy in the timeline.
+                    timeline[index] = boost
+                }
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+    
+    func removeBoost(_ post: PostInfo) {
+        Task {
+            do {
+                // Un-boost the post. This returns the boost, not the original post.
+                let post = try await repo.removeBoost(post)
+                // Get the newly boosted post via the `boost` property of the action's result.
+                if let index = timeline.firstIndex(where: { $0.id == post.id }) {
+                    // Replace the old copy in the timeline.
+                    timeline[index] = post
+                }
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
 
     // MARK: - Private
 

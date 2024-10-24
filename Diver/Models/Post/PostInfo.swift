@@ -38,6 +38,10 @@ struct PostInfo: Identifiable, Hashable {
     let replyCount: Int
     /// The account that created the post.
     let account: Account?
+    /// Whether the current user boosted this post.
+    let boosted: Bool
+    /// Whether the current user favorited this post.
+    let favorited: Bool
     /// This property must be computed because structs cannot have stored properties of their own type. Compiler doesn‘t allow it.
     var boost: PostInfo? {
         if let repost {
@@ -68,6 +72,8 @@ struct PostInfo: Identifiable, Hashable {
             return URL(string: path)
         }
         self.replyCount = post.repliesCount
+        self.boosted = post.reposted ?? false
+        self.favorited = post.favourited ?? false
     }
 
     init(
@@ -76,7 +82,9 @@ struct PostInfo: Identifiable, Hashable {
         avatarPath: String,
         body: String?,
         media: [URL],
-        previews: [URL]
+        previews: [URL],
+        boosted: Bool,
+        favorited: Bool
     ) {
         self.account = nil
         self.repost = nil
@@ -88,6 +96,8 @@ struct PostInfo: Identifiable, Hashable {
         self.media = media
         self.previews = previews
         self.replyCount = 0
+        self.boosted = boosted
+        self.favorited = favorited
     }
 
     // MARK: - Mock
@@ -99,7 +109,9 @@ struct PostInfo: Identifiable, Hashable {
             avatarPath: "",
             body: "This is a preview post!!!",
             media: [],
-            previews: []
+            previews: [],
+            boosted: false,
+            favorited: false
         )
     }
 }

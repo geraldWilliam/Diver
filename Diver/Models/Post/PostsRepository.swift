@@ -23,6 +23,10 @@ protocol PostsRepositoryProtocol {
     func send(_ text: String) async throws -> PostInfo
     /// Delete a post.
     func delete(_ id: PostInfo.ID) async throws -> PostInfo
+    /// Boost a post.
+    func boost(_ post: PostInfo) async throws -> PostInfo
+    /// Boost a post.
+    func removeBoost(_ post: PostInfo) async throws -> PostInfo
 }
 
 // MARK: - Concrete Implementation
@@ -66,6 +70,20 @@ final class PostsRepository: PostsRepositoryProtocol {
         let post = try await client.deletePost(id: id)
         return PostInfo(post: post)
     }
+    
+    func boost(_ post: PostInfo) async throws -> PostInfo {
+        let response = try await client.boostPost(id: post.id)
+        return PostInfo(post: response)
+    }
+    
+    func removeBoost(_ post: PostInfo) async throws -> PostInfo {
+        var response = try await client.unboostPost(id: post.id)
+        if let reposted = response.reposted, reposted == true {
+            // GoToSocial isn't responding with the un-boosted post. Try again.
+            response = try await client.unboostPost(id: post.id)
+        }
+        return PostInfo(post: response)
+    }
 }
 
 // MARK: - Mock Implementation
@@ -96,6 +114,14 @@ struct MockPostsRepository: PostsRepositoryProtocol {
     }
     
     func delete(_ id: PostInfo.ID) async throws -> PostInfo {
+        return .mock()
+    }
+    
+    func boost(_ post: PostInfo) async throws -> PostInfo {
+        return .mock()
+    }
+    
+    func removeBoost(_ post: PostInfo) async throws -> PostInfo {
         return .mock()
     }
 }
