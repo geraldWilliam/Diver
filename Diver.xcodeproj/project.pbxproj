@@ -220,9 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				A775DAC02CC99F7500492319 /* Account */,
-				A7BB5BF22C5AD93100B6DFA1 /* Session */,
-				A776EE072C459DE900CA3139 /* Post */,
 				A776EE052C459DDA00CA3139 /* Failure.swift */,
+				A776EE072C459DE900CA3139 /* Post */,
+				A7BB5BF22C5AD93100B6DFA1 /* Session */,
 			);
 			path = Models;
 			sourceTree = "<group>";
