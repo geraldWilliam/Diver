@@ -11,6 +11,12 @@
         }
       }
     },
+    "%lld Followers" : {
+
+    },
+    "%lld Posts" : {
+
+    },
     "%lld replies" : {
       "localizations" : {
         "en" : {
@@ -116,6 +122,15 @@
         }
       }
     },
+    "Explore" : {
+
+    },
+    "Follow" : {
+
+    },
+    "Following %lld" : {
+
+    },
     "Log Out?" : {
       "localizations" : {
         "es" : {
@@ -143,6 +158,12 @@
 
     },
     "Reply" : {
+
+    },
+    "Search" : {
+
+    },
+    "Search Accounts" : {
 
     },
     "Send" : {

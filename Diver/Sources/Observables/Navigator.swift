@@ -20,6 +20,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     enum Tab {
         case timeline
         case profile
+        case explore
     }
     
     /// Use Destination values to drive transitions. This strategy allows us to centralize instantiation of navigation destinations here in Navigator.
@@ -35,7 +36,7 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     ///
     enum Destination: Hashable {
         case postDetail(PostInfo)
-        
+        case profile(AccountInfo)
         /// Restrict a destination to a certain tab. This prevents push transitions to the destination in all but the associated tab. You could omit this if destinations
         /// are reachable from all tabs. To permit navigation to your destination from a subset of tabs, make this property a collection.
         /// In `go(to destination:)` this property is examined and the Navigator‘s `tabSelection` property is set to the associated tab before pushing
@@ -44,6 +45,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             switch self {
             case .postDetail:
                 .timeline
+            case .profile:
+                .explore
             }
         }
     }
@@ -68,6 +71,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
     var timelinePath = NavigationPath()
     /// Instantiate the NavigationStack in the Profile tab with this path.
     var profilePath = NavigationPath()
+    /// Instantiate the NavigationStack in the Explore tab with this path.
+    var explorePath = NavigationPath()
     /// Assign a value to this property to present a modal. Pass a binding to this property to the `sheet` modifier on the app‘s root view.
     var modal: Modal?
 
@@ -91,6 +96,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             timelinePath.append(destination)
         case .profile:
             profilePath.append(destination)
+        case .explore:
+            explorePath.append(destination)
         }
     }
 
@@ -112,6 +119,8 @@ import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the N
             case .postDetail(let post):
                 /// This is a simple example but here you might access a service and instantiate any required initialization values for a view.
                 PostDetailView(post: post.boost ?? post)
+            case .profile(let account):
+                ProfileView(account: account)
             }
         }
     }

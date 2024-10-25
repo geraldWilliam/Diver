@@ -30,6 +30,8 @@ import TootSDK
     var session: Session
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
+    /// A source of truth for accounts to explore, follow, etc.
+    var authors: Authors
     /// A source of truth for navigation state.
     var navigator: Navigator
     /// A provider for the client instance.
@@ -47,16 +49,19 @@ import TootSDK
         /// A container type for the application‘s repositories.
         typealias Repos = (
             session: SessionRepositoryProtocol,
-            posts: PostsRepositoryProtocol
+            posts: PostsRepositoryProtocol,
+            accounts: AccountRepositoryProtocol
         )
         /// Set up repositories for instantiating observables. Test runs use mock repositories, live runs use real repositories that leverage the client.
         let repos: Repos = (
             session: isTesting ? MockSessionRepository() : SessionRepository(client: client, tokenService: tokenService),
-            posts: isTesting ? MockPostsRepository() : PostsRepository(client: client)
+            posts: isTesting ? MockPostsRepository() : PostsRepository(client: client),
+            accounts: isTesting ? MockAccountRepository() : AccountRepository(client: client)
         )
         /// Instantiate observables to be injected in Environment.
         session = Session(repo: repos.session)
         posts = Posts(repo: repos.posts)
+        authors = Authors(repo: repos.accounts)
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
         if session.isLoggedIn {
@@ -76,6 +81,7 @@ import TootSDK
                 /// Add required observables to the environment.
                 .environment(session)
                 .environment(posts)
+                .environment(authors)
                 .environment(navigator)
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.

@@ -18,6 +18,7 @@ struct ContentView: View {
             TabView(selection: $navigator.tabSelection) {
                 TimelineNav()
                 ProfileNav()
+                ExploreNav()
             }
         } else {
             LoginView()

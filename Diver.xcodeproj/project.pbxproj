@@ -26,6 +26,11 @@
 		A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */; };
 		A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE0E2C45B29800CA3139 /* TimelineView.swift */; };
 		A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776EE102C45BF9400CA3139 /* PostDetailView.swift */; };
+		A790BCF72CCBE64A004E4761 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCF62CCBE64A004E4761 /* AccountRepository.swift */; };
+		A790BCF92CCBE821004E4761 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCF82CCBE821004E4761 /* ExploreView.swift */; };
+		A790BCFB2CCBE846004E4761 /* Authors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCFA2CCBE846004E4761 /* Authors.swift */; };
+		A790BCFE2CCC3EFF004E4761 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */; };
+		A790BD002CCC45F7004E4761 /* ExploreNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */; };
 		A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */; };
 		A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */; };
 		A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */; };
@@ -89,6 +94,11 @@
 		A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		A776EE0E2C45B29800CA3139 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		A776EE102C45BF9400CA3139 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
+		A790BCF62CCBE64A004E4761 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
+		A790BCF82CCBE821004E4761 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		A790BCFA2CCBE846004E4761 /* Authors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authors.swift; sourceTree = "<group>"; };
+		A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreNav.swift; sourceTree = "<group>"; };
 		A7BB5BBA2C49AFD700B6DFA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
@@ -144,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				A775DABF2CC99F7500492319 /* AccountInfo.swift */,
+				A790BCF62CCBE64A004E4761 /* AccountRepository.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -172,19 +183,15 @@
 		A776EDC92C457BB800CA3139 /* Diver */ = {
 			isa = PBXGroup;
 			children = (
-				A776EDCE2C457BB900CA3139 /* Assets.xcassets */,
-				A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */,
-				A776EDD02C457BB900CA3139 /* Diver.entitlements */,
-				A7BB5BC92C4B04E900B6DFA1 /* Info.plist */,
 				A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */,
+				A776EDCE2C457BB900CA3139 /* Assets.xcassets */,
+				A776EDD02C457BB900CA3139 /* Diver.entitlements */,
 				A776EDCA2C457BB800CA3139 /* DiverApp.swift */,
-				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
-				A7BB5BFC2C5C103E00B6DFA1 /* Services */,
-				A7BB5BD32C58341E00B6DFA1 /* Extensions */,
-				A776EE022C459D3800CA3139 /* Models */,
-				A776EE032C459D3E00CA3139 /* Observables */,
-				A776EE042C459D4B00CA3139 /* Views */,
+				A7BB5BC92C4B04E900B6DFA1 /* Info.plist */,
+				A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */,
 				A776EDD12C457BB900CA3139 /* Preview Content */,
+				A790BCFC2CCC3ED1004E4761 /* Sources */,
+				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
 			);
 			path = Diver;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 		A776EE032C459D3E00CA3139 /* Observables */ = {
 			isa = PBXGroup;
 			children = (
+				A790BCFA2CCBE846004E4761 /* Authors.swift */,
 				A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */,
 				A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */,
 				A776EDF82C457DE500CA3139 /* Posts.swift */,
@@ -241,11 +249,11 @@
 		A776EE042C459D4B00CA3139 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A7BB5BD82C59370500B6DFA1 /* Modifiers */,
 				A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */,
 				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
 				A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
+				A790BCF82CCBE821004E4761 /* ExploreView.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
 				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
@@ -254,6 +262,8 @@
 				A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */,
 				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
+				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
+				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +277,19 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		A790BCFC2CCC3ED1004E4761 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A7BB5BD32C58341E00B6DFA1 /* Extensions */,
+				A776EE022C459D3800CA3139 /* Models */,
+				A776EE032C459D3E00CA3139 /* Observables */,
+				A7BB5BFC2C5C103E00B6DFA1 /* Services */,
+				A7BB5BD82C59370500B6DFA1 /* ViewModifiers */,
+				A776EE042C459D4B00CA3139 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		A7BB5BD32C58341E00B6DFA1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,13 +298,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A7BB5BD82C59370500B6DFA1 /* Modifiers */ = {
+		A7BB5BD82C59370500B6DFA1 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
 				A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */,
 				A7BB5C052C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift */,
 			);
-			path = Modifiers;
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		A7BB5BF22C5AD93100B6DFA1 /* Session */ = {
@@ -448,6 +471,7 @@
 				A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
 				A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */,
+				A790BCF92CCBE821004E4761 /* ExploreView.swift in Sources */,
 				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,
 				A7BB5C022C5C1E2E00B6DFA1 /* LoginView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
@@ -466,11 +490,15 @@
 				A7BB5BF62C5AD94500B6DFA1 /* SessionInfo.swift in Sources */,
 				A776EDF92C457DE500CA3139 /* Posts.swift in Sources */,
 				A7BB5C042C5D5BC000B6DFA1 /* BubbleView.swift in Sources */,
+				A790BCF72CCBE64A004E4761 /* AccountRepository.swift in Sources */,
+				A790BD002CCC45F7004E4761 /* ExploreNav.swift in Sources */,
+				A790BCFE2CCC3EFF004E4761 /* ProfileView.swift in Sources */,
 				A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */,
 				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,
 				A776EE012C45973600CA3139 /* PostInfo.swift in Sources */,
+				A790BCFB2CCBE846004E4761 /* Authors.swift in Sources */,
 				A7BB5BFE2C5C104800B6DFA1 /* TokenService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
