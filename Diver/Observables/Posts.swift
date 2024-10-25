@@ -78,7 +78,9 @@ import Foundation
     func publish(_ text: String, media: [Data]) {
         Task {
             do {
+                /// Send the post.
                 let post = try await repo.send(text, media: media, replyingTo: nil)
+                /// Show the post at the top of the timeline.
                 timeline.insert(post, at: 0)
             } catch {
                 failure = Failure(error)
@@ -89,11 +91,14 @@ import Foundation
     func reply(_ text: String, media: [Data], to originalPost: PostInfo) {
         Task {
             do {
-                let post = try await repo.send(text, media: media, replyingTo: originalPost)
-                let op = try await repo.getPost(originalPost.id)
-                if let index = timeline.firstIndex(of: originalPost) {
-                    timeline[index] = op
-                }
+                /// Send the reply.
+                let reply = try await repo.send(text, media: media, replyingTo: originalPost)
+                /// Show the reply in post detail.
+                replies[originalPost.id]?.append(reply)
+                
+                /// Update the original post in the timeline.
+                let refreshedOriginalPost = try await repo.getPost(originalPost.id)
+                timeline.firstIndex(of: originalPost).map { timeline[$0] = refreshedOriginalPost }
             } catch {
                 failure = Failure(error)
             }
@@ -115,12 +120,11 @@ import Foundation
     func boost(_ post: PostInfo) {
         Task {
             do {
-                // Boost the post. This returns the boost, not the original post.
+                /// Boost the post. This returns the boost, not the original post.
                 let post = try await repo.boost(post)
-                // Get the newly boosted post via the `boost` property of the action's result.
-                if let boost = post.boost, let index = timeline.firstIndex(where: { $0.id == boost.id }) {
-                    // Replace the old copy in the timeline.
-                    timeline[index] = boost
+                /// Replace the old copy in the timeline with the newly boosted post.
+                post.boost.map { boost in
+                    timeline.firstIndex(where: { $0.id == boost.id }).map { index in timeline[index] = boost }
                 }
             } catch {
                 failure = Failure(error)
@@ -131,12 +135,10 @@ import Foundation
     func removeBoost(_ post: PostInfo) {
         Task {
             do {
-                // Un-boost the post.
+                /// Un-boost the post.
                 let post = try await repo.removeBoost(post)
-                // Replace the old copy in the timeline.
-                if let index = timeline.firstIndex(where: { $0.id == post.id }) {
-                    timeline[index] = post
-                }
+                /// Replace the old copy in the timeline with the newly un-boosted post.
+                timeline.firstIndex(where: { $0.id == post.id }).map { timeline[$0] = post }
             } catch {
                 failure = Failure(error)
             }
@@ -146,10 +148,10 @@ import Foundation
     func favorite(_ post: PostInfo) {
         Task {
             do {
+                /// Favorite the post.
                 let post = try await repo.favorite(post)
-                if let index = timeline.firstIndex(where: { $0.id == post.id }) {
-                    timeline[index] = post
-                }
+                /// Replace the old copy in the timeline with the newly favorited post.
+                timeline.firstIndex(where: { $0.id == post.id }).map { timeline[$0] = post }
             } catch {
                 failure = Failure(error)
             }
@@ -159,10 +161,10 @@ import Foundation
     func removeFavorite(_ post: PostInfo) {
         Task {
             do {
+                /// Un-favorite the post.
                 let post = try await repo.removeFavorite(post)
-                if let index = timeline.firstIndex(where: { $0.id == post.id }) {
-                    timeline[index] = post
-                }
+                /// Replace the old copy in the timeline with the newly un-favorited post.
+                timeline.firstIndex(where: { $0.id == post.id }).map { timeline[$0] = post }
             } catch {
                 failure = Failure(error)
             }

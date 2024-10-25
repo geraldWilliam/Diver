@@ -29,6 +29,10 @@ import PhotosUI
             "Write a post"
         }
     }
+    
+    private var isPostIncomplete: Bool {
+        textContent.isEmpty && displayedImages.isEmpty
+    }
 
     var body: some View {
         NavigationStack {
@@ -102,7 +106,7 @@ import PhotosUI
                         Button(action: { sendPost() }) {
                             Text("Send")
                         }
-                        .disabled(textContent.isEmpty)
+                        .disabled(isPostIncomplete)
                     }
                 }
                 .onChange(of: attachedMedia) { oldValue, newValue in
@@ -119,12 +123,8 @@ import PhotosUI
         }
     }
 
-    private func cancelPost() {
-        navigator.modal = nil
-    }
-
     private func sendPost() {
-        if textContent.isEmpty {
+        if isPostIncomplete {
             return
         }
         if let post {
@@ -132,6 +132,10 @@ import PhotosUI
         } else {
             posts.publish(textContent, media: displayedImages)
         }
+        navigator.modal = nil
+    }
+    
+    private func cancelPost() {
         navigator.modal = nil
     }
 }

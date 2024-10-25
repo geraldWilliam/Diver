@@ -26,7 +26,7 @@ struct TimelineView: View {
                 // Infinite scroll
                 .onAppear {
                     if post == posts.timeline.last {
-//                        posts.getEarlierPosts()
+                        posts.getEarlierPosts()
                     }
                 }
             }
