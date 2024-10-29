@@ -10,22 +10,23 @@ import SwiftUI
 struct ExploreView: View {
     @Environment(Authors.self) var authors
     @Environment(Navigator.self) var navigator
-
     @State private var searchText: String = ""
+    
     var body: some View {
-        VStack {
-            List {
-                Section {
-                    TextField("Search Accounts", text: $searchText)
-                    Button(action: { authors.search(searchText) }) {
-                        Text("Search")
-                    }
+        List {
+            Section {
+                ForEach(authors.displayed) { author in
+                    ProfileView(account: author)
                 }
-                Section {
-                    ForEach(authors.displayed) { author in
-                        ProfileView(account: author)
-                    }
-                }
+            }
+        }
+        .searchable(text: $searchText)
+        .onSubmit(of: .search) {
+            authors.search(searchText)
+        }
+        .overlay {
+            if authors.displayed.isEmpty {
+                ContentUnavailableView.search
             }
         }
     }
