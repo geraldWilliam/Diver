@@ -23,9 +23,7 @@ struct ExploreView: View {
                 }
                 Section {
                     ForEach(authors.displayed) { author in
-                        Button(action: { navigator.go(to: .profile(author)) }) {
-                            Text(author.displayName)
-                        }
+                        ProfileView(account: author)
                     }
                 }
             }
