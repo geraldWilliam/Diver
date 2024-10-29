@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ProfileNav: View {
     @Environment(Navigator.self) var navigator
+    @Environment(Session.self) var session
     var body: some View {
         @Bindable var navigator = navigator
         NavigationStack(path: $navigator.profilePath) {
-            Text("Profile View")
+            session.repo.account.map { ProfileView(account: $0) }
         }
         .tag(Navigator.Tab.profile)
         .tabItem {

@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.nerdery.Diver</string>
+			<string>com.tenkay.Diver</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>diver</string>
