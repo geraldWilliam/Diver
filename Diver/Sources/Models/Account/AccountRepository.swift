@@ -9,6 +9,7 @@ import Foundation
 import TootSDK
 
 protocol AccountRepositoryProtocol {
+    func getFollowing() async throws -> [AccountInfo]
     func search(text: String) async throws -> [AccountInfo]
     func follow(_ id: Account.ID) async throws -> AccountInfo
 }
@@ -16,9 +17,21 @@ protocol AccountRepositoryProtocol {
 final class AccountRepository: AccountRepositoryProtocol {
     
     let client: TootClient
+    let accountService: AccountService
     
-    init(client: TootClient) {
+    init(client: TootClient, accountService: AccountService) {
         self.client = client
+        self.accountService = accountService
+    }
+    
+    func getFollowing() async throws -> [AccountInfo] {
+        guard let account = accountService.account else {
+            return []
+        }
+        let accounts = try await client.getFollowing(for: account.id)
+        return accounts.result.map {
+            AccountInfo(account: $0)
+        }
     }
     
     func search(text: String) async throws -> [AccountInfo] {
@@ -35,6 +48,10 @@ final class AccountRepository: AccountRepositoryProtocol {
 }
 
 struct MockAccountRepository: AccountRepositoryProtocol {
+    func getFollowing() async throws -> [AccountInfo] {
+        return [.mock()]
+    }
+
     func search(text: String) async throws -> [AccountInfo] {
         return [.mock()]
     }

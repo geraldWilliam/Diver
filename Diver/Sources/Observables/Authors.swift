@@ -10,11 +10,18 @@ import Foundation
 @Observable final class Authors {
     let repo: AccountRepositoryProtocol
     var displayed: [AccountInfo] = []
-    var followed: [AccountInfo] = []
+    var following: [AccountInfo] = []
     var failure: Failure?
     
     init(repo: AccountRepositoryProtocol) {
         self.repo = repo
+        Task {
+            do {
+                following = try await repo.getFollowing()
+            } catch {
+                failure = Failure(error)
+            }
+        }
     }
     
     func search(_ text: String) {
@@ -31,7 +38,7 @@ import Foundation
         Task {
             do {
                 let account = try await repo.follow(id)
-                followed.append(account)
+                following.append(account)
                 displayed.firstIndex(where: { $0.id == id }).map { displayed[$0] = account }
             } catch {
                 failure = Failure(error)

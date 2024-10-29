@@ -41,9 +41,9 @@ struct ProfileView: View {
                             .stroke(Color.black)
                     }
             }
-            
-            if authors.followed.contains(account) {
-                Button(action: { }) {
+            Text("\(authors.following.contains(account))")
+            if !authors.following.contains(account) {
+                Button(action: { authors.follow(account.id) }) {
                     Text("Follow")
                 }
                 .buttonStyle(BorderedButtonStyle())

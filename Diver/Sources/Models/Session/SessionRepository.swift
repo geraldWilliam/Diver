@@ -25,11 +25,13 @@ protocol SessionRepositoryProtocol {
 
 final class SessionRepository: SessionRepositoryProtocol {
     let client: TootClient
+
     var isLoggedIn: Bool {
         token != nil && account != nil
     }
     
-    private let accountService = AccountService()
+    let accountService: AccountService
+
     private let tokenService: TokenService
     // TODO: Store a session object instead?
     private var token: String? {
@@ -50,9 +52,10 @@ final class SessionRepository: SessionRepositoryProtocol {
         }
     }
 
-    init(client: TootClient, tokenService: TokenService) {
+    init(client: TootClient, tokenService: TokenService, accountService: AccountService) {
         self.client = client
         self.tokenService = tokenService
+        self.accountService = accountService
         Task {
             // This is required for activating the TootClient.
             try await client.connect()
