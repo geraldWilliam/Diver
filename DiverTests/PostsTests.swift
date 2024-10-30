@@ -94,20 +94,40 @@ private struct FailingMockPostsRepository: PostsRepositoryProtocol {
     func getLatestPosts() async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
-
+    
     func getEarlierPosts() async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
-
+    
+    func getPost(_ id: Diver.PostInfo.ID) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
+    
     func getReplies(for post: Diver.PostInfo) async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
-
-    func send(_ text: String) async throws -> Diver.PostInfo {
+    
+    func send(_ text: String, media: [Data], replyingTo originalPost: Diver.PostInfo?) async throws -> Diver.PostInfo {
         throw Failure(#function)
     }
-
+    
     func delete(_ id: Diver.PostInfo.ID) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
+    
+    func boost(_ post: Diver.PostInfo) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
+    
+    func removeBoost(_ post: Diver.PostInfo) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
+    
+    func favorite(_ post: Diver.PostInfo) async throws -> Diver.PostInfo {
+        throw Failure(#function)
+    }
+    
+    func removeFavorite(_ post: Diver.PostInfo) async throws -> Diver.PostInfo {
         throw Failure(#function)
     }
 }

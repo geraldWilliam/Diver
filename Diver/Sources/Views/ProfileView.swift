@@ -42,13 +42,19 @@ struct ProfileView: View {
                     }
             }
             Text("\(authors.following.contains(account))")
-            if !authors.following.contains(account) {
-                Button(action: { authors.follow(account.id) }) {
-                    Text("Follow")
+            Group {
+                if authors.following.contains(account) {
+                    Button(action: { authors.follow(account.id) }) {
+                        Text("Follow")
+                    }
+                } else {
+                    Button(action: { authors.follow(account.id) }) {
+                        Text("Unfollow")
+                    }
                 }
-                .buttonStyle(BorderedButtonStyle())
             }
-            
+            .buttonStyle(BorderedButtonStyle())
+
             Button(action: { }) {
                 Text("\(account.postCount) Posts")
             }
