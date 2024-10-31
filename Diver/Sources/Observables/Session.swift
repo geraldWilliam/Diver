@@ -23,8 +23,10 @@ import AuthenticationServices
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
     
-    var accountId: String? {
-        repo.account?.id
+    /// The currently authenticated account.
+    // TODO: It might be nice to have multiple accounts logged in at once eventually.
+    var currentAccount: AccountInfo? {
+        repo.account
     }
 
     /// The state of the Session‘s logout process.

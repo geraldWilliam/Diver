@@ -33,7 +33,7 @@ final class SessionRepository: SessionRepositoryProtocol {
     let accountService: AccountService
 
     private let tokenService: TokenService
-    // TODO: Store a session object instead?
+
     private var token: String? {
         get {
             tokenService.token
@@ -42,7 +42,7 @@ final class SessionRepository: SessionRepositoryProtocol {
             tokenService.token = newValue
         }
     }
-    // Don't I need to cache this?
+
     var account: AccountInfo? {
         get {
             accountService.account

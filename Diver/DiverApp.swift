@@ -34,7 +34,7 @@ import TootSDK
     var authors: Authors
     /// A source of truth for navigation state.
     var navigator: Navigator
-    /// A provider for the client instance.
+
     private let client: TootClient
 
     // MARK: - Initialization

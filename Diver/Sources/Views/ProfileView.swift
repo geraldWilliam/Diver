@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(Authors.self) var authors
+    @Environment(Session.self) var session
     let account: AccountInfo
     var body: some View {
         VStack {
@@ -23,8 +24,8 @@ struct ProfileView: View {
                 .font(.title)
             Text(account.handle)
                 .foregroundStyle(Color.secondary)
-            
-            HStack(spacing: .zero) {
+
+
                 Text("\(123) Followers")
                     .padding()
                     .overlay {
@@ -40,14 +41,13 @@ struct ProfileView: View {
                             .fill(Color.clear)
                             .stroke(Color.black)
                     }
-            }
-            Text("\(authors.following.contains(account))")
+
             Group {
                 if authors.following.contains(account) {
                     Button(action: { authors.follow(account.id) }) {
                         Text("Follow")
                     }
-                } else {
+                } else if account != session.currentAccount {
                     Button(action: { authors.follow(account.id) }) {
                         Text("Unfollow")
                     }
@@ -65,4 +65,6 @@ struct ProfileView: View {
 
 #Preview {
     ProfileView(account: .mock())
+        .environment(Authors(repo: MockAccountRepository()))
+        .environment(Session(repo: MockSessionRepository()))
 }
