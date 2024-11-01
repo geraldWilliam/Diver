@@ -44,7 +44,8 @@ struct PostView: View {
                 AsyncImage(url: image) { result in
                     result.image?
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .frame(maxHeight: 200)
+                        .aspectRatio(1, contentMode: .fit)
                 }
                 .animation(.easeIn, value: image)
             }

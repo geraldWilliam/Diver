@@ -12,59 +12,56 @@ struct ProfileView: View {
     @Environment(Session.self) var session
     let account: AccountInfo
     var body: some View {
-        VStack {
-            AsyncImage(url: account.profileImage) { output in
-                output.image?
-                    .resizable()
-                    .aspectRatio(1, contentMode: .fit)
-                    .frame(width: 200, height: 200)
-                    .clipShape(Circle())
+        LazyVStack {
+            HStack {
+                AsyncImage(url: account.profileImage) { output in
+                    output.image?
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                }
+                Divider()
+                VStack(alignment: .leading) {
+                    Text(account.displayName)
+                        .font(.title)
+                    Text(account.handle)
+                        .foregroundStyle(Color.secondary)
+                }
             }
-            Text(account.displayName)
-                .font(.title)
-            Text(account.handle)
-                .foregroundStyle(Color.secondary)
-
-
-                Text("\(123) Followers")
-                    .padding()
-                    .overlay {
-                        UnevenRoundedRectangle(cornerRadii: .init(topLeading: 5, bottomLeading: 5))
-                            .fill(Color.clear)
-                            .stroke(Color.black)
-                            
-                    }
-                Text("Following \(123)")
-                    .padding()
-                    .overlay {
-                        UnevenRoundedRectangle(cornerRadii: .init(bottomTrailing: 5, topTrailing: 5))
-                            .fill(Color.clear)
-                            .stroke(Color.black)
-                    }
-
-            Group {
+            
+            VStack(alignment: .leading) {
                 if authors.following.contains(account) {
-                    Button(action: { authors.follow(account.id) }) {
-                        Text("Follow")
+                    Button(action: { /*authors.unfollow(account.id)*/ }) {
+                        Text("Unfollow")
                     }
                 } else if account != session.currentAccount {
                     Button(action: { authors.follow(account.id) }) {
-                        Text("Unfollow")
+                        Text("Follow")
                     }
                 }
             }
             .buttonStyle(BorderedButtonStyle())
 
-            Button(action: { }) {
-                Text("\(account.postCount) Posts")
+            VStack(alignment: .leading) {
+                Button(action: { }) { Text("\(123) Followers") }
+                    .frame(maxWidth: .infinity)
+                Divider()
+                Button(action: { }) { Text("Following \(123)") }
+                    .frame(maxWidth: .infinity)
+                Divider()
+                Button(action: { }) { Text("\(account.postCount) Posts") }
+                    .frame(maxWidth: .infinity)
             }
-            .buttonStyle(BorderedButtonStyle())
+            .scrollDisabled(true)
         }
     }
 }
 
 #Preview {
-    ProfileView(account: .mock())
-        .environment(Authors(repo: MockAccountRepository()))
-        .environment(Session(repo: MockSessionRepository()))
+    List {
+        ProfileView(account: .mock())
+    }
+    .environment(Authors(repo: MockAccountRepository()))
+    .environment(Session(repo: MockSessionRepository()))
 }
