@@ -20,21 +20,19 @@ struct AvatarView: View {
 
     var body: some View {
         if let url = URL(string: path) {
-            AsyncImage(url: url) { result in
-                if let image = result.image {
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: diameter, height: diameter)
-                        .clipShape(RoundedRectangle(cornerRadius: 5.0))
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5.0)
-                                .stroke(Color.primary, lineWidth: 1)
-                        }
-                } else {
-                    Image(systemName: placeholderName)
-                }
+            AsyncImage(url: url) { image in
+                image
+                    .resizable()
+                    .clipShape(RoundedRectangle(cornerRadius: 5.0))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 5.0)
+                            .stroke(Color.primary, lineWidth: 1)
+                    }
+            } placeholder: {
+                Image(systemName: placeholderName)
             }
+            .aspectRatio(contentMode: .fill)
+            .frame(width: diameter, height: diameter)
         } else {
             Image(systemName: placeholderName)
         }

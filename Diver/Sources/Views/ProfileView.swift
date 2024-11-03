@@ -14,13 +14,15 @@ struct ProfileView: View {
     var body: some View {
         LazyVStack {
             HStack {
-                AsyncImage(url: account.profileImage) { output in
-                    output.image?
+                AsyncImage(url: account.profileImage) { image in
+                    image
                         .resizable()
-                        .aspectRatio(1, contentMode: .fit)
-                        .frame(width: 60, height: 60)
                         .clipShape(Circle())
+                } placeholder: {
+                    Image(systemName: "exclamationmark.circle")
                 }
+                .aspectRatio(1, contentMode: .fit)
+                .frame(width: 60, height: 60)
                 Divider()
                 VStack(alignment: .leading) {
                     Text(account.displayName)
@@ -40,20 +42,26 @@ struct ProfileView: View {
                         Text("Follow")
                     }
                 }
+                // TODO: Follow requests.
             }
             .buttonStyle(BorderedButtonStyle())
 
-            VStack(alignment: .leading) {
-                Button(action: { }) { Text("\(123) Followers") }
-                    .frame(maxWidth: .infinity)
+            VStack {
+                Row(
+                    title: "\(123) Followers",
+                    action: { }
+                )
                 Divider()
-                Button(action: { }) { Text("Following \(123)") }
-                    .frame(maxWidth: .infinity)
+                Row(
+                    title: "Following \(123)",
+                    action: { }
+                )
                 Divider()
-                Button(action: { }) { Text("\(account.postCount) Posts") }
-                    .frame(maxWidth: .infinity)
+                Row(
+                    title: "\(account.postCount) Posts",
+                    action: { }
+                )
             }
-            .scrollDisabled(true)
         }
     }
 }
@@ -64,4 +72,15 @@ struct ProfileView: View {
     }
     .environment(Authors(repo: MockAccountRepository()))
     .environment(Session(repo: MockSessionRepository()))
+}
+
+private struct Row: View {
+    let title: String
+    let action: () -> Void
+    var body: some View {
+        HStack {
+            Button(action: action) { Text(title) }
+            Spacer()
+        }
+    }
 }

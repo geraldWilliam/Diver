@@ -41,12 +41,13 @@ struct PostView: View {
             /// If there are images, show a preview of the first.
 
             if let image = isPreview ? post.previews.first : post.media.first {
-                AsyncImage(url: image) { result in
-                    result.image?
-                        .resizable()
-                        .frame(maxHeight: 200)
-                        .aspectRatio(1, contentMode: .fit)
+                AsyncImage(url: image) { image in
+                    image.resizable()
+                } placeholder: {
+                    Image(systemName: "exclamationmark.circle")
                 }
+                .frame(maxHeight: 200)
+                .aspectRatio(1, contentMode: .fit)
                 .animation(.easeIn, value: image)
             }
             /// The main post of a PostDetailView hides the reply count. Posts in the TimelineView that are simply boosts also hide the reply count.
