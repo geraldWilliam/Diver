@@ -53,10 +53,14 @@ import AuthenticationServices
 
     // MARK: - Methods
 
-    func logIn() {
+    func logIn(instance: InstanceInfo) {
+        guard let url = URL(string: instance.domainName) else {
+            failure = Failure("Invalid URL: \(instance.domainName)")
+            return
+        }
         Task {
             do {
-                let session = try await repo.logIn()
+                let session = try await repo.logIn(instance: url)
                 isLoggedIn = session.token.isEmpty == false
                 logout = .undetermined
             } catch {

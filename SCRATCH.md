@@ -13,14 +13,9 @@ Switch between instances.
 - Re-assign client instanceURL.
 - Attempt a request and show login if needed.
 
+// TODO: Setup client with last used instance, remove static instanceURL value.
 
-So... make a new Instance(Service|Repository).
-
-Store InstanceInfo in UserDefaults.
-
-InstanceService().list() -> [String]
-`# ["https://sudonym.net", "https://fosstodon.org"]`
-Maybe the return type could be something more interesting like InstanceInfo
+See TODO items in LoginView.swift
 
 Store tokens in Keychain, associated with domain URLs so sign-in work for browser too.
 `# Keychain.set(<access-token>, key: "https://sudonym.net")` or however that works.

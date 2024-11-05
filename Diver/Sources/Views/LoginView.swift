@@ -36,14 +36,6 @@ import SwiftUI
                 .foregroundColor(Color.primary)
                 .fontDesign(.rounded)
 
-                Button(action: { session.logIn() }) {
-                    Text("Sign In")
-                        .fontWeight(.medium)
-                        .padding(.horizontal)
-                }
-                .primaryButtonStyle()
-                .padding(.top)
-                
                 CardView {
                     ScrollView {
                         VStack {
@@ -63,9 +55,13 @@ import SwiftUI
                                 /// - Add an item with empty text
                                 /// - Activate keyboard
                                 /// - On return, call instances.add(newInstance)
+                                // TODO: Hide field if not adding instance
 //                                if addingInstance {
                                     TextField("Instance Name", text: $instanceName)
                                         .focused($addingInstance)
+                                        .textInputAutocapitalization(.never)
+                                // TODO: Keyboard type
+//                                        .textContentType(.url)
                                         .onSubmit {
                                             // TODO: Validate URL
                                             if instanceName.isEmpty == false {
@@ -76,9 +72,11 @@ import SwiftUI
                                         }
 //                                }
                                 ForEach(instances.available) { instance in
-                                    Button(action: { }) {
+                                    Button(action: { session.logIn(instance: instance) }) {
                                         Text(instance.domainName)
                                             .frame(maxWidth: .infinity)
+                                            .fontWeight(.medium)
+                                            .padding(.horizontal)
                                     }
                                 }
                             }

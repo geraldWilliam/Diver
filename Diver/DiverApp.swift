@@ -47,6 +47,7 @@ import TootSDK
         /// A service for managing accounts.
         let accountService = AccountService()
         /// Initialize the client.
+        // TODO: Setup client with last used instance, remove static instanceURL value.
         client = TootClient(instanceURL: instanceURL, accessToken: tokenService.token)
         /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")

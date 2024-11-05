@@ -16,7 +16,7 @@ protocol SessionRepositoryProtocol {
     /// Check is the user is logged in.
     var isLoggedIn: Bool { get }
     /// Get a session.
-    func logIn() async throws -> SessionInfo
+    func logIn(instance: URL) async throws -> SessionInfo
     /// Clear the session.
     func logOut()
 }
@@ -62,11 +62,11 @@ final class SessionRepository: SessionRepositoryProtocol {
         }
     }
 
-    func logIn() async throws -> SessionInfo {
+    func logIn(instance: URL) async throws -> SessionInfo {
         if let token, let account {
             return SessionInfo(token: token, account: account)
         }
-
+        client.instanceURL = instance
         let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
         self.token = token
         
@@ -91,7 +91,7 @@ class MockSessionRepository: SessionRepositoryProtocol {
     var isLoggedIn: Bool {
         account != nil
     }
-    func logIn() async throws -> SessionInfo {
+    func logIn(instance: URL) async throws -> SessionInfo {
         let account = AccountInfo.mock()
         self.account = account
         return SessionInfo(token: "fake-access-token", account: account)
