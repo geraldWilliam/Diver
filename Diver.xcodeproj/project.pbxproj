@@ -56,6 +56,8 @@
 		A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */; };
 		A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */; };
 		A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */; };
+		A7E3AABF2CDAAC4F0064B62A /* Instances.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AABE2CDAAC4F0064B62A /* Instances.swift */; };
+		A7E3AAC12CDAACBC0064B62A /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComposer.swift; sourceTree = "<group>"; };
 		A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNav.swift; sourceTree = "<group>"; };
 		A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNav.swift; sourceTree = "<group>"; };
+		A7E3AABE2CDAAC4F0064B62A /* Instances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instances.swift; sourceTree = "<group>"; };
+		A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +230,7 @@
 		A776EDDB2C457BB900CA3139 /* DiverTests */ = {
 			isa = PBXGroup;
 			children = (
+				A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */,
 				A776EDDC2C457BB900CA3139 /* DiverTests.swift */,
 				A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */,
 				A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */,
@@ -262,6 +267,7 @@
 				A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */,
 				A776EDF82C457DE500CA3139 /* Posts.swift */,
 				A7BB5BEE2C5AD1BC00B6DFA1 /* Session.swift */,
+				A7E3AABE2CDAAC4F0064B62A /* Instances.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -489,6 +495,7 @@
 			files = (
 				A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */,
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
+				A7E3AABF2CDAAC4F0064B62A /* Instances.swift in Sources */,
 				746519D62CD9C65C00A238B9 /* InstanceInfo.swift in Sources */,
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */,
@@ -535,6 +542,7 @@
 			files = (
 				A7BB5BF82C5BDFD900B6DFA1 /* SessionTests.swift in Sources */,
 				A776EDDD2C457BB900CA3139 /* DiverTests.swift in Sources */,
+				A7E3AAC12CDAACBC0064B62A /* InstanceTests.swift in Sources */,
 				A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

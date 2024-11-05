@@ -12,24 +12,43 @@ final class InstanceService {
     private let userDefaults = UserDefaults.standard
     private let keychain = KeychainWrapper(serviceName: "net.sudonym.Diver")
     private let storageKey = "storedInstances"
+
+    func list() throws -> [InstanceInfo] {
+        if let stored = userDefaults.data(forKey: storageKey) {
+            return try JSONDecoder().decode([InstanceInfo].self, from: stored)
+        }
+        return []
+    }
     
-    private(set) var stored: [InstanceInfo] {
-        get {
-            let identifiers = userDefaults
-                .array(forKey: storageKey)
-                .map { $0 as? [String] ?? [] } ?? []
-            return identifiers.map {
-                InstanceInfo(id: $0, token: keychain.string(forKey: $0))
-            }
+    func store(_ instance: InstanceInfo) throws -> [InstanceInfo] {
+        var array: [InstanceInfo]
+        if let data = userDefaults.data(forKey: storageKey) {
+            array = try JSONDecoder().decode([InstanceInfo].self, from: data)
+        } else {
+            array = []
         }
-        set {
-            userDefaults.set(newValue, forKey: storageKey)
-            
-            stored.forEach { instance in
-                if let token = instance.token {
-                    keychain.set(token, forKey: instance.domainName)
-                }
-            }
+        
+        if array.contains(instance) {
+            // TODO: Throw?
+            return array
         }
+        array.append(instance)
+        userDefaults.set(try JSONEncoder().encode(array), forKey: storageKey)
+        return array
+    }
+    
+    func remove(_ instance: InstanceInfo) throws -> [InstanceInfo] {
+        guard let data = userDefaults.data(forKey: storageKey) else {
+            // TODO: Throw?
+            return []
+        }
+        var array = try JSONDecoder().decode([InstanceInfo].self, from: data)
+        guard array.contains(instance) else {
+            // TODO: Throw?
+            return array
+        }
+        array.removeAll { $0 == instance }
+        userDefaults.set(try JSONEncoder().encode(array), forKey: storageKey)
+        return array
     }
 }

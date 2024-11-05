@@ -9,8 +9,11 @@ import Foundation
 
 struct InstanceInfo: Codable, Hashable, Identifiable {
     let id: String
-    let token: String?
-    var domainName: String {
-        id
+    var domainName: String { id }
+    
+    // MARK: - Mock
+
+    static func mock() -> InstanceInfo {
+        InstanceInfo(id: UUID().uuidString)
     }
 }

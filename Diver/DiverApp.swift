@@ -28,6 +28,8 @@ import TootSDK
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     /// A source of truth for the session, including authentication status.
     var session: Session
+    /// A source of truth for instances the user can authenticate with.
+    var instances: Instances
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
@@ -42,7 +44,7 @@ import TootSDK
     init() {
         /// A service for caching the access token to the keychain.
         let tokenService = TokenService()
-        ///
+        /// A service for managing accounts.
         let accountService = AccountService()
         /// Initialize the client.
         client = TootClient(instanceURL: instanceURL, accessToken: tokenService.token)
@@ -53,6 +55,11 @@ import TootSDK
             repo: isTesting
             ? MockSessionRepository()
             : SessionRepository(client: client, tokenService: tokenService, accountService: accountService)
+        )
+        instances = Instances(
+            repo: isTesting
+            ? MockInstanceRepository()
+            : InstanceRepository()
         )
         posts = Posts(
             repo: isTesting
@@ -82,6 +89,7 @@ import TootSDK
             ContentView()
                 /// Add required observables to the environment.
                 .environment(session)
+                .environment(instances)
                 .environment(posts)
                 .environment(authors)
                 .environment(navigator)

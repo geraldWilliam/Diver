@@ -9,6 +9,12 @@ import SwiftUI
 
 @MainActor struct LoginView: View {
     @Environment(Session.self) var session
+    @Environment(Instances.self) var instances
+    
+    // TODO: Move instance list to separate view.
+    @State private var instanceName: String = ""
+    @FocusState private var addingInstance: Bool
+
     var body: some View {
         @Bindable var session = session
         ZStack {
@@ -45,7 +51,7 @@ import SwiftUI
                                 .frame(height: 50)
                             
                             Group {
-                                Button(action: { }) {
+                                Button(action: { addingInstance = true }) {
                                     Label {
                                         Text("Add an Instance")
                                     } icon: {
@@ -53,9 +59,25 @@ import SwiftUI
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
-                                ForEach(["https://fosstodon.org", "https://sudonym.net"], id: \.self) { instance in
+                                /// Button press should...
+                                /// - Add an item with empty text
+                                /// - Activate keyboard
+                                /// - On return, call instances.add(newInstance)
+//                                if addingInstance {
+                                    TextField("Instance Name", text: $instanceName)
+                                        .focused($addingInstance)
+                                        .onSubmit {
+                                            // TODO: Validate URL
+                                            if instanceName.isEmpty == false {
+                                                instances.add(instanceName)
+                                            }
+                                            instanceName = ""
+                                            addingInstance = false
+                                        }
+//                                }
+                                ForEach(instances.available) { instance in
                                     Button(action: { }) {
-                                        Text(instance)
+                                        Text(instance.domainName)
                                             .frame(maxWidth: .infinity)
                                     }
                                 }
