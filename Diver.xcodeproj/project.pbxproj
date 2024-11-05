@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74436B162CD87B17007B4B3B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74436B152CD87B17007B4B3B /* CardView.swift */; };
+		746519D02CD9C2A100A238B9 /* InstanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519CF2CD9C2A100A238B9 /* InstanceService.swift */; };
+		746519D62CD9C65C00A238B9 /* InstanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519D52CD9C65C00A238B9 /* InstanceInfo.swift */; };
+		746519D82CD9C66300A238B9 /* InstanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519D72CD9C66300A238B9 /* InstanceRepository.swift */; };
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
 		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
 		A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC42CCACE5700492319 /* PostActionBar.swift */; };
@@ -72,6 +76,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		74436B142CD8799E007B4B3B /* SCRATCH.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SCRATCH.md; sourceTree = "<group>"; };
+		74436B152CD87B17007B4B3B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		746519CF2CD9C2A100A238B9 /* InstanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceService.swift; sourceTree = "<group>"; };
+		746519D52CD9C65C00A238B9 /* InstanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceInfo.swift; sourceTree = "<group>"; };
+		746519D72CD9C66300A238B9 /* InstanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRepository.swift; sourceTree = "<group>"; };
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		A775DAC42CCACE5700492319 /* PostActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionBar.swift; sourceTree = "<group>"; };
@@ -150,6 +159,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		746519D32CD9C64100A238B9 /* Instance */ = {
+			isa = PBXGroup;
+			children = (
+				746519D52CD9C65C00A238B9 /* InstanceInfo.swift */,
+				746519D72CD9C66300A238B9 /* InstanceRepository.swift */,
+			);
+			path = Instance;
+			sourceTree = "<group>";
+		};
 		A775DAC02CC99F7500492319 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +180,7 @@
 		A776EDBE2C457BB800CA3139 = {
 			isa = PBXGroup;
 			children = (
+				74436B142CD8799E007B4B3B /* SCRATCH.md */,
 				A7BB5BBA2C49AFD700B6DFA1 /* README.md */,
 				A776EDC92C457BB800CA3139 /* Diver */,
 				A776EDDB2C457BB900CA3139 /* DiverTests */,
@@ -226,6 +245,7 @@
 		A776EE022C459D3800CA3139 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				746519D32CD9C64100A238B9 /* Instance */,
 				A775DAC02CC99F7500492319 /* Account */,
 				A776EE052C459DDA00CA3139 /* Failure.swift */,
 				A776EE072C459DE900CA3139 /* Post */,
@@ -252,7 +272,9 @@
 				A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */,
 				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
 				A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */,
+				74436B152CD87B17007B4B3B /* CardView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
+				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 				A790BCF82CCBE821004E4761 /* ExploreView.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
 				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
@@ -260,10 +282,9 @@
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
 				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
 				A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */,
+				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
 				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
-				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
-				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +342,7 @@
 			children = (
 				A775DAC22CCA8BD200492319 /* AccountService.swift */,
 				A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */,
+				746519CF2CD9C2A100A238B9 /* InstanceService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -467,6 +489,7 @@
 			files = (
 				A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */,
 				A776EE0F2C45B29800CA3139 /* TimelineView.swift in Sources */,
+				746519D62CD9C65C00A238B9 /* InstanceInfo.swift in Sources */,
 				A7BB5BD52C58342F00B6DFA1 /* PostInfo+AttributedBody.swift in Sources */,
 				A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */,
 				A776EE112C45BF9400CA3139 /* PostDetailView.swift in Sources */,
@@ -475,6 +498,7 @@
 				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,
 				A7BB5C022C5C1E2E00B6DFA1 /* LoginView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
+				74436B162CD87B17007B4B3B /* CardView.swift in Sources */,
 				A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
 				A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */,
@@ -486,6 +510,7 @@
 				A776EE062C459DDA00CA3139 /* Failure.swift in Sources */,
 				A776EE092C459DF900CA3139 /* PostsRepository.swift in Sources */,
 				A776EDCD2C457BB800CA3139 /* ContentView.swift in Sources */,
+				746519D02CD9C2A100A238B9 /* InstanceService.swift in Sources */,
 				A7BB5BCF2C51748100B6DFA1 /* Notifications.swift in Sources */,
 				A7BB5BF62C5AD94500B6DFA1 /* SessionInfo.swift in Sources */,
 				A776EDF92C457DE500CA3139 /* Posts.swift in Sources */,
@@ -494,6 +519,7 @@
 				A790BD002CCC45F7004E4761 /* ExploreNav.swift in Sources */,
 				A790BCFE2CCC3EFF004E4761 /* ProfileView.swift in Sources */,
 				A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */,
+				746519D82CD9C66300A238B9 /* InstanceRepository.swift in Sources */,
 				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,

@@ -11,11 +11,11 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .padding()
-            .background(Gradient(colors: [.white, Color(white: 0.95)]))
+            .background(.thinMaterial)
             .foregroundStyle(.primary)
-            .clipShape(Capsule())
+            .clipShape(.rect(cornerRadius: 5))
             .overlay {
-                Capsule()
+                RoundedRectangle(cornerRadius: 5)
                     .stroke(style: StrokeStyle())
             }
     }

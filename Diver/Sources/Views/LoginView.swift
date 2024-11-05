@@ -37,6 +37,36 @@ import SwiftUI
                 }
                 .primaryButtonStyle()
                 .padding(.top)
+                
+                CardView {
+                    ScrollView {
+                        VStack {
+                            Spacer()
+                                .frame(height: 50)
+                            
+                            Group {
+                                Button(action: { }) {
+                                    Label {
+                                        Text("Add an Instance")
+                                    } icon: {
+                                        Image(systemName: "plus")
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                }
+                                ForEach(["https://fosstodon.org", "https://sudonym.net"], id: \.self) { instance in
+                                    Button(action: { }) {
+                                        Text(instance)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 24)
+                            .buttonStyle(PrimaryButtonStyle())
+                        }
+                    }
+                }
+                .padding(12)
+                .frame(maxHeight: 300)
             }
         }
         .frame(maxWidth: .infinity)

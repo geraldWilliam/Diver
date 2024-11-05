@@ -48,28 +48,22 @@ import TootSDK
         client = TootClient(instanceURL: instanceURL, accessToken: tokenService.token)
         /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")
-        /// A container type for the application‘s repositories.
-        typealias Repos = (
-            session: SessionRepositoryProtocol,
-            posts: PostsRepositoryProtocol,
-            accounts: AccountRepositoryProtocol
-        )
-        /// Set up repositories for instantiating observables. Test runs use mock repositories, live runs use real repositories that leverage the client.
-        let repos: Repos = (
-            session: isTesting
+        /// Instantiate observables to be injected in Environment.
+        session = Session(
+            repo: isTesting
             ? MockSessionRepository()
-            : SessionRepository(client: client, tokenService: tokenService, accountService: accountService),
-            posts: isTesting
+            : SessionRepository(client: client, tokenService: tokenService, accountService: accountService)
+        )
+        posts = Posts(
+            repo: isTesting
             ? MockPostsRepository()
-            : PostsRepository(client: client),
-            accounts: isTesting
+            : PostsRepository(client: client)
+        )
+        authors = Authors(
+            repo: isTesting
             ? MockAccountRepository()
             : AccountRepository(client: client, accountService: accountService)
         )
-        /// Instantiate observables to be injected in Environment.
-        session = Session(repo: repos.session)
-        posts = Posts(repo: repos.posts)
-        authors = Authors(repo: repos.accounts)
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
         if session.isLoggedIn {
