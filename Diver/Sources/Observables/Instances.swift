@@ -24,7 +24,7 @@ import Foundation
     
     func add(_ instanceName: String) {
         do {
-            let instance = try repo.store(instanceName)
+            let instance = try repo.store(instanceName.lowercased())
             available.append(instance)
         } catch {
             failure = Failure(error)

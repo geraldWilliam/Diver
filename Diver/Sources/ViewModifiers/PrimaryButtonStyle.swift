@@ -12,7 +12,9 @@ struct PrimaryButtonStyle: ButtonStyle {
         configuration.label
             .padding()
             .background(.thinMaterial)
-            .foregroundStyle(.primary)
+            .foregroundStyle(configuration.isPressed ? .secondary : .primary)
+            .fontWeight(.medium)
+            .animation(.easeInOut, value: configuration.isPressed)
             .clipShape(.rect(cornerRadius: 5))
             .overlay {
                 RoundedRectangle(cornerRadius: 5)

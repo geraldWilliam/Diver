@@ -10,12 +10,14 @@ import SwiftKeychainWrapper
 
 final class InstanceService {
     private let userDefaults = UserDefaults.standard
-    private let keychain = KeychainWrapper(serviceName: "net.sudonym.Diver")
     private let storageKey = "storedInstances"
+    
+    private let encoder = JSONEncoder()
+    private let decoder = JSONDecoder()
 
     func list() throws -> [InstanceInfo] {
         if let stored = userDefaults.data(forKey: storageKey) {
-            return try JSONDecoder().decode([InstanceInfo].self, from: stored)
+            return try decoder.decode([InstanceInfo].self, from: stored)
         }
         return []
     }
@@ -23,7 +25,7 @@ final class InstanceService {
     func store(_ instance: InstanceInfo) throws -> [InstanceInfo] {
         var array: [InstanceInfo]
         if let data = userDefaults.data(forKey: storageKey) {
-            array = try JSONDecoder().decode([InstanceInfo].self, from: data)
+            array = try decoder.decode([InstanceInfo].self, from: data)
         } else {
             array = []
         }
@@ -33,7 +35,7 @@ final class InstanceService {
             return array
         }
         array.append(instance)
-        userDefaults.set(try JSONEncoder().encode(array), forKey: storageKey)
+        userDefaults.set(try encoder.encode(array), forKey: storageKey)
         return array
     }
     
@@ -42,13 +44,13 @@ final class InstanceService {
             // TODO: Throw?
             return []
         }
-        var array = try JSONDecoder().decode([InstanceInfo].self, from: data)
+        var array = try decoder.decode([InstanceInfo].self, from: data)
         guard array.contains(instance) else {
             // TODO: Throw?
             return array
         }
         array.removeAll { $0 == instance }
-        userDefaults.set(try JSONEncoder().encode(array), forKey: storageKey)
+        userDefaults.set(try encoder.encode(array), forKey: storageKey)
         return array
     }
 }

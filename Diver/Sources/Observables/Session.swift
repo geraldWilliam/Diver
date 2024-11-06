@@ -62,6 +62,7 @@ import AuthenticationServices
             do {
                 let session = try await repo.logIn(instance: url)
                 isLoggedIn = session.token.isEmpty == false
+                observeLogout()
                 logout = .undetermined
             } catch {
                 failure = Failure(error)

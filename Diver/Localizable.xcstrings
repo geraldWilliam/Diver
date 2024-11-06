@@ -11,6 +11,9 @@
         }
       }
     },
+    "%@ is not a valid URL" : {
+
+    },
     "%lld replies" : {
       "localizations" : {
         "en" : {
@@ -119,13 +122,13 @@
         }
       }
     },
+    "example.social" : {
+
+    },
     "Explore" : {
 
     },
     "Follow" : {
-
-    },
-    "Instance Name" : {
 
     },
     "Log Out?" : {

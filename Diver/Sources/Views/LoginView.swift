@@ -10,10 +10,6 @@ import SwiftUI
 @MainActor struct LoginView: View {
     @Environment(Session.self) var session
     @Environment(Instances.self) var instances
-    
-    // TODO: Move instance list to separate view.
-    @State private var instanceName: String = ""
-    @FocusState private var addingInstance: Bool
 
     var body: some View {
         @Bindable var session = session
@@ -36,57 +32,7 @@ import SwiftUI
                 .foregroundColor(Color.primary)
                 .fontDesign(.rounded)
 
-                CardView {
-                    ScrollView {
-                        VStack {
-                            Spacer()
-                                .frame(height: 50)
-                            
-                            Group {
-                                Button(action: { addingInstance = true }) {
-                                    Label {
-                                        Text("Add an Instance")
-                                    } icon: {
-                                        Image(systemName: "plus")
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                }
-                                /// Button press should...
-                                /// - Add an item with empty text
-                                /// - Activate keyboard
-                                /// - On return, call instances.add(newInstance)
-                                // TODO: Hide field if not adding instance
-//                                if addingInstance {
-                                    TextField("Instance Name", text: $instanceName)
-                                        .focused($addingInstance)
-                                        .textInputAutocapitalization(.never)
-                                // TODO: Keyboard type
-//                                        .textContentType(.url)
-                                        .onSubmit {
-                                            // TODO: Validate URL
-                                            if instanceName.isEmpty == false {
-                                                instances.add(instanceName)
-                                            }
-                                            instanceName = ""
-                                            addingInstance = false
-                                        }
-//                                }
-                                ForEach(instances.available) { instance in
-                                    Button(action: { session.logIn(instance: instance) }) {
-                                        Text(instance.domainName)
-                                            .frame(maxWidth: .infinity)
-                                            .fontWeight(.medium)
-                                            .padding(.horizontal)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal, 24)
-                            .buttonStyle(PrimaryButtonStyle())
-                        }
-                    }
-                }
-                .padding(12)
-                .frame(maxHeight: 300)
+                InstanceList()
             }
         }
         .frame(maxWidth: .infinity)
