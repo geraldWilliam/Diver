@@ -40,6 +40,7 @@ struct InstanceList: View {
                                         .textInputAutocapitalization(.never)
                                         .textContentType(.URL)
                                         .onSubmit {
+                                            // TODO: Maybe there's a way to use TootSDK to check if the URL is a fedi server?
                                             if validateInstanceName() {
                                                 instances.add(instance)
                                                 instanceName = ""
