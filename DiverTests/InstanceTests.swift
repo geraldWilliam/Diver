@@ -32,6 +32,5 @@ final class InstanceTests: XCTestCase {
         let instance = try XCTUnwrap(subject.available.last)
         subject.remove(instance)
         XCTAssertTrue(subject.available.isEmpty)
-
     }
 }
