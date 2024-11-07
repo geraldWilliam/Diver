@@ -17,7 +17,7 @@ extension KeychainWrapper {
             return try Self.decoder.decode(T.self, from: $0)
         }
     }
-    
+
     func set<T: Codable>(codable: T, key: String) -> Bool {
         do {
             return set(try Self.encoder.encode(codable), forKey: key)

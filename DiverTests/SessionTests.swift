@@ -10,7 +10,7 @@ import XCTest
 @testable import Diver
 
 final class SessionTests: DiverTests {
-    
+
     @MainActor func testItCanGetStoredAccounts() async throws {
         let repo = MockSessionRepository()
         let subject = Session(repo: repo)
@@ -22,7 +22,7 @@ final class SessionTests: DiverTests {
         }
         XCTAssertEqual(1, subject.storedAccounts.count)
     }
-    
+
     @MainActor func testItCanAddAccount() async throws {
         let repo = MockSessionRepository()
         let subject = Session(repo: repo)

@@ -16,7 +16,7 @@ import Foundation
     init(repo: AccountRepositoryProtocol) {
         self.repo = repo
     }
-    
+
     func search(_ text: String) {
         Task {
             do {
@@ -26,7 +26,7 @@ import Foundation
             }
         }
     }
-    
+
     func getFollowing() {
         Task {
             do {

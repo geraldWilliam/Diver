@@ -74,7 +74,7 @@ struct InstanceList: View {
                 setInstanceFieldDisplayed(false)
             }
         }
-        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/  }
+        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/   }
         .task {
             session.getStoredAccounts()
         }
@@ -91,9 +91,9 @@ struct InstanceList: View {
     private func validateInstanceName() -> Bool {
         return instanceName.count > 3 && instanceName.contains(".") && URL(string: instance) != nil
     }
-    
+
     private func showLogin() {
-        
+
         // TODO: Maybe there's a way to use TootSDK to check if the URL is a fedi server?
         if validateInstanceName() {
 //            instances.add(instance)

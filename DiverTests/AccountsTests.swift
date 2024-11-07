@@ -21,7 +21,7 @@ final class AccountsTests: DiverTests {
         }
         XCTAssertEqual(1, subject.searchResults.count)
     }
-    
+
     func testItCanGetFollowedAccounts() async throws {
         let repo = MockAccountRepository()
         let subject = Accounts(repo: repo)

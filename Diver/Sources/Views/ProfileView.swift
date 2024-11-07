@@ -34,7 +34,7 @@ struct ProfileView: View {
 
             VStack(alignment: .leading) {
                 if accounts.following.contains(account) {
-                    Button(action: { /*authors.unfollow(account.id)*/  }) {
+                    Button(action: { /*authors.unfollow(account.id)*/   }) {
                         Text("Unfollow")
                     }
                 } else if account != session.currentAccount {
