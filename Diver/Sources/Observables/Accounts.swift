@@ -12,7 +12,7 @@ import Foundation
     var searchResults: [AccountInfo] = []
     var following: [AccountInfo] = []
     var failure: Failure?
-    
+
     init(repo: AccountRepositoryProtocol) {
         self.repo = repo
         Task {
@@ -23,7 +23,7 @@ import Foundation
             }
         }
     }
-    
+
     func search(_ text: String) {
         Task {
             do {
@@ -33,7 +33,7 @@ import Foundation
             }
         }
     }
-    
+
     func follow(_ id: AccountInfo.ID) {
         Task {
             do {
