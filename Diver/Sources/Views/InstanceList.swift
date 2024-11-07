@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InstanceList: View {
     @Environment(Session.self) var session
+    @Environment(Accounts.self) var accounts
     @Environment(Instances.self) var instances
     // TODO: Move instance list to separate view.
     @State private var instanceName: String = ""
@@ -40,14 +41,7 @@ struct InstanceList: View {
                                         .textInputAutocapitalization(.never)
                                         .textContentType(.URL)
                                         .onSubmit {
-                                            // TODO: Maybe there's a way to use TootSDK to check if the URL is a fedi server?
-                                            if validateInstanceName() {
-                                                instances.add(instance)
-                                                instanceName = ""
-                                                setInstanceFieldDisplayed(false)
-                                            } else {
-                                                showingValidationError = true
-                                            }
+                                            showLogin()
                                         }
                                 }
                             } else {
@@ -60,9 +54,9 @@ struct InstanceList: View {
                             }
                         }
 
-                        ForEach(instances.available) { instance in
-                            Button(action: { session.logIn(instance: instance) }) {
-                                Text(instance.domainName)
+                        ForEach(session.storedAccounts) { account in
+                            Button(action: { }) {
+                                Text(account.handle)
                                     .frame(maxWidth: .infinity)
                                     .padding(.horizontal)
                             }
@@ -81,6 +75,9 @@ struct InstanceList: View {
             }
         }
         .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/  }
+        .task {
+            session.getStoredAccounts()
+        }
     }
 
     private func setInstanceFieldDisplayed(_ displayed: Bool) {
@@ -93,6 +90,19 @@ struct InstanceList: View {
 
     private func validateInstanceName() -> Bool {
         return instanceName.count > 3 && instanceName.contains(".") && URL(string: instance) != nil
+    }
+    
+    private func showLogin() {
+        
+        // TODO: Maybe there's a way to use TootSDK to check if the URL is a fedi server?
+        if validateInstanceName() {
+//            instances.add(instance)
+            session.logIn(instance: instance)
+            instanceName = ""
+            setInstanceFieldDisplayed(false)
+        } else {
+            showingValidationError = true
+        }
     }
 }
 

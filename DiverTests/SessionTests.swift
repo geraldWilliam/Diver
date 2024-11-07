@@ -10,6 +10,31 @@ import XCTest
 @testable import Diver
 
 final class SessionTests: DiverTests {
+    
+    @MainActor func testItCanGetStoredAccounts() async throws {
+        let repo = MockSessionRepository()
+        let subject = Session(repo: repo)
+        XCTAssertEqual(0, subject.storedAccounts.count)
+        try await expect("It should get stored accounts.") {
+            subject.getStoredAccounts()
+        } toChange: {
+            _ = subject.storedAccounts
+        }
+        XCTAssertEqual(1, subject.storedAccounts.count)
+    }
+    
+    @MainActor func testItCanAddAccount() async throws {
+        let repo = MockSessionRepository()
+        let subject = Session(repo: repo)
+        XCTAssertEqual(0, subject.storedAccounts.count)
+        try await expect("It should add a stored account.") {
+            subject.store(.mock())
+        } toChange: {
+            _ = subject.storedAccounts
+        }
+        XCTAssertEqual(1, subject.storedAccounts.count)
+    }
+
     @MainActor func testItCanLogIn() async throws {
         let repo = MockSessionRepository()
         let subject = Session(repo: repo)
@@ -61,7 +86,7 @@ final class SessionTests: DiverTests {
     @MainActor private func logIn(subject: Session) async throws {
         // Log in
         try await expect("It should log in") {
-            subject.logIn(instance: InstanceInfo(id: "https://sudonym.net"))
+            subject.logIn(instance: "https://sudonym.net")
         } toChange: {
             _ = subject.isLoggedIn
         }

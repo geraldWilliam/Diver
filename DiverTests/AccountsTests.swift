@@ -45,28 +45,4 @@ final class AccountsTests: DiverTests {
         }
         XCTAssertEqual(1, subject.following.count)
     }
-    
-    func testItCanGetStoredAccounts() async throws {
-        let repo = MockAccountRepository()
-        let subject = Accounts(repo: repo)
-        XCTAssertEqual(0, subject.stored.count)
-        try await expect("It should get stored accounts.") {
-            subject.getStored()
-        } toChange: {
-            _ = subject.stored
-        }
-        XCTAssertEqual(1, subject.stored.count)
-    }
-    
-    func testItCanAddAccount() async throws {
-        let repo = MockAccountRepository()
-        let subject = Accounts(repo: repo)
-        XCTAssertEqual(0, subject.stored.count)
-        try await expect("It should add a stored account.") {
-            subject.store(.mock())
-        } toChange: {
-            _ = subject.stored
-        }
-        XCTAssertEqual(1, subject.stored.count)
-    }
 }

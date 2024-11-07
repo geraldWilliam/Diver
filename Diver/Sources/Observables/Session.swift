@@ -20,6 +20,8 @@ import Foundation
 
     let repo: SessionRepositoryProtocol
 
+    var storedAccounts: [AccountInfo] = []
+
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
 
@@ -53,15 +55,36 @@ import Foundation
 
     // MARK: - Methods
 
-    func logIn(instance: InstanceInfo) {
-        guard let url = URL(string: instance.domainName) else {
-            failure = Failure("Invalid URL: \(instance.domainName)")
+    func getStoredAccounts() {
+        Task {
+            do {
+                storedAccounts = try await repo.getStoredAccounts()
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func store(_ account: AccountInfo) {
+        Task {
+            do {
+                storedAccounts.append(try await repo.store(account))
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func logIn(instance: String) {
+        guard let url = URL(string: instance) else {
+            failure = Failure("Invalid URL: \(instance)")
             return
         }
         Task {
             do {
                 let session = try await repo.logIn(instance: url)
-                isLoggedIn = session.token.isEmpty == false
+                store(session.account)
+//                isLoggedIn = session.token.isEmpty == false
                 observeLogout()
                 logout = .undetermined
             } catch {
