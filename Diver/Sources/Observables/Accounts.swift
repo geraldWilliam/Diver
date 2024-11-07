@@ -9,6 +9,7 @@ import Foundation
 
 @Observable final class Accounts {
     let repo: AccountRepositoryProtocol
+    var stored: [AccountInfo] = []
     var searchResults: [AccountInfo] = []
     var following: [AccountInfo] = []
     var failure: Failure?
@@ -23,7 +24,27 @@ import Foundation
             }
         }
     }
+    
+    func getStored() {
+        Task {
+            do {
+                stored = try await repo.getStoredAccounts()
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
 
+    func store(_ account: AccountInfo) {
+        Task {
+            do {
+                stored.append(try await repo.store(account))
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+    
     func search(_ text: String) {
         Task {
             do {

@@ -11,6 +11,7 @@
 		746519D02CD9C2A100A238B9 /* InstanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519CF2CD9C2A100A238B9 /* InstanceService.swift */; };
 		746519D62CD9C65C00A238B9 /* InstanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519D52CD9C65C00A238B9 /* InstanceInfo.swift */; };
 		746519D82CD9C66300A238B9 /* InstanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519D72CD9C66300A238B9 /* InstanceRepository.swift */; };
+		A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B70312CDD629000D9D339 /* AccountsTests.swift */; };
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
 		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
 		A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC42CCACE5700492319 /* PostActionBar.swift */; };
@@ -84,6 +85,7 @@
 		746519CF2CD9C2A100A238B9 /* InstanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceService.swift; sourceTree = "<group>"; };
 		746519D52CD9C65C00A238B9 /* InstanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceInfo.swift; sourceTree = "<group>"; };
 		746519D72CD9C66300A238B9 /* InstanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRepository.swift; sourceTree = "<group>"; };
+		A75B70312CDD629000D9D339 /* AccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTests.swift; sourceTree = "<group>"; };
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		A775DAC42CCACE5700492319 /* PostActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionBar.swift; sourceTree = "<group>"; };
@@ -232,8 +234,9 @@
 		A776EDDB2C457BB900CA3139 /* DiverTests */ = {
 			isa = PBXGroup;
 			children = (
-				A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */,
+				A75B70312CDD629000D9D339 /* AccountsTests.swift */,
 				A776EDDC2C457BB900CA3139 /* DiverTests.swift */,
+				A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */,
 				A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */,
 				A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */,
 			);
@@ -545,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7BB5BF82C5BDFD900B6DFA1 /* SessionTests.swift in Sources */,
+				A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */,
 				A776EDDD2C457BB900CA3139 /* DiverTests.swift in Sources */,
 				A7E3AAC12CDAACBC0064B62A /* InstanceTests.swift in Sources */,
 				A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */,
