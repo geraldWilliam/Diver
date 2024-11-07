@@ -29,6 +29,9 @@ struct ExploreView: View {
                 ContentUnavailableView.search
             }
         }
+        .task {
+            accounts.getFollowing()
+        }
     }
 }
 
