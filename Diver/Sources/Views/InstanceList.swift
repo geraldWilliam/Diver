@@ -80,7 +80,7 @@ struct InstanceList: View {
                 setInstanceFieldDisplayed(false)
             }
         }
-        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/ }
+        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/  }
     }
 
     private func setInstanceFieldDisplayed(_ displayed: Bool) {

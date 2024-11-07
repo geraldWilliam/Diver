@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import Diver
 
 final class PostsTests: DiverTests {
