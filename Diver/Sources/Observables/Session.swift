@@ -5,8 +5,8 @@
 //  Created by Gerald Burke on 7/31/24.
 //
 
-import Foundation
 import AuthenticationServices
+import Foundation
 
 @MainActor @Observable final class Session {
     /// A type to represent the state of the logout process. Logout requires confirmation. The view that initiates logout should present an alert if Session‘s
