@@ -15,9 +15,9 @@ struct InstanceList: View {
     @State private var addingInstance: Bool = false
     @State private var showingValidationError: Bool = false
     @FocusState private var instanceFieldIsFocused: Bool
-    
+
     private let scheme = "https://"
-    
+
     private var instance: String {
         scheme + instanceName
     }
@@ -59,7 +59,7 @@ struct InstanceList: View {
                                 .frame(maxWidth: .infinity)
                             }
                         }
-                        
+
                         ForEach(instances.available) { instance in
                             Button(action: { session.logIn(instance: instance) }) {
                                 Text(instance.domainName)
@@ -82,7 +82,7 @@ struct InstanceList: View {
         }
         .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/ }
     }
-    
+
     private func setInstanceFieldDisplayed(_ displayed: Bool) {
         withAnimation {
             addingInstance = displayed
@@ -90,7 +90,7 @@ struct InstanceList: View {
             instanceFieldIsFocused = displayed
         }
     }
-    
+
     private func validateInstanceName() -> Bool {
         return instanceName.count > 3 && instanceName.contains(".") && URL(string: instance) != nil
     }

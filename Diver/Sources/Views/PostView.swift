@@ -17,7 +17,7 @@ struct PostView: View {
     let isPreview: Bool
     /// Whether the view is presenting an alert for the user to confirm they want to delete the post.
     @State private var confirmingDelete: Bool = false
-    
+
     /// A formatter to prepare the created date of a post for presentation.
     private let dateFormatter = {
         let formatter = DateFormatter()
@@ -60,7 +60,7 @@ struct PostView: View {
             .font(.caption)
             .fontWeight(.light)
             .padding(.top, 5)
-            
+
             PostActionBar(posts: posts, post: post)
         }
         .padding(.vertical)

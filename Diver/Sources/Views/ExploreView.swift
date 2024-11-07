@@ -11,7 +11,7 @@ struct ExploreView: View {
     @Environment(Accounts.self) var accounts
     @Environment(Navigator.self) var navigator
     @State private var searchText: String = ""
-    
+
     var body: some View {
         List {
             Section {

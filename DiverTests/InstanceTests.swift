@@ -15,7 +15,7 @@ final class InstanceTests: XCTestCase {
         subject.getInstances()
         XCTAssertEqual(1, subject.available.count)
     }
-    
+
     @MainActor func testItCanStoreInstance() throws {
         let repo = MockInstanceRepository()
         let subject = Instances(repo: repo)
@@ -23,7 +23,7 @@ final class InstanceTests: XCTestCase {
         subject.add(instanceName)
         XCTAssertEqual(instanceName, subject.available.last?.domainName)
     }
-    
+
     @MainActor func testItCanRemoveInstance() throws {
         let repo = MockInstanceRepository()
         let subject = Instances(repo: repo)
@@ -31,6 +31,6 @@ final class InstanceTests: XCTestCase {
         let instance = try XCTUnwrap(subject.available.last)
         subject.remove(instance)
         XCTAssertTrue(subject.available.isEmpty)
-        
+
     }
 }

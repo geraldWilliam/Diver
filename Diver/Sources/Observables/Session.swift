@@ -22,7 +22,7 @@ import AuthenticationServices
 
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
-    
+
     /// The currently authenticated account.
     // TODO: It might be nice to have multiple accounts logged in at once eventually.
     var currentAccount: AccountInfo? {

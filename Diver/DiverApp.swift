@@ -101,7 +101,7 @@ import TootSDK
                 }
         }
     }
-    
+
     // MARK: - Private
 
     private func observeSession() {

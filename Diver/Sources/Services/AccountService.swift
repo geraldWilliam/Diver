@@ -12,7 +12,7 @@ private let serviceName = "com.nerdery.Diver"
 private let accountKey = "stored_account"
 
 final class AccountService {
-    
+
     private let keychain = KeychainWrapper(serviceName: serviceName)
 
     var account: AccountInfo? {
@@ -46,6 +46,6 @@ final class AccountService {
             }
         }
     }
-    
+
     private var storedAccount: AccountInfo?
 }

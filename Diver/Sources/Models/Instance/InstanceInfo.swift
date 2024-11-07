@@ -10,7 +10,7 @@ import Foundation
 struct InstanceInfo: Codable, Hashable, Identifiable {
     let id: String
     var domainName: String { id }
-    
+
     // MARK: - Mock
 
     static func mock() -> InstanceInfo {

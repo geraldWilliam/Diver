@@ -31,7 +31,7 @@ struct ProfileView: View {
                         .foregroundStyle(Color.secondary)
                 }
             }
-            
+
             VStack(alignment: .leading) {
                 if accounts.following.contains(account) {
                     Button(action: { /*authors.unfollow(account.id)*/ }) {
