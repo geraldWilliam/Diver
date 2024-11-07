@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable final class Authors {
+@Observable final class Accounts {
     let repo: AccountRepositoryProtocol
     var displayed: [AccountInfo] = []
     var following: [AccountInfo] = []

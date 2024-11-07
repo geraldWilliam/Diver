@@ -33,7 +33,7 @@ import TootSDK
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
-    var authors: Authors
+    var authors: Accounts
     /// A source of truth for navigation state.
     var navigator: Navigator
 
@@ -67,7 +67,7 @@ import TootSDK
             ? MockPostsRepository()
             : PostsRepository(client: client)
         )
-        authors = Authors(
+        authors = Accounts(
             repo: isTesting
             ? MockAccountRepository()
             : AccountRepository(client: client, accountService: accountService)

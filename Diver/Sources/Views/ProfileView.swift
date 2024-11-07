@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(Authors.self) var authors
+    @Environment(Accounts.self) var authors
     @Environment(Session.self) var session
     let account: AccountInfo
     var body: some View {
@@ -70,7 +70,7 @@ struct ProfileView: View {
     List {
         ProfileView(account: .mock())
     }
-    .environment(Authors(repo: MockAccountRepository()))
+    .environment(Accounts(repo: MockAccountRepository()))
     .environment(Session(repo: MockSessionRepository()))
 }
 

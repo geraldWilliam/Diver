@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExploreView: View {
-    @Environment(Authors.self) var authors
+    @Environment(Accounts.self) var authors
     @Environment(Navigator.self) var navigator
     @State private var searchText: String = ""
     
