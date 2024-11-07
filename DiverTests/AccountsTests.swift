@@ -21,6 +21,18 @@ final class AccountsTests: DiverTests {
         }
         XCTAssertEqual(1, subject.searchResults.count)
     }
+    
+    func testItCanGetFollowedAccounts() async throws {
+        let repo = MockAccountRepository()
+        let subject = Accounts(repo: repo)
+        XCTAssertEqual(0, subject.following.count)
+        try await expect("It should get followed accounts.") {
+            subject.getFollowing()
+        } toChange: {
+            _ = subject.following
+        }
+        XCTAssertEqual(1, subject.following.count)
+    }
 
     func testItCanFollowAccount() async throws {
         let repo = MockAccountRepository()

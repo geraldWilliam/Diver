@@ -16,9 +16,12 @@ import Foundation
 
     init(repo: AccountRepositoryProtocol) {
         self.repo = repo
+    }
+    
+    func search(_ text: String) {
         Task {
             do {
-                following = try await repo.getFollowing()
+                searchResults = try await repo.search(text: text)
             } catch {
                 failure = Failure(error)
             }
@@ -45,10 +48,10 @@ import Foundation
         }
     }
     
-    func search(_ text: String) {
+    func getFollowing() {
         Task {
             do {
-                searchResults = try await repo.search(text: text)
+                following = try await repo.getFollowing()
             } catch {
                 failure = Failure(error)
             }
