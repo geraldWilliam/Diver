@@ -33,7 +33,7 @@ import TootSDK
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
-    var authors: Authors
+    var accounts: Accounts
     /// A source of truth for navigation state.
     var navigator: Navigator
 
@@ -67,7 +67,7 @@ import TootSDK
             ? MockPostsRepository()
             : PostsRepository(client: client)
         )
-        authors = Authors(
+        accounts = Accounts(
             repo: isTesting
             ? MockAccountRepository()
             : AccountRepository(client: client, accountService: accountService)
@@ -92,7 +92,7 @@ import TootSDK
                 .environment(session)
                 .environment(instances)
                 .environment(posts)
-                .environment(authors)
+                .environment(accounts)
                 .environment(navigator)
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.

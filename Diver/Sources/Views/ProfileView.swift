@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(Authors.self) var authors
+    @Environment(Accounts.self) var accounts
     @Environment(Session.self) var session
     let account: AccountInfo
     var body: some View {
@@ -33,12 +33,12 @@ struct ProfileView: View {
             }
             
             VStack(alignment: .leading) {
-                if authors.following.contains(account) {
+                if accounts.following.contains(account) {
                     Button(action: { /*authors.unfollow(account.id)*/ }) {
                         Text("Unfollow")
                     }
                 } else if account != session.currentAccount {
-                    Button(action: { authors.follow(account.id) }) {
+                    Button(action: { accounts.follow(account.id) }) {
                         Text("Follow")
                     }
                 }
@@ -70,7 +70,7 @@ struct ProfileView: View {
     List {
         ProfileView(account: .mock())
     }
-    .environment(Authors(repo: MockAccountRepository()))
+    .environment(Accounts(repo: MockAccountRepository()))
     .environment(Session(repo: MockSessionRepository()))
 }
 
