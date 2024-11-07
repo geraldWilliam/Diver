@@ -46,7 +46,7 @@ struct PostActionBar: View {
         }
         .buttonStyle(BorderedButtonStyle())
         .alert("Delete Post?", isPresented: $confirmingDelete) {
-            Button("Cancel") { }
+            Button("Cancel") {}
             Button("Delete") { posts.delete(post.id) }
         }
     }

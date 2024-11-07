@@ -10,18 +10,18 @@ import Foundation
 @MainActor @Observable final class Instances {
     var available: [InstanceInfo] = []
     var failure: Failure?
-    
+
     private let repo: InstanceRepositoryProtocol
-    
+
     init(repo: InstanceRepositoryProtocol) {
         self.repo = repo
         getInstances()
     }
-    
+
     func getInstances() {
         available = repo.stored
     }
-    
+
     func add(_ instanceName: String) {
         do {
             let instance = try repo.store(instanceName.lowercased())
@@ -30,7 +30,7 @@ import Foundation
             failure = Failure(error)
         }
     }
-    
+
     func remove(_ instance: InstanceInfo) {
         do {
             try repo.remove(instance)
@@ -38,6 +38,6 @@ import Foundation
         } catch {
             failure = Failure(error)
         }
-        
+
     }
 }

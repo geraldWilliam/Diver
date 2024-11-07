@@ -11,7 +11,7 @@ import SwiftKeychainWrapper
 final class InstanceService {
     private let userDefaults = UserDefaults.standard
     private let storageKey = "storedInstances"
-    
+
     private let encoder = JSONEncoder()
     private let decoder = JSONDecoder()
 
@@ -21,7 +21,7 @@ final class InstanceService {
         }
         return []
     }
-    
+
     func store(_ instance: InstanceInfo) throws -> [InstanceInfo] {
         var array: [InstanceInfo]
         if let data = userDefaults.data(forKey: storageKey) {
@@ -29,7 +29,7 @@ final class InstanceService {
         } else {
             array = []
         }
-        
+
         if array.contains(instance) {
             // TODO: Throw?
             return array
@@ -38,7 +38,7 @@ final class InstanceService {
         userDefaults.set(try encoder.encode(array), forKey: storageKey)
         return array
     }
-    
+
     func remove(_ instance: InstanceInfo) throws -> [InstanceInfo] {
         guard let data = userDefaults.data(forKey: storageKey) else {
             // TODO: Throw?

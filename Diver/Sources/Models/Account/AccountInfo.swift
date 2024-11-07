@@ -14,7 +14,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
     let handle: String
     let profileImage: URL?
     let postCount: Int
-    
+
     init(account: Account) {
         self.id = account.id
         self.displayName = account.displayName ?? ""
@@ -22,7 +22,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         self.profileImage = URL(string: account.avatar)
         self.postCount = account.postsCount
     }
-    
+
     init(id: String, displayName: String, handle: String, profileImage: URL, postCount: Int) {
         self.id = id
         self.displayName = displayName
@@ -30,7 +30,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         self.profileImage = profileImage
         self.postCount = postCount
     }
-    
+
     static func mock() -> AccountInfo {
         AccountInfo(
             id: UUID().uuidString,

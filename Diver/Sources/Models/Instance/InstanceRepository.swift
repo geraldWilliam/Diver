@@ -32,7 +32,7 @@ final class InstanceRepository: InstanceRepositoryProtocol {
         stored = try service.store(instance)
         return instance
     }
-    
+
     func remove(_ instance: InstanceInfo) throws {
         stored = try service.remove(instance)
     }

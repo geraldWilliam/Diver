@@ -5,8 +5,8 @@
 //  Created by Gerald Burke on 7/31/24.
 //
 
-import Foundation
 import AuthenticationServices
+import Foundation
 
 @MainActor @Observable final class Session {
     /// A type to represent the state of the logout process. Logout requires confirmation. The view that initiates logout should present an alert if Session‘s
@@ -20,9 +20,11 @@ import AuthenticationServices
 
     let repo: SessionRepositoryProtocol
 
+    var storedAccounts: [AccountInfo] = []
+
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
-    
+
     /// The currently authenticated account.
     // TODO: It might be nice to have multiple accounts logged in at once eventually.
     var currentAccount: AccountInfo? {
@@ -53,15 +55,36 @@ import AuthenticationServices
 
     // MARK: - Methods
 
-    func logIn(instance: InstanceInfo) {
-        guard let url = URL(string: instance.domainName) else {
-            failure = Failure("Invalid URL: \(instance.domainName)")
+    func getStoredAccounts() {
+        Task {
+            do {
+                storedAccounts = try await repo.getStoredAccounts()
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func store(_ account: AccountInfo) {
+        Task {
+            do {
+                storedAccounts.append(try await repo.store(account))
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func logIn(instance: String) {
+        guard let url = URL(string: instance) else {
+            failure = Failure("Invalid URL: \(instance)")
             return
         }
         Task {
             do {
                 let session = try await repo.logIn(instance: url)
-                isLoggedIn = session.token.isEmpty == false
+                store(session.account)
+//                isLoggedIn = session.token.isEmpty == false
                 observeLogout()
                 logout = .undetermined
             } catch {

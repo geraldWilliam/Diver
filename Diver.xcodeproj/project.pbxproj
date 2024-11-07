@@ -11,6 +11,7 @@
 		746519D02CD9C2A100A238B9 /* InstanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519CF2CD9C2A100A238B9 /* InstanceService.swift */; };
 		746519D62CD9C65C00A238B9 /* InstanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519D52CD9C65C00A238B9 /* InstanceInfo.swift */; };
 		746519D82CD9C66300A238B9 /* InstanceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746519D72CD9C66300A238B9 /* InstanceRepository.swift */; };
+		A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B70312CDD629000D9D339 /* AccountsTests.swift */; };
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
 		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
 		A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC42CCACE5700492319 /* PostActionBar.swift */; };
@@ -84,6 +85,7 @@
 		746519CF2CD9C2A100A238B9 /* InstanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceService.swift; sourceTree = "<group>"; };
 		746519D52CD9C65C00A238B9 /* InstanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceInfo.swift; sourceTree = "<group>"; };
 		746519D72CD9C66300A238B9 /* InstanceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceRepository.swift; sourceTree = "<group>"; };
+		A75B70312CDD629000D9D339 /* AccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTests.swift; sourceTree = "<group>"; };
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		A775DAC42CCACE5700492319 /* PostActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionBar.swift; sourceTree = "<group>"; };
@@ -232,8 +234,9 @@
 		A776EDDB2C457BB900CA3139 /* DiverTests */ = {
 			isa = PBXGroup;
 			children = (
-				A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */,
+				A75B70312CDD629000D9D339 /* AccountsTests.swift */,
 				A776EDDC2C457BB900CA3139 /* DiverTests.swift */,
+				A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */,
 				A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */,
 				A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */,
 			);
@@ -252,8 +255,8 @@
 		A776EE022C459D3800CA3139 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				746519D32CD9C64100A238B9 /* Instance */,
 				A775DAC02CC99F7500492319 /* Account */,
+				746519D32CD9C64100A238B9 /* Instance */,
 				A776EE052C459DDA00CA3139 /* Failure.swift */,
 				A776EE072C459DE900CA3139 /* Post */,
 				A7BB5BF22C5AD93100B6DFA1 /* Session */,
@@ -265,11 +268,11 @@
 			isa = PBXGroup;
 			children = (
 				A790BCFA2CCBE846004E4761 /* Accounts.swift */,
+				A7E3AABE2CDAAC4F0064B62A /* Instances.swift */,
 				A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */,
 				A7BB5BCE2C51748100B6DFA1 /* Notifications.swift */,
 				A776EDF82C457DE500CA3139 /* Posts.swift */,
 				A7BB5BEE2C5AD1BC00B6DFA1 /* Session.swift */,
-				A7E3AABE2CDAAC4F0064B62A /* Instances.swift */,
 			);
 			path = Observables;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 				A790BCF82CCBE821004E4761 /* ExploreView.swift */,
+				A7E3AAC22CDBE2BB0064B62A /* InstanceList.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
 				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
@@ -293,7 +297,6 @@
 				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
 				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
-				A7E3AAC22CDBE2BB0064B62A /* InstanceList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,8 +353,8 @@
 			isa = PBXGroup;
 			children = (
 				A775DAC22CCA8BD200492319 /* AccountService.swift */,
-				A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */,
 				746519CF2CD9C2A100A238B9 /* InstanceService.swift */,
+				A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7BB5BF82C5BDFD900B6DFA1 /* SessionTests.swift in Sources */,
+				A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */,
 				A776EDDD2C457BB900CA3139 /* DiverTests.swift in Sources */,
 				A7E3AAC12CDAACBC0064B62A /* InstanceTests.swift in Sources */,
 				A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */,

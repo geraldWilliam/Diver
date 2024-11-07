@@ -55,7 +55,7 @@ final class PostsRepository: PostsRepositoryProtocol {
     func getEarlierPosts() async throws -> [PostInfo] {
         return try await fetchPosts()
     }
-    
+
     func getPost(_ id: PostInfo.ID) async throws -> PostInfo {
         let post = try await client.getPost(id: id)
         return PostInfo(post: post)
@@ -94,17 +94,17 @@ final class PostsRepository: PostsRepositoryProtocol {
         earliestPost = posts.previousPage?.maxId
         return posts.result.map { PostInfo(post: $0) }
     }
-    
+
     func delete(_ id: PostInfo.ID) async throws -> PostInfo {
         let post = try await client.deletePost(id: id)
         return PostInfo(post: post)
     }
-    
+
     func boost(_ post: PostInfo) async throws -> PostInfo {
         let response = try await client.boostPost(id: post.id)
         return PostInfo(post: response)
     }
-    
+
     func removeBoost(_ post: PostInfo) async throws -> PostInfo {
         var response = try await client.unboostPost(id: post.id)
         if let reposted = response.reposted, reposted == true {
@@ -113,12 +113,12 @@ final class PostsRepository: PostsRepositoryProtocol {
         }
         return PostInfo(post: response)
     }
-    
+
     func favorite(_ post: PostInfo) async throws -> PostInfo {
         let response = try await client.favouritePost(id: post.id)
         return PostInfo(post: response)
     }
-    
+
     func removeFavorite(_ post: PostInfo) async throws -> PostInfo {
         let response = try await client.unfavouritePost(id: post.id)
         return PostInfo(post: response)
@@ -146,7 +146,7 @@ struct MockPostsRepository: PostsRepositoryProtocol {
             .mock()
         }
     }
-    
+
     func getPost(_ id: PostInfo.ID) async throws -> PostInfo {
         return .mock()
     }
@@ -154,23 +154,23 @@ struct MockPostsRepository: PostsRepositoryProtocol {
     func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo {
         return .mock()
     }
-    
+
     func delete(_ id: PostInfo.ID) async throws -> PostInfo {
         return .mock()
     }
-    
+
     func boost(_ post: PostInfo) async throws -> PostInfo {
         return .mock()
     }
-    
+
     func removeBoost(_ post: PostInfo) async throws -> PostInfo {
         return .mock()
     }
-    
+
     func favorite(_ post: PostInfo) async throws -> PostInfo {
         return .mock()
     }
-    
+
     func removeFavorite(_ post: PostInfo) async throws -> PostInfo {
         return .mock()
     }

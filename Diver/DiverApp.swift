@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 /// The entry point of the application. Keep this file brief. The App should perform the following tasks:
 ///
 /// - Instantiate global services.
@@ -33,7 +32,7 @@ import TootSDK
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
-    var authors: Accounts
+    var accounts: Accounts
     /// A source of truth for navigation state.
     var navigator: Navigator
 
@@ -54,23 +53,23 @@ import TootSDK
         /// Instantiate observables to be injected in Environment.
         session = Session(
             repo: isTesting
-            ? MockSessionRepository()
-            : SessionRepository(client: client, tokenService: tokenService, accountService: accountService)
+                ? MockSessionRepository()
+                : SessionRepository(client: client, tokenService: tokenService, accountService: accountService)
         )
         instances = Instances(
             repo: isTesting
-            ? MockInstanceRepository()
-            : InstanceRepository()
+                ? MockInstanceRepository()
+                : InstanceRepository()
         )
         posts = Posts(
             repo: isTesting
-            ? MockPostsRepository()
-            : PostsRepository(client: client)
+                ? MockPostsRepository()
+                : PostsRepository(client: client)
         )
-        authors = Accounts(
+        accounts = Accounts(
             repo: isTesting
-            ? MockAccountRepository()
-            : AccountRepository(client: client, accountService: accountService)
+                ? MockAccountRepository()
+                : AccountRepository(client: client, accountService: accountService)
         )
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
@@ -92,7 +91,7 @@ import TootSDK
                 .environment(session)
                 .environment(instances)
                 .environment(posts)
-                .environment(authors)
+                .environment(accounts)
                 .environment(navigator)
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.
@@ -101,7 +100,7 @@ import TootSDK
                 }
         }
     }
-    
+
     // MARK: - Private
 
     private func observeSession() {

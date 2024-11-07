@@ -15,14 +15,14 @@ import SwiftUI
 /// - Exposes a method to construct views for destinations. See TimelineNav.swift and ProfileNav.swift for usage.
 ///
 @MainActor @Observable final class Navigator {
-    
+
     /// Tabs of the application. ContentView is the root of the UI and if the person using the app is authenticated it shows a tabbed interface. List each tab here.
     enum Tab {
         case timeline
         case profile
         case explore
     }
-    
+
     /// Use Destination values to drive transitions. This strategy allows us to centralize instantiation of navigation destinations here in Navigator.
     /// See `content(for destination:)`. Establishing a convention of using `Navigator.Destination` values also improves clarity at the call site.
     ///

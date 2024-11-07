@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Define a concrete implementation of LocalizedError so you can publish errors from Observables and bind to them in views. 
+/// Define a concrete implementation of LocalizedError so you can publish errors from Observables and bind to them in views.
 /// If you try to use the `Error` or `LocalizedError` protocol for this, when you pass the error to .alert(isPresented:error:actions:)
 /// you‘ll get an error that "Type 'any LocalizedError' cannot conform to LocalizedError". This just means that the modifier expects a
 /// concrete type rather than the protocol.
