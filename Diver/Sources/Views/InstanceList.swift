@@ -63,7 +63,7 @@ struct InstanceList: View {
                         }
                     }
                     .padding(.horizontal, 24)
-                    .buttonStyle(PrimaryButtonStyle())
+                    .primaryButtonStyle()
                 }
             }
         }
