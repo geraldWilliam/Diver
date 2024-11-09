@@ -56,7 +56,7 @@ struct InstanceList: View {
 
                         ForEach(session.storedAccounts) { account in
                             Button(action: { }) {
-                                Text(buttonName(for: account))
+                                Text(account.handle)
                                     .frame(maxWidth: .infinity)
                                     .padding(.horizontal)
                             }
@@ -78,17 +78,6 @@ struct InstanceList: View {
         .task {
             session.getStoredAccounts()
         }
-    }
-    
-    private func buttonName(for account: AccountInfo) -> String {
-        let components = URLComponents(
-            url: account.url,
-            resolvingAgainstBaseURL: false
-        )
-        guard let host = components?.host else {
-            return ""
-        }
-        return ["@", account.username, "@", host].joined()
     }
 
     private func setInstanceFieldDisplayed(_ displayed: Bool) {
