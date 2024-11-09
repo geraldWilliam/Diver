@@ -55,7 +55,7 @@ struct InstanceList: View {
                         }
 
                         ForEach(session.storedAccounts) { account in
-                            Button(action: { }) {
+                            Button(action: { session.logIn(as: account) }) {
                                 Text(account.handle)
                                     .frame(maxWidth: .infinity)
                                     .padding(.horizontal)
@@ -93,11 +93,9 @@ struct InstanceList: View {
     }
 
     private func showLogin() {
-
         // TODO: Maybe there's a way to use TootSDK to check if the URL is a fedi server?
         if validateInstanceName() {
-//            instances.add(instance)
-            session.logIn(instance: instance)
+            session.addAccount(instance: instance)
             instanceName = ""
             setInstanceFieldDisplayed(false)
         } else {

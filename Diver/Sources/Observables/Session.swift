@@ -27,9 +27,7 @@ import Foundation
 
     /// The currently authenticated account.
     // TODO: It might be nice to have multiple accounts logged in at once eventually.
-    var currentAccount: AccountInfo? {
-        repo.account
-    }
+    var currentAccount: AccountInfo?
 
     /// The state of the Session‘s logout process.
     var logout: Logout = .undetermined
@@ -75,7 +73,7 @@ import Foundation
         }
     }
 
-    func logIn(instance: String) {
+    func addAccount(instance: String) {
         guard let url = URL(string: instance) else {
             failure = Failure("Invalid URL: \(instance)")
             return
@@ -84,13 +82,17 @@ import Foundation
             do {
                 let session = try await repo.logIn(instance: url)
                 store(session.account)
-//                isLoggedIn = session.token.isEmpty == false
                 observeLogout()
                 logout = .undetermined
             } catch {
                 failure = Failure(error)
             }
         }
+    }
+    
+    func logIn(as account: AccountInfo) {
+        currentAccount = account
+        isLoggedIn = true
     }
 
     /// Prompt logout. This should result in an alert with cancel and confirm actions.

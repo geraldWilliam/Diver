@@ -11,8 +11,6 @@ import TootSDK
 // MARK: - Protocol
 
 protocol SessionRepositoryProtocol {
-    // TODO: currentSession instead of account?
-    var account: AccountInfo? { get }
     /// Get user's owned accounts stored on device.
     func getStoredAccounts() async throws -> [AccountInfo]
     /// Store an account for quick login.
@@ -31,7 +29,7 @@ final class SessionRepository: SessionRepositoryProtocol {
     let client: TootClient
 
     var isLoggedIn: Bool {
-        token != nil && account != nil
+        token != nil
     }
 
     let accountService: AccountService
@@ -44,15 +42,6 @@ final class SessionRepository: SessionRepositoryProtocol {
         }
         set {
             tokenService.token = newValue
-        }
-    }
-
-    var account: AccountInfo? {
-        get {
-            accountService.account
-        }
-        set {
-            accountService.account = newValue
         }
     }
 
@@ -76,23 +65,21 @@ final class SessionRepository: SessionRepositoryProtocol {
     }
 
     func logIn(instance: URL) async throws -> SessionInfo {
-//        if let token, let account {
-//            return SessionInfo(token: token, account: account)
-//        }
         client.instanceURL = instance
+        
         let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
+        // TODO: Store token, associated with full account handle.
         self.token = token
 
         let account = AccountInfo(account: try await client.verifyCredentials())
-        self.account = account
-
         let session = SessionInfo(token: token, account: account)
         return session
     }
 
     func logOut() {
         token = nil
-        account = nil
+        // Will need to implement this to invalidate tokens.
+//        client.logout(clientId: <#T##String#>, clientSecret: <#T##String#>)
     }
 }
 
@@ -100,8 +87,7 @@ final class SessionRepository: SessionRepositoryProtocol {
 
 // periphery:ignore
 class MockSessionRepository: SessionRepositoryProtocol {
-    var account: AccountInfo?
-
+    private var account: AccountInfo?
     var isLoggedIn: Bool {
         account != nil
     }
@@ -121,6 +107,6 @@ class MockSessionRepository: SessionRepositoryProtocol {
     }
 
     func logOut() {
-        self.account = nil
+        account = nil
     }
 }

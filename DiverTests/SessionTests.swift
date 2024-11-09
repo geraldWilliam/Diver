@@ -86,7 +86,7 @@ final class SessionTests: DiverTests {
     @MainActor private func logIn(subject: Session) async throws {
         // Log in
         try await expect("It should log in") {
-            subject.logIn(instance: "https://sudonym.net")
+            subject.addAccount(instance: "https://sudonym.net")
         } toChange: {
             _ = subject.isLoggedIn
         }

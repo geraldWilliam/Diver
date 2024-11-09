@@ -13,7 +13,7 @@ struct ProfileNav: View {
     var body: some View {
         @Bindable var navigator = navigator
         NavigationStack(path: $navigator.profilePath) {
-            session.repo.account.map { ProfileView(account: $0) }
+            session.currentAccount.map { ProfileView(account: $0) }
         }
         .tag(Navigator.Tab.profile)
         .tabItem {
