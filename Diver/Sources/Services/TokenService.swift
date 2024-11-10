@@ -8,23 +8,21 @@
 import Foundation
 import SwiftKeychainWrapper
 
-private let serviceName = "com.nerdery.Diver"
-private let accessTokenKey = "access_token"
+private let serviceName = "com.sudonym.Diver"
 
 final class TokenService {
 
     private let keychain = KeychainWrapper(serviceName: serviceName)
 
-    var token: String? {
-        get {
-            keychain.string(forKey: accessTokenKey)
-        }
-        set {
-            if let newValue {
-                keychain.set(newValue, forKey: accessTokenKey)
-            } else {
-                keychain.removeObject(forKey: accessTokenKey)
-            }
-        }
+    func token(for session: SessionInfo) -> String? {
+        keychain.string(forKey: session.account.handle)
+    }
+
+    func storeToken(for session: SessionInfo) {
+        keychain.set(session.token, forKey: session.account.handle)
+    }
+    
+    func clearToken(for session: SessionInfo) {
+        keychain.removeObject(forKey: session.account.handle)
     }
 }
