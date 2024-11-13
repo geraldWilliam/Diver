@@ -36,7 +36,9 @@ import TootSDK
     /// A source of truth for navigation state.
     var navigator: Navigator
 
-    private let client: TootClient
+//    private var client: TootClient
+    
+    private var service = ClientService()
 
     // MARK: - Initialization
 
@@ -47,14 +49,14 @@ import TootSDK
         let accountService = AccountService()
         /// Initialize the client.
         // TODO: Setup client with last used instance, remove static instanceURL value.
-        client = TootClient(instanceURL: instanceURL, accessToken: tokenService.token)
+//        client = TootClient(instanceURL: instanceURL, accessToken: nil)
         /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")
         /// Instantiate observables to be injected in Environment.
         session = Session(
             repo: isTesting
                 ? MockSessionRepository()
-                : SessionRepository(client: client, tokenService: tokenService, accountService: accountService)
+                : SessionRepository(client: service.client, tokenService: tokenService, accountService: accountService)
         )
         instances = Instances(
             repo: isTesting
@@ -64,12 +66,12 @@ import TootSDK
         posts = Posts(
             repo: isTesting
                 ? MockPostsRepository()
-                : PostsRepository(client: client)
+                : PostsRepository(client: service.client)
         )
         accounts = Accounts(
             repo: isTesting
                 ? MockAccountRepository()
-                : AccountRepository(client: client, accountService: accountService)
+                : AccountRepository(client: service.client, accountService: accountService)
         )
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
@@ -110,6 +112,10 @@ import TootSDK
         } onChange: {
             Task {
                 if await session.isLoggedIn {
+                    try await service.updateInstanceURL(
+                        session.currentSession!.instanceURL!,
+                        accessToken: session.currentSession!.token
+                    )
                     // User is authenticated, get content.
                     await posts.getLatestPosts()
                 }
@@ -117,5 +123,14 @@ import TootSDK
                 await observeSession()
             }
         }
+    }
+}
+
+private class ClientService {
+    var client = TootClient(instanceURL: instanceURL, accessToken: nil)
+    func updateInstanceURL(_ instanceURL: URL, accessToken: String?) async throws {
+        client = TootClient(instanceURL: instanceURL, accessToken: accessToken)
+        let _ = try await client.verifyCredentials()
+        try await client.connect()
     }
 }

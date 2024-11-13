@@ -14,15 +14,15 @@ final class TokenService {
 
     private let keychain = KeychainWrapper(serviceName: serviceName)
 
-    func token(for session: SessionInfo) -> String? {
-        keychain.string(forKey: session.account.handle)
+    func token(for account: AccountInfo) -> String? {
+        keychain.string(forKey: account.handle)
     }
 
     func storeToken(for session: SessionInfo) {
         keychain.set(session.token, forKey: session.account.handle)
     }
     
-    func clearToken(for session: SessionInfo) {
-        keychain.removeObject(forKey: session.account.handle)
+    func clearToken(for account: AccountInfo) {
+        keychain.removeObject(forKey: account.handle)
     }
 }

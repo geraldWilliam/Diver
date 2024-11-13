@@ -37,7 +37,7 @@ struct ProfileView: View {
                     Button(action: { /*authors.unfollow(account.id)*/   }) {
                         Text("Unfollow")
                     }
-                } else if account != session.currentAccount {
+                } else if account != session.currentSession?.account {
                     Button(action: { accounts.follow(account.id) }) {
                         Text("Follow")
                     }

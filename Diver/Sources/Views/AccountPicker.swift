@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InstanceList: View {
+struct AccountPicker: View {
     @Environment(Session.self) var session
     @Environment(Accounts.self) var accounts
     @Environment(Instances.self) var instances
@@ -74,7 +74,7 @@ struct InstanceList: View {
                 setInstanceFieldDisplayed(false)
             }
         }
-        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/   }
+        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/ }
         .task {
             session.getStoredAccounts()
         }
@@ -105,5 +105,5 @@ struct InstanceList: View {
 }
 
 #Preview {
-    InstanceList()
+    AccountPicker()
 }

@@ -27,7 +27,7 @@ import Foundation
 
     /// The currently authenticated account.
     // TODO: It might be nice to have multiple accounts logged in at once eventually.
-    var currentAccount: AccountInfo?
+    var currentSession: SessionInfo?
 
     /// The state of the Session‘s logout process.
     var logout: Logout = .undetermined
@@ -45,7 +45,7 @@ import Foundation
 
     init(repo: SessionRepositoryProtocol) {
         self.repo = repo
-        self.isLoggedIn = repo.isLoggedIn
+        self.isLoggedIn = false //repo.isLoggedIn
         /// Observe logout
         observeLogout()
         observeFailure()
@@ -56,17 +56,17 @@ import Foundation
     func getStoredAccounts() {
         Task {
             do {
-                storedAccounts = try await repo.getStoredAccounts()
+                storedAccounts = try repo.getStoredAccounts()
             } catch {
                 failure = Failure(error)
             }
         }
     }
 
-    func store(_ account: AccountInfo) {
+    func store(_ session: SessionInfo) {
         Task {
             do {
-                storedAccounts.append(try await repo.store(account))
+                storedAccounts.append(try repo.store(session.account))
             } catch {
                 failure = Failure(error)
             }
@@ -80,8 +80,7 @@ import Foundation
         }
         Task {
             do {
-                let session = try await repo.logIn(instance: url)
-                store(session.account)
+                store(try await repo.getSession(instance: url))
                 observeLogout()
                 logout = .undetermined
             } catch {
@@ -91,8 +90,10 @@ import Foundation
     }
     
     func logIn(as account: AccountInfo) {
-        currentAccount = account
-        isLoggedIn = true
+        if let token = TokenService().token(for: account) {
+            currentSession = SessionInfo(token: token, account: account)
+            isLoggedIn = true
+        }
     }
 
     /// Prompt logout. This should result in an alert with cancel and confirm actions.
@@ -130,7 +131,7 @@ import Foundation
             observeLogout()
         case .confirmed:
             /// If logout is confirmed, clear the token and update the published `isLoggedIn` property.
-            repo.logOut()
+//            currentSession.map { repo.logOut(session: $0) }
             isLoggedIn = false
         }
     }

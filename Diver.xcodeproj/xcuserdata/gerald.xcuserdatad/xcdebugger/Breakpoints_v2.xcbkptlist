@@ -3,4 +3,110 @@
    uuid = "878B3995-7EF1-4EEE-A707-49DE51CF8B5C"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "217DCDEF-B6AE-4572-9624-CB21AA4943E4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Diver/Sources/Observables/Session.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "logIn(as:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F948654E-B64C-41AC-B832-9D0AB989F92C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Diver/DiverApp.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "updateInstanceURL(_:accessToken:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F948654E-B64C-41AC-B832-9D0AB989F92C - 6dc62be3f5ef4385"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Diver.ClientService.updateInstanceURL(_: Foundation.URL, accessToken: Swift.Optional&lt;Swift.String&gt;) async throws -&gt; ()"
+                  moduleName = "Diver.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerald/Projects/iOS/Diver/Diver/DiverApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134">
+               </Location>
+               <Location
+                  uuid = "F948654E-B64C-41AC-B832-9D0AB989F92C - 770fee768ec9163b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for Diver.ClientService.updateInstanceURL(_: Foundation.URL, accessToken: Swift.Optional&lt;Swift.String&gt;) async throws -&gt; ()"
+                  moduleName = "Diver.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerald/Projects/iOS/Diver/Diver/DiverApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134">
+               </Location>
+               <Location
+                  uuid = "F948654E-B64C-41AC-B832-9D0AB989F92C - 6e1376cfcfd68f87"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for Diver.ClientService.updateInstanceURL(_: Foundation.URL, accessToken: Swift.Optional&lt;Swift.String&gt;) async throws -&gt; ()"
+                  moduleName = "Diver.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerald/Projects/iOS/Diver/Diver/DiverApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134">
+               </Location>
+               <Location
+                  uuid = "F948654E-B64C-41AC-B832-9D0AB989F92C - 6f2d9d2821bdcb89"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for Diver.ClientService.updateInstanceURL(_: Foundation.URL, accessToken: Swift.Optional&lt;Swift.String&gt;) async throws -&gt; ()"
+                  moduleName = "Diver.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerald/Projects/iOS/Diver/Diver/DiverApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134">
+               </Location>
+               <Location
+                  uuid = "F948654E-B64C-41AC-B832-9D0AB989F92C - efba28be32a96d86"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for Diver.ClientService.updateInstanceURL(_: Foundation.URL, accessToken: Swift.Optional&lt;Swift.String&gt;) async throws -&gt; ()"
+                  moduleName = "Diver.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gerald/Projects/iOS/Diver/Diver/DiverApp.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "134"
+                  endingLineNumber = "134">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

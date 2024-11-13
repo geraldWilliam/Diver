@@ -32,7 +32,7 @@ import SwiftUI
                 .foregroundColor(Color.primary)
                 .fontDesign(.rounded)
 
-                InstanceList()
+                AccountPicker()
             }
         }
         .frame(maxWidth: .infinity)

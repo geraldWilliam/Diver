@@ -59,7 +59,7 @@
 		A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */; };
 		A7E3AABF2CDAAC4F0064B62A /* Instances.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AABE2CDAAC4F0064B62A /* Instances.swift */; };
 		A7E3AAC12CDAACBC0064B62A /* InstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */; };
-		A7E3AAC32CDBE2BB0064B62A /* InstanceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AAC22CDBE2BB0064B62A /* InstanceList.swift */; };
+		A7E3AAC32CDBE2BB0064B62A /* AccountPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,7 +137,7 @@
 		A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNav.swift; sourceTree = "<group>"; };
 		A7E3AABE2CDAAC4F0064B62A /* Instances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instances.swift; sourceTree = "<group>"; };
 		A7E3AAC02CDAACBC0064B62A /* InstanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceTests.swift; sourceTree = "<group>"; };
-		A7E3AAC22CDBE2BB0064B62A /* InstanceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstanceList.swift; sourceTree = "<group>"; };
+		A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,7 +287,7 @@
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 				A790BCF82CCBE821004E4761 /* ExploreView.swift */,
-				A7E3AAC22CDBE2BB0064B62A /* InstanceList.swift */,
+				A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
 				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
@@ -517,7 +517,7 @@
 				A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */,
 				A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
-				A7E3AAC32CDBE2BB0064B62A /* InstanceList.swift in Sources */,
+				A7E3AAC32CDBE2BB0064B62A /* AccountPicker.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
 				A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */,
 				A7BB5BEF2C5AD1BC00B6DFA1 /* Session.swift in Sources */,
