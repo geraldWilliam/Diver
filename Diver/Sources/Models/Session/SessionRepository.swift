@@ -38,8 +38,8 @@ final class SessionRepository: SessionRepositoryProtocol {
 
     private let tokenService: TokenService
 
-    init(client: TootClient, tokenService: TokenService, accountService: AccountService) {
-        self.client = client
+    init(tokenService: TokenService, accountService: AccountService) {
+        self.client = ClientService.shared.client
         self.tokenService = tokenService
         self.accountService = accountService
         Task {
@@ -64,7 +64,7 @@ final class SessionRepository: SessionRepositoryProtocol {
 
     func getSession(instance: URL) async throws -> SessionInfo {
         client.instanceURL = instance
-        let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
+        let token = try await client.presentSignIn(callbackURI: "com.sudonym.Diver://home")
         let account = AccountInfo(account: try await client.verifyCredentials())
         let session = SessionInfo(token: token, account: account)
         // Side-effect, maybe move it?

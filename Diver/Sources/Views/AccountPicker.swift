@@ -1,5 +1,5 @@
 //
-//  InstanceList.swift
+//  AccountPicker.swift
 //  Diver
 //
 //  Created by Gerald Burke on 11/6/24.
@@ -10,7 +10,6 @@ import SwiftUI
 struct AccountPicker: View {
     @Environment(Session.self) var session
     @Environment(Accounts.self) var accounts
-    @Environment(Instances.self) var instances
     // TODO: Move instance list to separate view.
     @State private var instanceName: String = ""
     @State private var addingInstance: Bool = false

@@ -9,7 +9,6 @@ import SwiftUI
 
 @MainActor struct LoginView: View {
     @Environment(Session.self) var session
-    @Environment(Instances.self) var instances
 
     var body: some View {
         @Bindable var session = session

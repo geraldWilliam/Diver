@@ -27,8 +27,6 @@ import TootSDK
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     /// A source of truth for the session, including authentication status.
     var session: Session
-    /// A source of truth for instances the user can authenticate with.
-    var instances: Instances
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
@@ -38,7 +36,7 @@ import TootSDK
 
 //    private var client: TootClient
     
-    private var service = ClientService()
+//    private var service = ClientService()
 
     // MARK: - Initialization
 
@@ -56,22 +54,17 @@ import TootSDK
         session = Session(
             repo: isTesting
                 ? MockSessionRepository()
-                : SessionRepository(client: service.client, tokenService: tokenService, accountService: accountService)
-        )
-        instances = Instances(
-            repo: isTesting
-                ? MockInstanceRepository()
-                : InstanceRepository()
+                : SessionRepository(tokenService: tokenService, accountService: accountService)
         )
         posts = Posts(
             repo: isTesting
                 ? MockPostsRepository()
-                : PostsRepository(client: service.client)
+                : PostsRepository()
         )
         accounts = Accounts(
             repo: isTesting
                 ? MockAccountRepository()
-                : AccountRepository(client: service.client, accountService: accountService)
+                : AccountRepository(accountService: accountService)
         )
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
@@ -91,7 +84,6 @@ import TootSDK
             ContentView()
                 /// Add required observables to the environment.
                 .environment(session)
-                .environment(instances)
                 .environment(posts)
                 .environment(accounts)
                 .environment(navigator)
@@ -111,11 +103,8 @@ import TootSDK
             _ = session.isLoggedIn
         } onChange: {
             Task {
-                if await session.isLoggedIn {
-                    try await service.updateInstanceURL(
-                        session.currentSession!.instanceURL!,
-                        accessToken: session.currentSession!.token
-                    )
+                if let current = await session.currentSession, await session.isLoggedIn {
+                    try await ClientService.shared.updateSession(current)
                     // User is authenticated, get content.
                     await posts.getLatestPosts()
                 }
@@ -126,11 +115,14 @@ import TootSDK
     }
 }
 
-private class ClientService {
+class ClientService {
+    static var shared = ClientService()
     var client = TootClient(instanceURL: instanceURL, accessToken: nil)
-    func updateInstanceURL(_ instanceURL: URL, accessToken: String?) async throws {
-        client = TootClient(instanceURL: instanceURL, accessToken: accessToken)
-        let _ = try await client.verifyCredentials()
-        try await client.connect()
+    func updateSession(_ session: SessionInfo) async throws {
+        guard let url = session.instanceURL else {
+            return
+        }
+        client = try await TootClient(connect: url)
+        client.debugOn()
     }
 }

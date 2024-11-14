@@ -43,8 +43,8 @@ final class PostsRepository: PostsRepositoryProtocol {
 
     private var earliestPost: String?
 
-    init(client: TootClient) {
-        self.client = client
+    init() {
+        self.client = ClientService.shared.client
     }
 
     func getLatestPosts() async throws -> [PostInfo] {

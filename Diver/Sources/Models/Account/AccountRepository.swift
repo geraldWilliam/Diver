@@ -20,8 +20,8 @@ final class AccountRepository: AccountRepositoryProtocol {
     let client: TootClient
     let accountService: AccountService
 
-    init(client: TootClient, accountService: AccountService) {
-        self.client = client
+    init(accountService: AccountService) {
+        self.client = ClientService.shared.client
         self.accountService = accountService
     }
 

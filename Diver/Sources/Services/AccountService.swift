@@ -8,7 +8,7 @@
 import Foundation
 import SwiftKeychainWrapper
 
-private let serviceName = "com.nerdery.Diver"
+private let serviceName = "com.sudonym.Diver"
 private let accountKey = "stored_account"
 
 final class AccountService {
