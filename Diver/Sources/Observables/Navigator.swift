@@ -5,7 +5,7 @@
 //  Created by Gerald Burke on 7/19/24.
 //
 
-import SwiftUI // I wish I didn‘t have to import SwiftUI here but I need the NavigationPath.
+import SwiftUI
 
 /// This is an Observable class that centralizes navigation logic.
 ///

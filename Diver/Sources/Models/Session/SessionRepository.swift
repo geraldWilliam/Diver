@@ -11,75 +11,64 @@ import TootSDK
 // MARK: - Protocol
 
 protocol SessionRepositoryProtocol {
-    // TODO: currentSession instead of account?
-    var account: AccountInfo? { get }
-    /// Check is the user is logged in.
-    var isLoggedIn: Bool { get }
+    /// Get user's owned accounts stored on device.
+    func getStoredAccounts() throws -> [AccountInfo]
+    /// Store an account for quick login.
+    func store(_ account: AccountInfo) throws -> AccountInfo
     /// Get a session.
-    func logIn() async throws -> SessionInfo
-    /// Clear the session.
-    func logOut()
+    func getSession(instance: URL) async throws -> SessionInfo
 }
 
 // MARK: - Concrete Implementation
 
 final class SessionRepository: SessionRepositoryProtocol {
-    let client: TootClient
-
-    var isLoggedIn: Bool {
-        token != nil && account != nil
+    var client: TootClient {
+        ClientService.shared.client
     }
 
-    let accountService: AccountService
+    private let defaults = UserDefaults.standard
+
+    private let decoder = JSONDecoder()
+
+    private let encoder = JSONEncoder()
+
+    private let storedAccountsKey = "stored_accounts"
+
+    private let accountService: AccountService
 
     private let tokenService: TokenService
 
-    private var token: String? {
-        get {
-            tokenService.token
-        }
-        set {
-            tokenService.token = newValue
-        }
-    }
-
-    var account: AccountInfo? {
-        get {
-            accountService.account
-        }
-        set {
-            accountService.account = newValue
-        }
-    }
-
-    init(client: TootClient, tokenService: TokenService, accountService: AccountService) {
-        self.client = client
+    init(tokenService: TokenService, accountService: AccountService) {
         self.tokenService = tokenService
         self.accountService = accountService
         Task {
-            // This is required for activating the TootClient.
+            // This is required for activation.
             try await client.connect()
         }
     }
 
-    func logIn() async throws -> SessionInfo {
-        if let token, let account {
-            return SessionInfo(token: token, account: account)
-        }
-
-        let token = try await client.presentSignIn(callbackURI: "com.sudonym.Diver://home")
-        self.token = token
-
-        let account = AccountInfo(account: try await client.verifyCredentials())
-        self.account = account
-
-        let session = SessionInfo(token: token, account: account)
-        return session
+    func getStoredAccounts() throws -> [AccountInfo] {
+        try defaults.data(forKey: storedAccountsKey).map {
+            try decoder.decode([AccountInfo].self, from: $0)
+        } ?? []
     }
 
-    func logOut() {
-        token = nil
-        account = nil
+    func store(_ account: AccountInfo) throws -> AccountInfo {
+        var accounts = try getStoredAccounts()
+        accounts.append(account)
+        let data = try encoder.encode(accounts)
+        defaults.set(data, forKey: storedAccountsKey)
+        return account
+    }
+
+    func getSession(instance: URL) async throws -> SessionInfo {
+        client.instanceURL = instance
+        let token = try await client.presentSignIn(callbackURI: "com.sudonym.Diver://home")
+        let account = AccountInfo(account: try await client.verifyCredentials())
+        let session = SessionInfo(token: token, account: account)
+        // Side-effect, maybe move it?
+        tokenService.storeToken(for: session)
+        return session
     }
 }
 
@@ -87,16 +76,24 @@ final class SessionRepository: SessionRepositoryProtocol {
 
 // periphery:ignore
 class MockSessionRepository: SessionRepositoryProtocol {
-    var account: AccountInfo?
+
+    private var account: AccountInfo?
+
     var isLoggedIn: Bool {
         account != nil
     }
-    func logIn() async throws -> SessionInfo {
+
+    func getStoredAccounts() throws -> [AccountInfo] {
+        return [.mock()]
+    }
+
+    func store(_ account: AccountInfo) throws -> AccountInfo {
+        return .mock()
+    }
+
+    func getSession(instance: URL) async throws -> SessionInfo {
         let account = AccountInfo.mock()
         self.account = account
         return SessionInfo(token: "fake-access-token", account: account)
-    }
-    func logOut() {
-        self.account = nil
     }
 }

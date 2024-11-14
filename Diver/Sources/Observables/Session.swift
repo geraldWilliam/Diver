@@ -5,8 +5,8 @@
 //  Created by Gerald Burke on 7/31/24.
 //
 
-import Foundation
 import AuthenticationServices
+import Foundation
 
 @MainActor @Observable final class Session {
     /// A type to represent the state of the logout process. Logout requires confirmation. The view that initiates logout should present an alert if Session‘s
@@ -20,14 +20,14 @@ import AuthenticationServices
 
     let repo: SessionRepositoryProtocol
 
+    var storedAccounts: [AccountInfo] = []
+
     /// Whether the Session is authenticated.
     var isLoggedIn: Bool
 
     /// The currently authenticated account.
     // TODO: It might be nice to have multiple accounts logged in at once eventually.
-    var currentAccount: AccountInfo? {
-        repo.account
-    }
+    var currentSession: SessionInfo?
 
     /// The state of the Session‘s logout process.
     var logout: Logout = .undetermined
@@ -45,23 +45,53 @@ import AuthenticationServices
 
     init(repo: SessionRepositoryProtocol) {
         self.repo = repo
-        self.isLoggedIn = repo.isLoggedIn
-        /// Observe logout
-        observeLogout()
+        self.isLoggedIn = false // repo.isLoggedIn
         observeFailure()
     }
 
     // MARK: - Methods
 
-    func logIn() {
+    func getStoredAccounts() {
         Task {
             do {
-                let session = try await repo.logIn()
-                isLoggedIn = session.token.isEmpty == false
+                storedAccounts = try repo.getStoredAccounts()
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func store(_ session: SessionInfo) {
+        Task {
+            do {
+                storedAccounts.append(try repo.store(session.account))
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func addAccount(instance: String) {
+        guard let url = URL(string: instance) else {
+            failure = Failure("Invalid URL: \(instance)")
+            return
+        }
+        Task {
+            do {
+                store(try await repo.getSession(instance: url))
+                observeLogout()
                 logout = .undetermined
             } catch {
                 failure = Failure(error)
             }
+        }
+    }
+
+    func logIn(as account: AccountInfo) {
+        if let token = TokenService().token(for: account) {
+            currentSession = SessionInfo(token: token, account: account)
+            isLoggedIn = true
+            observeLogout()
         }
     }
 
@@ -100,7 +130,7 @@ import AuthenticationServices
             observeLogout()
         case .confirmed:
             /// If logout is confirmed, clear the token and update the published `isLoggedIn` property.
-            repo.logOut()
+//            currentSession.map { repo.logOut(session: $0) }
             isLoggedIn = false
         }
     }

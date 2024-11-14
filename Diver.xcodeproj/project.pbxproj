@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74436B162CD87B17007B4B3B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74436B152CD87B17007B4B3B /* CardView.swift */; };
+		A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B70312CDD629000D9D339 /* AccountsTests.swift */; };
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
 		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
 		A775DAC52CCACE5700492319 /* PostActionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC42CCACE5700492319 /* PostActionBar.swift */; };
@@ -52,6 +54,7 @@
 		A7BB5C082C5D624F00B6DFA1 /* PostComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */; };
 		A7E3814F2C6AB3BC00A94FB0 /* TimelineNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */; };
 		A7E381512C6AB3C100A94FB0 /* ProfileNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */; };
+		A7E3AAC32CDBE2BB0064B62A /* AccountPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		74436B142CD8799E007B4B3B /* SCRATCH.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SCRATCH.md; sourceTree = "<group>"; };
+		74436B152CD87B17007B4B3B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A75B70312CDD629000D9D339 /* AccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTests.swift; sourceTree = "<group>"; };
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		A775DAC42CCACE5700492319 /* PostActionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionBar.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 		A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComposer.swift; sourceTree = "<group>"; };
 		A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineNav.swift; sourceTree = "<group>"; };
 		A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNav.swift; sourceTree = "<group>"; };
+		A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +169,7 @@
 		A776EDBE2C457BB800CA3139 = {
 			isa = PBXGroup;
 			children = (
+				74436B142CD8799E007B4B3B /* SCRATCH.md */,
 				A7BB5BBA2C49AFD700B6DFA1 /* README.md */,
 				A776EDC92C457BB800CA3139 /* Diver */,
 				A776EDDB2C457BB900CA3139 /* DiverTests */,
@@ -207,6 +215,7 @@
 		A776EDDB2C457BB900CA3139 /* DiverTests */ = {
 			isa = PBXGroup;
 			children = (
+				A75B70312CDD629000D9D339 /* AccountsTests.swift */,
 				A776EDDC2C457BB900CA3139 /* DiverTests.swift */,
 				A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */,
 				A7BB5BF72C5BDFD900B6DFA1 /* SessionTests.swift */,
@@ -249,10 +258,13 @@
 		A776EE042C459D4B00CA3139 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */,
 				A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */,
 				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
 				A7BB5C032C5D5BC000B6DFA1 /* BubbleView.swift */,
+				74436B152CD87B17007B4B3B /* CardView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
+				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 				A790BCF82CCBE821004E4761 /* ExploreView.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
 				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
@@ -260,10 +272,9 @@
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
 				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
 				A7E381502C6AB3C100A94FB0 /* ProfileNav.swift */,
+				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
 				A7E3814E2C6AB3BC00A94FB0 /* TimelineNav.swift */,
 				A776EE0E2C45B29800CA3139 /* TimelineView.swift */,
-				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
-				A790BCFF2CCC45F7004E4761 /* ExploreNav.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -475,11 +486,13 @@
 				A7BB5BDC2C59460400B6DFA1 /* AuthorHeader.swift in Sources */,
 				A7BB5C022C5C1E2E00B6DFA1 /* LoginView.swift in Sources */,
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
+				74436B162CD87B17007B4B3B /* CardView.swift in Sources */,
 				A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
 				A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */,
 				A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
+				A7E3AAC32CDBE2BB0064B62A /* AccountPicker.swift in Sources */,
 				A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */,
 				A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */,
 				A7BB5BEF2C5AD1BC00B6DFA1 /* Session.swift in Sources */,
@@ -508,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7BB5BF82C5BDFD900B6DFA1 /* SessionTests.swift in Sources */,
+				A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */,
 				A776EDDD2C457BB900CA3139 /* DiverTests.swift in Sources */,
 				A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */,
 			);

@@ -34,10 +34,10 @@ struct ProfileView: View {
 
             VStack(alignment: .leading) {
                 if accounts.following.contains(account) {
-                    Button(action: { /*accounts.unfollow(account.id)*/ }) {
+                    Button(action: { /*authors.unfollow(account.id)*/ }) {
                         Text("Unfollow")
                     }
-                } else if account != session.currentAccount {
+                } else if account != session.currentSession?.account {
                     Button(action: { accounts.follow(account.id) }) {
                         Text("Follow")
                     }
@@ -49,17 +49,17 @@ struct ProfileView: View {
             VStack {
                 Row(
                     title: "\(123) Followers",
-                    action: { }
+                    action: {}
                 )
                 Divider()
                 Row(
                     title: "Following \(123)",
-                    action: { }
+                    action: {}
                 )
                 Divider()
                 Row(
                     title: "\(account.postCount) Posts",
-                    action: { }
+                    action: {}
                 )
             }
         }

@@ -15,19 +15,22 @@ import Foundation
 
     init(repo: AccountRepositoryProtocol) {
         self.repo = repo
-        Task {
-            do {
-                following = try await repo.getFollowing()
-            } catch {
-                failure = Failure(error)
-            }
-        }
     }
 
     func search(_ text: String) {
         Task {
             do {
                 searchResults = try await repo.search(text: text)
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
+
+    func getFollowing() {
+        Task {
+            do {
+                following = try await repo.getFollowing()
             } catch {
                 failure = Failure(error)
             }

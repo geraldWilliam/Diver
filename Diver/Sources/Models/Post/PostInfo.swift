@@ -7,6 +7,7 @@
 
 import Foundation
 import TootSDK
+
 /// A domain model to represent a Post. TootSDK‘s Post type is actually suitable for direct usage in this application but `PostInfo` provides a representation of
 /// that external model that only declares the properties we actually use and performs some transformations upon initialization (like converting strings to URLs) to
 /// save us a little work later.

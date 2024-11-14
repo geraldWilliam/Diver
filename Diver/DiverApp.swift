@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 /// The entry point of the application. Keep this file brief. The App should perform the following tasks:
 ///
 /// - Instantiate global services.
@@ -35,41 +34,37 @@ import TootSDK
     /// A source of truth for navigation state.
     var navigator: Navigator
 
-    private let client: TootClient
+//    private var client: TootClient
+
+//    private var service = ClientService()
 
     // MARK: - Initialization
 
     init() {
         /// A service for caching the access token to the keychain.
         let tokenService = TokenService()
-        ///
+        /// A service for managing accounts.
         let accountService = AccountService()
-        /// Initialize the client.
-        client = TootClient(instanceURL: instanceURL, accessToken: tokenService.token)
         /// Initialization uses mocks for UI tests.
         let isTesting = CommandLine.arguments.contains("ui-testing")
-        /// A container type for the application‘s repositories.
-        typealias Repos = (
-            session: SessionRepositoryProtocol,
-            posts: PostsRepositoryProtocol,
-            accounts: AccountRepositoryProtocol
-        )
-        /// Set up repositories for instantiating observables. Test runs use mock repositories, live runs use real repositories that leverage the client.
-        let repos: Repos = (
-            session: isTesting
-            ? MockSessionRepository()
-            : SessionRepository(client: client, tokenService: tokenService, accountService: accountService),
-            posts: isTesting
-            ? MockPostsRepository()
-            : PostsRepository(client: client),
-            accounts: isTesting
-            ? MockAccountRepository()
-            : AccountRepository(client: client, accountService: accountService)
-        )
+
         /// Instantiate observables to be injected in Environment.
-        session = Session(repo: repos.session)
-        posts = Posts(repo: repos.posts)
-        accounts = Accounts(repo: repos.accounts)
+        session = Session(
+            repo: isTesting
+                ? MockSessionRepository()
+                : SessionRepository(tokenService: tokenService, accountService: accountService)
+        )
+        posts = Posts(
+            repo: isTesting
+                ? MockPostsRepository()
+                : PostsRepository()
+        )
+        accounts = Accounts(
+            repo: isTesting
+                ? MockAccountRepository()
+                : AccountRepository(accountService: accountService)
+        )
+
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
         if session.isLoggedIn {
@@ -107,7 +102,8 @@ import TootSDK
             _ = session.isLoggedIn
         } onChange: {
             Task {
-                if await session.isLoggedIn {
+                if let current = await session.currentSession, await session.isLoggedIn {
+                    try await ClientService.shared.updateSession(current)
                     // User is authenticated, get content.
                     await posts.getLatestPosts()
                 }
@@ -115,5 +111,17 @@ import TootSDK
                 await observeSession()
             }
         }
+    }
+}
+
+class ClientService {
+    static var shared = ClientService()
+    var client = TootClient(instanceURL: instanceURL, accessToken: nil)
+    func updateSession(_ session: SessionInfo) async throws {
+        guard let url = session.instanceURL else {
+            return
+        }
+        client = TootClient(instanceURL: url, accessToken: session.token)
+        client.debugOn()
     }
 }

@@ -11,6 +11,9 @@
         }
       }
     },
+    "%@ is not a valid URL" : {
+
+    },
     "%lld replies" : {
       "localizations" : {
         "en" : {
@@ -52,6 +55,9 @@
       }
     },
     "A Fediverse Client" : {
+
+    },
+    "Add an Instance" : {
 
     },
     "Cancel" : {
@@ -116,6 +122,9 @@
         }
       }
     },
+    "example.social" : {
+
+    },
     "Explore" : {
 
     },
@@ -159,6 +168,7 @@
       }
     },
     "Sign In" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

@@ -9,6 +9,7 @@ import SwiftUI
 
 @MainActor struct LoginView: View {
     @Environment(Session.self) var session
+
     var body: some View {
         @Bindable var session = session
         ZStack {
@@ -30,13 +31,7 @@ import SwiftUI
                 .foregroundColor(Color.primary)
                 .fontDesign(.rounded)
 
-                Button(action: { session.logIn() }) {
-                    Text("Sign In")
-                        .fontWeight(.medium)
-                        .padding(.horizontal)
-                }
-                .primaryButtonStyle()
-                .padding(.top)
+                AccountPicker()
             }
         }
         .frame(maxWidth: .infinity)

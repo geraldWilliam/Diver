@@ -5,8 +5,8 @@
 //  Created by Gerald Burke on 8/2/24.
 //
 
-import SwiftUI
 import PhotosUI
+import SwiftUI
 
 @MainActor struct PostComposer: View {
     @Environment(Navigator.self) var navigator
