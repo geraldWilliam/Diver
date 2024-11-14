@@ -1,5 +1,5 @@
 //
-//  accounts.swift
+//  Accounts.swift
 //  Diver
 //
 //  Created by Gerald Burke on 10/25/24.
