@@ -31,7 +31,7 @@ import TootSDK
     /// A source of truth for timeline, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
-    var authors: Authors
+    var accounts: Accounts
     /// A source of truth for navigation state.
     var navigator: Navigator
 
@@ -69,7 +69,7 @@ import TootSDK
         /// Instantiate observables to be injected in Environment.
         session = Session(repo: repos.session)
         posts = Posts(repo: repos.posts)
-        authors = Authors(repo: repos.accounts)
+        accounts = Accounts(repo: repos.accounts)
         navigator = Navigator(posts: posts)
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
         if session.isLoggedIn {
@@ -89,7 +89,7 @@ import TootSDK
                 /// Add required observables to the environment.
                 .environment(session)
                 .environment(posts)
-                .environment(authors)
+                .environment(accounts)
                 .environment(navigator)
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.
@@ -98,7 +98,7 @@ import TootSDK
                 }
         }
     }
-    
+
     // MARK: - Private
 
     private func observeSession() {

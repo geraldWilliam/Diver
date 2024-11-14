@@ -11,7 +11,7 @@ import PhotosUI
 @MainActor struct PostComposer: View {
     @Environment(Navigator.self) var navigator
     @Environment(Posts.self) var posts
-    
+
     let post: PostInfo?
 
     @State private var contentWarning: String = ""
@@ -21,7 +21,7 @@ import PhotosUI
     @State private var displayedImages: [Data] = []
 
     @FocusState private var isComposeFieldFocused: Bool
-    
+
     private var placeholder: String {
         if post != nil {
             "Write your reply"
@@ -29,7 +29,7 @@ import PhotosUI
             "Write a post"
         }
     }
-    
+
     private var isPostIncomplete: Bool {
         textContent.isEmpty && displayedImages.isEmpty
     }
@@ -49,7 +49,7 @@ import PhotosUI
                         }
                         .background(Color.black.opacity(0.05))
                     }
-                    
+
                     VStack {
                         /// Content Warning
                         HStack {
@@ -71,10 +71,10 @@ import PhotosUI
                             .stroke(Color.black.opacity(0.2), lineWidth: 1.0)
                     }
                     .padding(.horizontal)
-                    
+
                     /// Media attachment
                     PhotosPicker("Choose Media", selection: $attachedMedia, matching: .images)
-                    
+
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(displayedImages, id: \.self) { data in
@@ -109,7 +109,7 @@ import PhotosUI
                         .disabled(isPostIncomplete)
                     }
                 }
-                .onChange(of: attachedMedia) { oldValue, newValue in
+                .onChange(of: attachedMedia) { _, newValue in
                     Task {
                         displayedImages.removeAll()
                         for item in newValue {
@@ -134,7 +134,7 @@ import PhotosUI
         }
         navigator.modal = nil
     }
-    
+
     private func cancelPost() {
         navigator.modal = nil
     }

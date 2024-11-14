@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct ExploreView: View {
-    @Environment(Authors.self) var authors
+    @Environment(Accounts.self) var accounts
     @Environment(Navigator.self) var navigator
     @State private var searchText: String = ""
-    
+
     var body: some View {
         List {
             Section {
-                ForEach(authors.displayed) { author in
+                ForEach(accounts.searchResults) { author in
                     ProfileView(account: author)
                 }
             }
         }
         .searchable(text: $searchText)
         .onSubmit(of: .search) {
-            authors.search(searchText)
+            accounts.search(searchText)
         }
         .overlay {
-            if authors.displayed.isEmpty {
+            if accounts.searchResults.isEmpty {
                 ContentUnavailableView.search
             }
         }

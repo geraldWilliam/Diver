@@ -29,7 +29,7 @@ final class SessionRepository: SessionRepositoryProtocol {
     var isLoggedIn: Bool {
         token != nil && account != nil
     }
-    
+
     let accountService: AccountService
 
     private let tokenService: TokenService
@@ -69,14 +69,14 @@ final class SessionRepository: SessionRepositoryProtocol {
 
         let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
         self.token = token
-        
+
         let account = AccountInfo(account: try await client.verifyCredentials())
         self.account = account
-        
+
         let session = SessionInfo(token: token, account: account)
         return session
     }
-    
+
     func logOut() {
         token = nil
         account = nil

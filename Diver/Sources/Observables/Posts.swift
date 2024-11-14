@@ -31,8 +31,6 @@ import Foundation
     var failure: Failure?
     /// The repository used to fetch posts.
     private let repo: PostsRepositoryProtocol
-    
-    
 
     // MARK: - Initialization
 
@@ -87,7 +85,7 @@ import Foundation
             }
         }
     }
-    
+
     func reply(_ text: String, media: [Data], to originalPost: PostInfo) {
         Task {
             do {
@@ -95,7 +93,7 @@ import Foundation
                 let reply = try await repo.send(text, media: media, replyingTo: originalPost)
                 /// Show the reply in post detail.
                 replies[originalPost.id]?.append(reply)
-                
+
                 /// Update the original post in the timeline.
                 let refreshedOriginalPost = try await repo.getPost(originalPost.id)
                 timeline.firstIndex(of: originalPost).map { timeline[$0] = refreshedOriginalPost }
@@ -104,7 +102,7 @@ import Foundation
             }
         }
     }
-    
+
     // TODO: Support delete & redraft.
     func delete(_ id: PostInfo.ID) {
         Task {
@@ -116,7 +114,7 @@ import Foundation
             }
         }
     }
-    
+
     func boost(_ post: PostInfo) {
         Task {
             do {
@@ -131,7 +129,7 @@ import Foundation
             }
         }
     }
-    
+
     func removeBoost(_ post: PostInfo) {
         Task {
             do {
@@ -144,7 +142,7 @@ import Foundation
             }
         }
     }
-    
+
     func favorite(_ post: PostInfo) {
         Task {
             do {
@@ -157,7 +155,7 @@ import Foundation
             }
         }
     }
-    
+
     func removeFavorite(_ post: PostInfo) {
         Task {
             do {
