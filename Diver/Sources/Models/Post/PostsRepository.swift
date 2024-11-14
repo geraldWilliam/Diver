@@ -39,13 +39,11 @@ protocol PostsRepositoryProtocol {
 
 final class PostsRepository: PostsRepositoryProtocol {
 
-    let client: TootClient
+    var client: TootClient {
+        ClientService.shared.client
+    }
 
     private var earliestPost: String?
-
-    init() {
-        self.client = ClientService.shared.client
-    }
 
     func getLatestPosts() async throws -> [PostInfo] {
         earliestPost = nil

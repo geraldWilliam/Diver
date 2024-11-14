@@ -122,7 +122,7 @@ class ClientService {
         guard let url = session.instanceURL else {
             return
         }
-        client = try await TootClient(connect: url)
+        client = TootClient(instanceURL: url, accessToken: session.token)
         client.debugOn()
     }
 }

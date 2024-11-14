@@ -46,8 +46,6 @@ import Foundation
     init(repo: SessionRepositoryProtocol) {
         self.repo = repo
         self.isLoggedIn = false //repo.isLoggedIn
-        /// Observe logout
-        observeLogout()
         observeFailure()
     }
 
@@ -93,6 +91,7 @@ import Foundation
         if let token = TokenService().token(for: account) {
             currentSession = SessionInfo(token: token, account: account)
             isLoggedIn = true
+            observeLogout()
         }
     }
 

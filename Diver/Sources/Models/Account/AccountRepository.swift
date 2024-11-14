@@ -16,12 +16,13 @@ protocol AccountRepositoryProtocol {
 }
 
 final class AccountRepository: AccountRepositoryProtocol {
+    var client: TootClient {
+        ClientService.shared.client
+    }
 
-    let client: TootClient
     let accountService: AccountService
 
     init(accountService: AccountService) {
-        self.client = ClientService.shared.client
         self.accountService = accountService
     }
 

@@ -17,15 +17,15 @@ protocol SessionRepositoryProtocol {
     func store(_ account: AccountInfo) throws -> AccountInfo
     /// Get a session.
     func getSession(instance: URL) async throws -> SessionInfo
-    /// Clear the session.
-    func logOut(session: SessionInfo)
 }
 
 // MARK: - Concrete Implementation
 
 final class SessionRepository: SessionRepositoryProtocol {
-    let client: TootClient
-    
+    var client: TootClient {
+        ClientService.shared.client
+    }
+
     private let defaults = UserDefaults.standard
     
     private let decoder = JSONDecoder()
@@ -39,7 +39,6 @@ final class SessionRepository: SessionRepositoryProtocol {
     private let tokenService: TokenService
 
     init(tokenService: TokenService, accountService: AccountService) {
-        self.client = ClientService.shared.client
         self.tokenService = tokenService
         self.accountService = accountService
         Task {
@@ -71,16 +70,6 @@ final class SessionRepository: SessionRepositoryProtocol {
         tokenService.storeToken(for: session)
         return session
     }
-    
-    func logIn(as account: AccountInfo) {
-        // Nothing needed?
-    }
-
-    func logOut(session: SessionInfo) {
-        tokenService.clearToken(for: session.account)
-        // Will need to implement this to invalidate tokens.
-        // client.logout(clientId:, clientSecret:)
-    }
 }
 
 // MARK: - Mock Implementation
@@ -106,9 +95,5 @@ class MockSessionRepository: SessionRepositoryProtocol {
         let account = AccountInfo.mock()
         self.account = account
         return SessionInfo(token: "fake-access-token", account: account)
-    }
-
-    func logOut(session: SessionInfo) {
-        account = nil
     }
 }
