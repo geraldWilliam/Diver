@@ -67,7 +67,7 @@ final class SessionRepository: SessionRepositoryProtocol {
             return SessionInfo(token: token, account: account)
         }
 
-        let token = try await client.presentSignIn(callbackURI: "com.nerdery.Diver://home")
+        let token = try await client.presentSignIn(callbackURI: "com.sudonym.Diver://home")
         self.token = token
 
         let account = AccountInfo(account: try await client.verifyCredentials())
