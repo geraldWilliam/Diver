@@ -12,7 +12,7 @@ struct PostActionBar: View {
     let posts: Posts
     let post: PostInfo
     @State private var confirmingDelete: Bool = false
-    @State private var isReplying: PostInfo?
+
     var body: some View {
         HStack {
             /// Reply

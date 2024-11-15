@@ -21,8 +21,4 @@ final class TokenService {
     func storeToken(for session: SessionInfo) {
         keychain.set(session.token, forKey: session.account.handle)
     }
-
-    func clearToken(for account: AccountInfo) {
-        keychain.removeObject(forKey: account.handle)
-    }
 }

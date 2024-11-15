@@ -52,7 +52,7 @@ import TootSDK
         session = Session(
             repo: isTesting
                 ? MockSessionRepository()
-                : SessionRepository(tokenService: tokenService, accountService: accountService)
+                : SessionRepository(tokenService: tokenService)
         )
         posts = Posts(
             repo: isTesting

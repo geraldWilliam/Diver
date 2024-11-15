@@ -19,19 +19,21 @@ import SwiftUI
                     startAfter: TimeInterval(index)
                 )
             }
-            VStack {
-                Group {
-                    Text("Welcome to Diver")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+            ScrollView {
+                VStack(spacing: 20) {
+                    Spacer()
+                    Group {
+                        Text("Welcome to Diver")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
 
-                    Text("A Fediverse Client")
-                        .font(.headline)
+                        Text("A Fediverse Client")
+                            .font(.headline)
+                    }
+                    .foregroundColor(Color.primary)
+                    .fontDesign(.rounded)
+                    AccountPicker()
                 }
-                .foregroundColor(Color.primary)
-                .fontDesign(.rounded)
-
-                AccountPicker()
             }
         }
         .frame(maxWidth: .infinity)

@@ -34,13 +34,10 @@ final class SessionRepository: SessionRepositoryProtocol {
 
     private let storedAccountsKey = "stored_accounts"
 
-    private let accountService: AccountService
-
     private let tokenService: TokenService
 
-    init(tokenService: TokenService, accountService: AccountService) {
+    init(tokenService: TokenService) {
         self.tokenService = tokenService
-        self.accountService = accountService
         Task {
             // This is required for activation.
             try await client.connect()

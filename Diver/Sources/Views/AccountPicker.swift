@@ -24,46 +24,42 @@ struct AccountPicker: View {
 
     var body: some View {
         CardView {
-            ScrollView {
-                VStack {
-                    Spacer()
-                        .frame(height: 50)
-                    Group {
-                        Button(action: { setInstanceFieldDisplayed(true) }) {
-                            if addingInstance {
-                                HStack(spacing: 0) {
-                                    Text(scheme)
-                                        .padding(.trailing, 4)
-                                    TextField("example.social", text: $instanceName)
-                                        .focused($instanceFieldIsFocused)
-                                        .autocorrectionDisabled()
-                                        .textInputAutocapitalization(.never)
-                                        .textContentType(.URL)
-                                        .onSubmit {
-                                            showLogin()
-                                        }
-                                }
-                            } else {
-                                Label {
-                                    Text("Add an Instance")
-                                } icon: {
-                                    Image(systemName: "plus.circle")
-                                }
-                                .frame(maxWidth: .infinity)
+            VStack {
+                Group {
+                    Button(action: { setInstanceFieldDisplayed(true) }) {
+                        if addingInstance {
+                            HStack(spacing: 0) {
+                                Text(scheme)
+                                    .padding(.trailing, 4)
+                                TextField("example.social", text: $instanceName)
+                                    .focused($instanceFieldIsFocused)
+                                    .autocorrectionDisabled()
+                                    .textInputAutocapitalization(.never)
+                                    .textContentType(.URL)
+                                    .onSubmit {
+                                        showLogin()
+                                    }
                             }
-                        }
-
-                        ForEach(session.storedAccounts) { account in
-                            Button(action: { session.logIn(as: account) }) {
-                                Text(account.handle)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal)
+                        } else {
+                            Label {
+                                Text("Add an Instance")
+                            } icon: {
+                                Image(systemName: "plus.circle")
                             }
+                            .frame(maxWidth: .infinity)
                         }
                     }
-                    .padding(.horizontal, 24)
-                    .primaryButtonStyle()
+
+                    ForEach(session.storedAccounts) { account in
+                        Button(action: { session.logIn(as: account) }) {
+                            Text(account.handle)
+                                .frame(maxWidth: .infinity)
+                                .padding(.horizontal)
+                        }
+                    }
                 }
+                .padding(24)
+                .primaryButtonStyle()
             }
         }
         .padding(12)
@@ -73,7 +69,7 @@ struct AccountPicker: View {
                 setInstanceFieldDisplayed(false)
             }
         }
-        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/ }
+        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/  }
         .task {
             session.getStoredAccounts()
         }

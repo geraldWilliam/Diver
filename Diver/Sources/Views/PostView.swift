@@ -15,8 +15,6 @@ struct PostView: View {
     let post: PostInfo
     /// Whether the post should be displayed as a preview or full view.
     let isPreview: Bool
-    /// Whether the view is presenting an alert for the user to confirm they want to delete the post.
-    @State private var confirmingDelete: Bool = false
 
     /// A formatter to prepare the created date of a post for presentation.
     private let dateFormatter = {
