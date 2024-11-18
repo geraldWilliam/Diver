@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		74436B162CD87B17007B4B3B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74436B152CD87B17007B4B3B /* CardView.swift */; };
+		74EB58CF2CE85DEB006E23FC /* UnderlineButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EB58CE2CE85DEB006E23FC /* UnderlineButtonStyle.swift */; };
 		A75B70322CDD629000D9D339 /* AccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75B70312CDD629000D9D339 /* AccountsTests.swift */; };
 		A775DAC12CC99F7500492319 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DABF2CC99F7500492319 /* AccountInfo.swift */; };
 		A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A775DAC22CCA8BD200492319 /* AccountService.swift */; };
@@ -77,6 +78,7 @@
 /* Begin PBXFileReference section */
 		74436B142CD8799E007B4B3B /* SCRATCH.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SCRATCH.md; sourceTree = "<group>"; };
 		74436B152CD87B17007B4B3B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		74EB58CE2CE85DEB006E23FC /* UnderlineButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineButtonStyle.swift; sourceTree = "<group>"; };
 		A75B70312CDD629000D9D339 /* AccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsTests.swift; sourceTree = "<group>"; };
 		A775DABF2CC99F7500492319 /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		A775DAC22CCA8BD200492319 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 			children = (
 				A7BB5BD92C59372300B6DFA1 /* BlockQuote.swift */,
 				A7BB5C052C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift */,
+				74EB58CE2CE85DEB006E23FC /* UnderlineButtonStyle.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				A776EE0B2C459FFC00CA3139 /* PostView.swift in Sources */,
 				74436B162CD87B17007B4B3B /* CardView.swift in Sources */,
 				A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */,
+				74EB58CF2CE85DEB006E23FC /* UnderlineButtonStyle.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
 				A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */,
 				A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */,

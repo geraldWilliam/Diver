@@ -21,7 +21,7 @@ struct TimelineView: View {
                 /// NavigationLink‘s value is appended to the navigation stack‘s path. See the `navigationDestination` modifier for handling.
                 NavigationLink(value: Navigator.Destination.postDetail(post)) {
                     /// The “label“ for the navigation link. This is the view displayed in the list row.
-                    PostView(post: post, isPreview: true)
+                    PostView(post: post, isPreview: true, showsActions: true)
                 }
                 // Infinite scroll
                 .onAppear {

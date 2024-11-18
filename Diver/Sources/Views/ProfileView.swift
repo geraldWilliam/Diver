@@ -11,6 +11,7 @@ struct ProfileView: View {
     @Environment(Accounts.self) var accounts
     @Environment(Session.self) var session
     let account: AccountInfo
+    
     var body: some View {
         LazyVStack {
             HStack {

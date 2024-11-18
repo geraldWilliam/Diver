@@ -10,7 +10,7 @@ import SwiftUI
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding()
+            .padding(.vertical)
             .background(.thinMaterial)
             .foregroundStyle(configuration.isPressed ? .secondary : .primary)
             .fontWeight(.medium)

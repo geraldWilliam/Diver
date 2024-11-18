@@ -14,6 +14,8 @@ struct AccountInfo: Codable, Hashable, Identifiable {
     let displayName: String
     let profileImage: URL?
     let postCount: Int
+    let followersCount: Int
+    let followingCount: Int
     let url: URL
 
     var handle: String {
@@ -27,6 +29,8 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         self.displayName = account.displayName ?? ""
         self.profileImage = URL(string: account.avatar)
         self.postCount = account.postsCount
+        self.followersCount = account.followersCount
+        self.followingCount = account.followingCount
         self.url = URL(string: account.url)!
     }
 
@@ -36,6 +40,8 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         displayName: String,
         profileImage: URL,
         postCount: Int,
+        followersCount: Int,
+        followingCount: Int,
         url: URL
     ) {
         self.id = id
@@ -43,6 +49,8 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         self.displayName = displayName
         self.profileImage = profileImage
         self.postCount = postCount
+        self.followersCount = followersCount
+        self.followingCount = followingCount
         self.url = url
     }
 
@@ -53,6 +61,8 @@ struct AccountInfo: Codable, Hashable, Identifiable {
             displayName: "A freely defined display name...",
             profileImage: URL(string: "https://picsum.photos/200/300")!,
             postCount: 123,
+            followersCount: 456,
+            followingCount: 789,
             url: URL(string: "https://me@sudonym.net")!
         )
     }

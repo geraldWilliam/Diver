@@ -47,10 +47,7 @@ struct PostInfo: Identifiable, Hashable {
     let favorited: Bool
     /// This property must be computed because structs cannot have stored properties of their own type. Compiler doesn‘t allow it.
     var boost: PostInfo? {
-        if let repost {
-            return PostInfo(post: repost)
-        }
-        return nil
+        repost.map { PostInfo(post: $0) }
     }
     /// Storage of the external `Post` model backing the `boost` property.
     private let repost: Post?

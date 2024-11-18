@@ -23,46 +23,40 @@ struct AccountPicker: View {
     }
 
     var body: some View {
-        CardView {
-            VStack {
-                Group {
-                    Button(action: { setInstanceFieldDisplayed(true) }) {
-                        if addingInstance {
-                            HStack(spacing: 0) {
-                                Text(scheme)
-                                    .padding(.trailing, 4)
-                                TextField("example.social", text: $instanceName)
-                                    .focused($instanceFieldIsFocused)
-                                    .autocorrectionDisabled()
-                                    .textInputAutocapitalization(.never)
-                                    .textContentType(.URL)
-                                    .onSubmit {
-                                        showLogin()
-                                    }
-                            }
-                        } else {
-                            Label {
-                                Text("Add an Instance")
-                            } icon: {
-                                Image(systemName: "plus.circle")
-                            }
-                            .frame(maxWidth: .infinity)
+        VStack {
+            Group {
+                Button(action: { setInstanceFieldDisplayed(true) }) {
+                    if addingInstance {
+                        HStack(spacing: 0) {
+                            Text(scheme)
+                                .padding(.trailing, 4)
+                            TextField("example.social", text: $instanceName)
+                                .focused($instanceFieldIsFocused)
+                                .autocorrectionDisabled()
+                                .textInputAutocapitalization(.never)
+                                .textContentType(.URL)
+                                .onSubmit {
+                                    showLogin()
+                                }
                         }
-                    }
-
-                    ForEach(session.storedAccounts) { account in
-                        Button(action: { session.logIn(as: account) }) {
-                            Text(account.handle)
-                                .frame(maxWidth: .infinity)
-                                .padding(.horizontal)
+                    } else {
+                        Label {
+                            Text("Add an Account")
+                        } icon: {
+                            Image(systemName: "plus.circle")
                         }
                     }
                 }
-                .padding(24)
-                .primaryButtonStyle()
+
+                ForEach(session.storedAccounts) { account in
+                    Button(action: { session.logIn(as: account) }) {
+                        Text(account.handle)
+                    }
+                }
             }
+            .padding(24)
+            .underlineButtonStyle()
         }
-        .padding(12)
         .frame(maxHeight: 300)
         .onTapGesture {
             if addingInstance {
@@ -100,5 +94,9 @@ struct AccountPicker: View {
 }
 
 #Preview {
+    let session = Session(repo: MockSessionRepository())
+    let accounts = Accounts(repo: MockAccountRepository())
     AccountPicker()
+        .environment(session)
+        .environment(accounts)
 }

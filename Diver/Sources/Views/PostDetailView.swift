@@ -18,13 +18,13 @@ struct PostDetailView: View {
         List {
             Section {
                 /// Show the main post as a header section.
-                PostView(post: post, isPreview: false)
+                PostView(post: post, isPreview: false, showsActions: true)
             }
             Section {
                 /// Show a list of replies below the main post.
                 ForEach(posts.replies[post.id] ?? []) { reply in
                     NavigationLink(value: Navigator.Destination.postDetail(reply)) {
-                        PostView(post: reply, isPreview: true)
+                        PostView(post: reply, isPreview: true, showsActions: true)
                     }
                 }
             }
