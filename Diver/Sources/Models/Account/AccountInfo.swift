@@ -13,6 +13,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
     let username: String
     let displayName: String
     let profileImage: URL?
+    let headerImage: URL?
     let postCount: Int
     let followersCount: Int
     let followingCount: Int
@@ -28,6 +29,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         self.username = AccountInfo.username(for: account)
         self.displayName = account.displayName ?? ""
         self.profileImage = URL(string: account.avatar)
+        self.headerImage = URL(string: account.header)
         self.postCount = account.postsCount
         self.followersCount = account.followersCount
         self.followingCount = account.followingCount
@@ -39,6 +41,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         username: String,
         displayName: String,
         profileImage: URL,
+        headerImage: URL,
         postCount: Int,
         followersCount: Int,
         followingCount: Int,
@@ -48,6 +51,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
         self.username = username
         self.displayName = displayName
         self.profileImage = profileImage
+        self.headerImage = headerImage
         self.postCount = postCount
         self.followersCount = followersCount
         self.followingCount = followingCount
@@ -60,6 +64,7 @@ struct AccountInfo: Codable, Hashable, Identifiable {
             username: "testUsername",
             displayName: "A freely defined display name...",
             profileImage: URL(string: "https://picsum.photos/200/300")!,
+            headerImage: URL(string: "https://picsum.photos/600/300")!,
             postCount: 123,
             followersCount: 456,
             followingCount: 789,

@@ -13,56 +13,70 @@ struct ProfileView: View {
     let account: AccountInfo
     
     var body: some View {
-        LazyVStack {
-            HStack {
-                AsyncImage(url: account.profileImage) { image in
+        ScrollView {
+            LazyVStack {
+                AsyncImage(url: account.headerImage) { image in
                     image
                         .resizable()
-                        .clipShape(Circle())
                 } placeholder: {
                     Image(systemName: "exclamationmark.circle")
                 }
-                .aspectRatio(1, contentMode: .fit)
-                .frame(width: 60, height: 60)
-                Divider()
+                .frame(maxWidth: .infinity)
+                .frame(height: 200)
+                HStack {
+                    AsyncImage(url: account.profileImage) { image in
+                        image
+                            .resizable()
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    } placeholder: {
+                        Image(systemName: "exclamationmark.circle")
+                    }
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(width: 70, height: 70)
+                    .padding()
+                    
+                    Divider()
+                    
+                    VStack(alignment: .leading) {
+                        Text(account.displayName)
+                            .font(.headline)
+                        Text(account.handle)
+                            .foregroundStyle(Color.secondary)
+                    }
+                }
+
                 VStack(alignment: .leading) {
-                    Text(account.displayName)
-                        .font(.title)
-                    Text(account.handle)
-                        .foregroundStyle(Color.secondary)
+                    if accounts.following.contains(account) {
+                        Button(action: { /*authors.unfollow(account.id)*/ }) {
+                            Text("Unfollow")
+                        }
+                    } else if account != session.currentSession?.account {
+                        Button(action: { accounts.follow(account.id) }) {
+                            Text("Follow")
+                        }
+                    }
+                    // TODO: Follow requests.
+                }
+                .buttonStyle(BorderedButtonStyle())
+
+                VStack {
+                    Row(
+                        title: "\(account.followersCount) Followers",
+                        action: {}
+                    )
+                    Divider()
+                    Row(
+                        title: "Following \(account.followingCount)",
+                        action: {}
+                    )
+                    Divider()
+                    Row(
+                        title: "\(account.postCount) Posts",
+                        action: {}
+                    )
                 }
             }
-
-            VStack(alignment: .leading) {
-                if accounts.following.contains(account) {
-                    Button(action: { /*authors.unfollow(account.id)*/ }) {
-                        Text("Unfollow")
-                    }
-                } else if account != session.currentSession?.account {
-                    Button(action: { accounts.follow(account.id) }) {
-                        Text("Follow")
-                    }
-                }
-                // TODO: Follow requests.
-            }
-            .buttonStyle(BorderedButtonStyle())
-
-            VStack {
-                Row(
-                    title: "\(123) Followers",
-                    action: {}
-                )
-                Divider()
-                Row(
-                    title: "Following \(123)",
-                    action: {}
-                )
-                Divider()
-                Row(
-                    title: "\(account.postCount) Posts",
-                    action: {}
-                )
-            }
+            .padding(.horizontal)
         }
     }
 }
