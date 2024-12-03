@@ -11,7 +11,7 @@ struct ProfileView: View {
     @Environment(Accounts.self) var accounts
     @Environment(Session.self) var session
     let account: AccountInfo
-    
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -34,9 +34,9 @@ struct ProfileView: View {
                     .aspectRatio(1, contentMode: .fit)
                     .frame(width: 70, height: 70)
                     .padding()
-                    
+
                     Divider()
-                    
+
                     VStack(alignment: .leading) {
                         Text(account.displayName)
                             .font(.headline)
@@ -47,7 +47,7 @@ struct ProfileView: View {
 
                 VStack(alignment: .leading) {
                     if accounts.following.contains(account) {
-                        Button(action: { /*authors.unfollow(account.id)*/ }) {
+                        Button(action: { accounts.unfollow(account.id) }) {
                             Text("Unfollow")
                         }
                     } else if account != session.currentSession?.account {
@@ -60,20 +60,24 @@ struct ProfileView: View {
                 .buttonStyle(BorderedButtonStyle())
 
                 VStack {
-                    Row(
-                        title: "\(account.followersCount) Followers",
-                        action: {}
-                    )
-                    Divider()
-                    Row(
-                        title: "Following \(account.followingCount)",
-                        action: {}
-                    )
-                    Divider()
-                    Row(
-                        title: "\(account.postCount) Posts",
-                        action: {}
-                    )
+                    HStack {
+                        Button(action: {}) {
+                            Text("\(account.followersCount) Followers")
+                        }
+                        Spacer()
+                    }
+                    HStack {
+                        Button(action: {}) {
+                            Text("Following \(account.followingCount)")
+                        }
+                        Spacer()
+                    }
+                    HStack {
+                        Button(action: {}) {
+                            Text("\(account.postCount) Posts")
+                        }
+                        Spacer()
+                    }
                 }
             }
             .padding(.horizontal)
@@ -87,15 +91,4 @@ struct ProfileView: View {
     }
     .environment(Accounts(repo: MockAccountRepository()))
     .environment(Session(repo: MockSessionRepository()))
-}
-
-private struct Row: View {
-    let title: String
-    let action: () -> Void
-    var body: some View {
-        HStack {
-            Button(action: action) { Text(title) }
-            Spacer()
-        }
-    }
 }

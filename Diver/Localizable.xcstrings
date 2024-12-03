@@ -14,6 +14,12 @@
     "%@ is not a valid URL" : {
 
     },
+    "%lld Followers" : {
+
+    },
+    "%lld Posts" : {
+
+    },
     "%lld replies" : {
       "localizations" : {
         "en" : {
@@ -129,6 +135,9 @@
 
     },
     "Follow" : {
+
+    },
+    "Following %lld" : {
 
     },
     "Log Out?" : {

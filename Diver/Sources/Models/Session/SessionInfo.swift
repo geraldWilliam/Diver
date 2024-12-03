@@ -18,4 +18,10 @@ struct SessionInfo {
         components.host = host
         return components.url
     }
+    
+    // MARK: - Mock
+
+    static func mock() -> SessionInfo {
+        SessionInfo(token: "fake-token", account: .mock())
+    }
 }

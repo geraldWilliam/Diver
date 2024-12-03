@@ -48,4 +48,16 @@ import Foundation
             }
         }
     }
+    
+    func unfollow(_ id: AccountInfo.ID) {
+        Task {
+            do {
+                let account = try await repo.unfollow(id)
+                following.removeAll { $0.id == id }
+                searchResults.firstIndex(where: { $0.id == id }).map { searchResults[$0] = account }
+            } catch {
+                failure = Failure(error)
+            }
+        }
+    }
 }
