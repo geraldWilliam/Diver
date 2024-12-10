@@ -55,7 +55,6 @@ struct ProfileView: View {
                             Text("Follow")
                         }
                     }
-                    // TODO: Follow requests.
                 }
                 .buttonStyle(BorderedButtonStyle())
 

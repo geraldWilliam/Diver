@@ -11,6 +11,8 @@ import SwiftUI
 ///
 struct PostView: View {
     @Environment(Posts.self) var posts
+    @Environment(Zoom.self) var zoom
+
     /// The post.
     let post: PostInfo
     /// Whether the post should be displayed as a preview or full view.
@@ -39,9 +41,32 @@ struct PostView: View {
                     .blockQuote()
             }
             /// If there are images, show a preview of the first.
-            if let image = isPreview ? post.previews.first : post.media.first {
-                AsyncImage(url: image) { image in
-                    image.resizable()
+            if let url = isPreview ? post.previews.first : post.media.first {
+                AsyncImage(url: url) { image in
+                    if url != zoom.item?.url || zoom.item == nil {
+                        image
+                            .resizable()
+                        /// TODO: Potentially move some of these modifiers to the ZoomView package?
+                        /// The package could provide a `zoomable` modifier?
+                            .aspectRatio(contentMode: .fit)
+                            .matchedGeometryEffect(id: url, in: zoom.animation)
+                            .transition(
+                                .asymmetric(
+                                    insertion: .scale(scale: 1),
+                                    removal: .opacity
+                                )
+                            )
+                            .onTapGesture {
+                                withAnimation(.linear) {
+                                    zoom.item = Zoom.Item(url: url, image: image)
+                                }
+                            }
+                    } else {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .opacity(0)
+                    }
                 } placeholder: {
                     Rectangle()
                         .fill(Color.white.opacity(0.2))
@@ -51,7 +76,7 @@ struct PostView: View {
                         .foregroundStyle(Color.primary)
                 }
                 .aspectRatio(contentMode: .fit)
-                .animation(.easeIn, value: image)
+                .animation(.easeIn, value: url)
             }
             /// The main post of a PostDetailView hides the reply count. Posts in the TimelineView
             /// that are simply boosts also hide the reply count.

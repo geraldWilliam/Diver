@@ -1,5 +1,5 @@
 {
-  "originHash" : "d2a2654489e8392e9158c1debc89626b89078dad89ed8144abd716a18d15eeee",
+  "originHash" : "ba13ac7f6512b1ffddea7afcaedaa86af8696ed63d682398fba96b6ba9bc1fe7",
   "pins" : [
     {
       "identity" : "swift-atomics",
@@ -80,6 +80,15 @@
       "state" : {
         "revision" : "96f227ec9c84b63e15b44a3e45d68b89657982aa",
         "version" : "6.1.1"
+      }
+    },
+    {
+      "identity" : "zoomview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/geraldWilliam/ZoomView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1d4d67592900f44a35bbc8a002112f17a007ce90"
       }
     }
   ],

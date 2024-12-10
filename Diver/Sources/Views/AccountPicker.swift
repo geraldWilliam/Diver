@@ -10,7 +10,6 @@ import SwiftUI
 struct AccountPicker: View {
     @Environment(Session.self) var session
     @Environment(Accounts.self) var accounts
-    // TODO: Move instance list to separate view.
     @State private var instanceName: String = ""
     @State private var addingInstance: Bool = false
     @State private var showingValidationError: Bool = false

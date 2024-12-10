@@ -69,7 +69,6 @@ final class PostsRepository: PostsRepositoryProtocol {
             let upload = UploadMediaAttachmentParams(file: data)
             attachments.append(try await client.uploadMedia(upload, mimeType: "image/jpeg"))
         }
-        // TODO: Enable all of these parameters.
         let params = PostParams(
             post: text,
             mediaIds: attachments.map(\.id),

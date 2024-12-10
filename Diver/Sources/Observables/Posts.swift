@@ -103,7 +103,6 @@ import Foundation
         }
     }
 
-    // TODO: Support delete & redraft.
     func delete(_ id: PostInfo.ID) {
         Task {
             do {

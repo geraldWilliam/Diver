@@ -33,10 +33,8 @@ import TootSDK
     var accounts: Accounts
     /// A source of truth for navigation state.
     var navigator: Navigator
-
-//    private var client: TootClient
-
-//    private var service = ClientService()
+    /// An animation namespace for showing images in a zoomable overlay.
+    @Namespace var zoomAnimation
 
     // MARK: - Initialization
 
@@ -86,6 +84,7 @@ import TootSDK
                 .environment(posts)
                 .environment(accounts)
                 .environment(navigator)
+                .environment(Zoom(animation: zoomAnimation))
                 .environment(appDelegate.notifications)
                 // Register a deep link handler.
                 .onOpenURL { url in
@@ -122,6 +121,6 @@ class ClientService {
             return
         }
         client = TootClient(instanceURL: url, accessToken: session.token)
-        client.debugOn()
+//        client.debugOn()
     }
 }

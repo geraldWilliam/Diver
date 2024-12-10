@@ -11,7 +11,6 @@ import TootSDK
 protocol AccountRepositoryProtocol {
     func search(text: String) async throws -> [AccountInfo]
     func getFollowing() async throws -> [AccountInfo]
-    // TODO: Use AccountInfo instead of Account.ID here
     func follow(_ id: Account.ID) async throws -> AccountInfo
     func unfollow(_ id: Account.ID) async throws -> AccountInfo
 }
