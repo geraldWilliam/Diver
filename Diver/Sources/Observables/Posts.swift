@@ -24,7 +24,7 @@ import Foundation
     /// The posts to be displayed. Note, we use a domain-specific model here instead of the external `Post` model provided by TootSDK.
     var timeline: [PostInfo] = []
     /// A dictionary of replies, keyed by their parent posts.
-    var replies: [PostInfo.ID: [PostInfo]] = [:]
+    var threads: [PostInfo.ID: [PostInfo]] = [:]
     /// A boolean to indicate whether an error should be displayed.
     var showingError: Bool = false
     /// An error, wrapped in a Failure. See `Failure.swift` for more details.
@@ -63,10 +63,10 @@ import Foundation
         }
     }
 
-    func getReplies(for post: PostInfo) {
+    func getContext(for post: PostInfo) {
         Task {
             do {
-                replies[post.id] = try await repo.getReplies(for: post)
+                threads[post.id] = try await repo.getContext(for: post)
             } catch {
                 failure = Failure(error)
             }
@@ -92,7 +92,7 @@ import Foundation
                 /// Send the reply.
                 let reply = try await repo.send(text, media: media, replyingTo: originalPost)
                 /// Show the reply in post detail.
-                replies[originalPost.id]?.append(reply)
+                threads[originalPost.id]?.append(reply)
 
                 /// Update the original post in the timeline.
                 let refreshedOriginalPost = try await repo.getPost(originalPost.id)

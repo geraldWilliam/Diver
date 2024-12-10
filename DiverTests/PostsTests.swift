@@ -34,16 +34,16 @@ final class PostsTests: DiverTests {
         XCTAssertEqual(24, subject.timeline.count)
     }
 
-    @MainActor func testItGetsRepliesForPost() async throws {
+    @MainActor func testItGetsContextForPost() async throws {
         let repo = MockPostsRepository()
         let subject = Posts(repo: repo)
         let post = PostInfo.mock()
-        try await expect("It should get replies for a post") {
-            subject.getReplies(for: post)
+        try await expect("It should get context for a post") {
+            subject.getContext(for: post)
         } toChange: {
-            _ = subject.replies
+            _ = subject.threads
         }
-        XCTAssertEqual(12, subject.replies[post.id]?.count)
+        XCTAssertEqual(12, subject.threads[post.id]?.count)
     }
 
     @MainActor func testGetTimelineRaisesErrorOnFailure() async throws {
@@ -68,11 +68,11 @@ final class PostsTests: DiverTests {
         XCTAssertNotNil(subject.failure)
     }
 
-    @MainActor func testGetRepliesForPostRaisesErrorOnFailure() async throws {
+    @MainActor func testGetContextForPostRaisesErrorOnFailure() async throws {
         let repo = FailingMockPostsRepository()
         let subject = Posts(repo: repo)
-        try await expect("It should fail to get replies for a post") {
-            subject.getReplies(for: .mock())
+        try await expect("It should fail to get context for a post") {
+            subject.getContext(for: .mock())
         } toChange: {
             _ = subject.failure
         }
@@ -82,7 +82,7 @@ final class PostsTests: DiverTests {
     @MainActor func testDeletePostRaisesErrorOnFailure() async throws {
         let repo = FailingMockPostsRepository()
         let subject = Posts(repo: repo)
-        try await expect("It should fail to get replies for a post") {
+        try await expect("It should fail to get context for a post") {
             subject.delete(PostInfo.mock().id)
         } toChange: {
             _ = subject.failure
@@ -104,7 +104,7 @@ private struct FailingMockPostsRepository: PostsRepositoryProtocol {
         throw Failure(#function)
     }
 
-    func getReplies(for post: Diver.PostInfo) async throws -> [Diver.PostInfo] {
+    func getContext(for post: Diver.PostInfo) async throws -> [Diver.PostInfo] {
         throw Failure(#function)
     }
 

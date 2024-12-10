@@ -19,8 +19,8 @@ protocol PostsRepositoryProtocol {
     func getEarlierPosts() async throws -> [PostInfo]
     /// Get a post by id, use for refreshing.
     func getPost(_ id: PostInfo.ID) async throws -> PostInfo
-    /// Get the replies to a post.
-    func getReplies(for post: PostInfo) async throws -> [PostInfo]
+    /// Get an array of posts including the given post plus its ancestors and descendants.
+    func getContext(for post: PostInfo) async throws -> [PostInfo]
     /// Send a post.
     func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo
     /// Delete a post.
@@ -59,8 +59,11 @@ final class PostsRepository: PostsRepositoryProtocol {
         return PostInfo(post: post)
     }
 
-    func getReplies(for post: PostInfo) async throws -> [PostInfo] {
-        return try await client.getContext(id: post.id).descendants.map { PostInfo(post: $0) }
+    func getContext(for post: PostInfo) async throws -> [PostInfo] {
+        let context = try await client.getContext(id: post.id)
+        let ancestors = context.ancestors
+        let descendants = context.descendants
+        return ancestors.map(PostInfo.init) + [post] + descendants.map(PostInfo.init)
     }
 
     func send(_ text: String, media: [Data], replyingTo originalPost: PostInfo?) async throws -> PostInfo {
@@ -132,7 +135,7 @@ struct MockPostsRepository: PostsRepositoryProtocol {
         }
     }
 
-    func getReplies(for post: PostInfo) async throws -> [PostInfo] {
+    func getContext(for post: PostInfo) async throws -> [PostInfo] {
         return (0..<12).map { _ in
             .mock()
         }

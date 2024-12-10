@@ -15,17 +15,25 @@ struct PostDetailView: View {
     let post: PostInfo
 
     var body: some View {
-        List {
-            Section {
-                /// Show the main post as a header section.
-                PostView(post: post, isPreview: false, showsActions: true)
-            }
-            Section {
-                /// Show a list of replies below the main post.
-                ForEach(posts.replies[post.id] ?? []) { reply in
-                    NavigationLink(value: Navigator.Destination.postDetail(reply)) {
-                        PostView(post: reply, isPreview: true, showsActions: true)
+        ScrollViewReader { proxy in
+            List {
+                /// Show the full thread, including the main post.
+                ForEach(posts.threads[post.id] ?? []) { post in
+                    NavigationLink(value: Navigator.Destination.postDetail(post)) {
+                        PostView(post: post, isPreview: post != self.post, showsActions: true)
                     }
+                    .id(post) // Allow scrolling to the post.
+                }
+            }
+            /// If the thread is already available, scroll to the post.
+            .task {
+                proxy.scrollTo(post)
+            }
+            /// If the thread containing the post has been changed, scroll to the post itself. This
+            /// allows focusing the post on first load.
+            .onChange(of: posts.threads) { oldValue, newValue in
+                if let thread = newValue[post.id], thread.contains(post) {
+                    proxy.scrollTo(post)
                 }
             }
         }
@@ -33,7 +41,7 @@ struct PostDetailView: View {
         .toolbarTitleDisplayMode(.inline)
         .listStyle(.plain)
         .task {
-            posts.getReplies(for: post)
+            posts.getContext(for: post)
         }
     }
 }
