@@ -11,8 +11,8 @@ import TootSDK
 protocol AccountRepositoryProtocol {
     func search(text: String) async throws -> [AccountInfo]
     func getFollowing() async throws -> [AccountInfo]
-    func follow(_ id: Account.ID) async throws -> AccountInfo
-    func unfollow(_ id: Account.ID) async throws -> AccountInfo
+    func follow(_ id: AccountInfo.ID) async throws -> AccountInfo
+    func unfollow(_ id: AccountInfo.ID) async throws -> AccountInfo
 }
 
 final class AccountRepository: AccountRepositoryProtocol {
@@ -43,13 +43,13 @@ final class AccountRepository: AccountRepositoryProtocol {
         }
     }
 
-    func follow(_ id: TootSDK.Account.ID) async throws -> AccountInfo {
+    func follow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         _ = try await client.followAccount(by: id)
         let account = try await client.getAccount(by: id)
         return AccountInfo(account: account)
     }
     
-    func unfollow(_ id: Account.ID) async throws -> AccountInfo {
+    func unfollow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         _ = try await client.unfollowAccount(by: id)
         let account = try await client.getAccount(by: id)
         return AccountInfo(account: account)
@@ -66,11 +66,11 @@ struct MockAccountRepository: AccountRepositoryProtocol {
         return [.mock()]
     }
 
-    func follow(_ id: TootSDK.Account.ID) async throws -> AccountInfo {
+    func follow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         return .mock()
     }
     
-    func unfollow(_ id: Account.ID) async throws -> AccountInfo {
+    func unfollow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         return .mock()
     }
 }
