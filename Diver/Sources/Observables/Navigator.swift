@@ -10,15 +10,15 @@ import SwiftUI
 /// This is an Observable class that centralizes navigation logic.
 ///
 /// - Defines valid navigation destinations.
-/// - Provides NavigationPaths to which NavigationStacks should bind. See TimelineNav.swift and ProfileNav.swift for usage.
+/// - Provides NavigationPaths to which NavigationStacks should bind. See FeedNav.swift and ProfileNav.swift for usage.
 /// - Provides tracking of tab selection to which TabView should bind. See ContentView.swift for usage.
-/// - Exposes a method to construct views for destinations. See TimelineNav.swift and ProfileNav.swift for usage.
+/// - Exposes a method to construct views for destinations. See FeedNav.swift and ProfileNav.swift for usage.
 ///
 @MainActor @Observable final class Navigator {
 
     /// Tabs of the application. ContentView is the root of the UI and if the person using the app is authenticated it shows a tabbed interface. List each tab here.
     enum Tab {
-        case timeline
+        case feed
         case profile
         case explore
     }
@@ -44,7 +44,7 @@ import SwiftUI
         var tab: Tab {
             switch self {
             case .postDetail:
-                .timeline
+                .feed
             case .profile:
                 .explore
             }
@@ -66,9 +66,9 @@ import SwiftUI
     /// Required for executing deep link navigation.
     let posts: Posts
     /// Instantiate your TabView with this selection value.
-    var tabSelection: Tab = .timeline
-    /// Instantiate the NavigationStack in the Timeline tab with this path.
-    var timelinePath = NavigationPath()
+    var tabSelection: Tab = .feed
+    /// Instantiate the NavigationStack in the Feed tab with this path.
+    var feedPath = NavigationPath()
     /// Instantiate the NavigationStack in the Profile tab with this path.
     var profilePath = NavigationPath()
     /// Instantiate the NavigationStack in the Explore tab with this path.
@@ -92,8 +92,8 @@ import SwiftUI
         tabSelection = destination.tab
         /// Navigate to the destination.
         switch destination.tab {
-        case .timeline:
-            timelinePath.append(destination)
+        case .feed:
+            feedPath.append(destination)
         case .profile:
             profilePath.append(destination)
         case .explore:
@@ -147,7 +147,7 @@ import SwiftUI
         switch value.lastPathComponent {
         /// The example deep link just takes us to the first post.
         case "first_post":
-            if let first = posts.timeline.first {
+            if let first = posts.feed.first {
                 go(to: .postDetail(first))
             }
         default:

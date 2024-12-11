@@ -90,7 +90,7 @@ Importantly, observables in a SwiftUI context should have no knowledge of the vi
 
 ### Previews
 
-For simple views, previews are trivial to configure. For complex views, provide an observable for the source of truth. This observable should be set up to supply mock data. In TimelineView, for example, we do this by initializing a `Posts` object with a `MockPostsRepository`. For some views, the source of truth is supplied as an initialization argument. For others, the source of truth is injected into the environment. In this example application, we use the environment for both the TimelineView and the PostDetailView.
+For simple views, previews are trivial to configure. For complex views, provide an observable for the source of truth. This observable should be set up to supply mock data. In FeedView, for example, we do this by initializing a `Posts` object with a `MockPostsRepository`. For some views, the source of truth is supplied as an initialization argument. For others, the source of truth is injected into the environment. In this example application, we use the environment for both the FeedView and the PostDetailView.
 
 For many developers, previews are unstable. They often fail to load for complex views. When they do fail, the error messaging is not always helpful. If you encounter a failure, make sure that you have supplied all required dependencies for the view. If that doesn‘t fix it, try splitting your complex view into smaller components. 
 
@@ -124,7 +124,7 @@ This example project centralizes navigation in a Navigator type. The application
 
 #### Push / Pop
 
-Navigator defines a Destination subtype, an enumeration of all views in the application that are reachable by a standard push transition. Navigator‘s `go(to destination:)` method appends a `Destination` to the app‘s navigation path and the `content(for destination:)` method provides the target view for the transition. See `Timeline.swift` or `PostDetailView.swift` for usage. 
+Navigator defines a Destination subtype, an enumeration of all views in the application that are reachable by a standard push transition. Navigator‘s `go(to destination:)` method appends a `Destination` to the app‘s navigation path and the `content(for destination:)` method provides the target view for the transition. See `FeedView.swift` or `PostDetailView.swift` for usage. 
 
 #### Modals
 

@@ -21,7 +21,7 @@ struct ContentView: View {
             @Bindable var zoom = zoom
             /// The main interface of the app for logged-in users.
             TabView(selection: $navigator.tabSelection) {
-                TimelineNav()
+                FeedNav()
                 ProfileNav()
                 ExploreNav()
             }

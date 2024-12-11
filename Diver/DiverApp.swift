@@ -14,9 +14,10 @@ import SwiftUI
 ///
 /// Any user interface setup should happen in `ContentView`.
 ///
-/// A note on Environment: Use the environment to inject dependencies that are needed more than one step into the parent-child view hierarchy. The Timeline
-/// presented in ContentView‘s body needs a `Posts`. Rather than passing it to ContentView and then forwarding it to the Timeline, we put it in the
-/// environment.
+/// A note on Environment: Use the environment to inject dependencies that are needed more than one
+/// step into the parent-child view hierarchy. The FeedView presented in ContentView‘s body needs a
+/// `Posts`. Rather than passing it to ContentView and then forwarding it to the FeedView, we put it
+/// in the environment.
 ///
 /// Orchestrating Observables:
 ///
@@ -27,7 +28,7 @@ import TootSDK
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     /// A source of truth for the session, including authentication status.
     var session: Session
-    /// A source of truth for timeline, post detail, and compose.
+    /// A source of truth for the feed, post detail, and compose.
     var posts: Posts
     /// A source of truth for accounts to explore, follow, etc.
     var accounts: Accounts

@@ -1,5 +1,5 @@
 //
-//  Timeline.swift
+//  FeedView.swift
 //  Diver
 //
 //  Created by Gerald Burke on 7/15/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TimelineView: View {
+struct FeedView: View {
     @Environment(Session.self) var session
     @Environment(Posts.self) var posts
     @Environment(Navigator.self) var navigator
@@ -17,7 +17,7 @@ struct TimelineView: View {
         @Bindable var session = session
         @Bindable var posts = posts
         List {
-            ForEach(posts.timeline) { post in
+            ForEach(posts.feed) { post in
                 /// NavigationLink‘s value is appended to the navigation stack‘s path. See the `navigationDestination` modifier for handling.
                 NavigationLink(value: Navigator.Destination.postDetail(post)) {
                     /// The “label“ for the navigation link. This is the view displayed in the list row.
@@ -25,13 +25,13 @@ struct TimelineView: View {
                 }
                 // Infinite scroll
                 .onAppear {
-                    if post == posts.timeline.last {
+                    if post == posts.feed.last {
                         posts.getEarlierPosts()
                     }
                 }
             }
         }
-        .animation(.easeInOut, value: posts.timeline)
+        .animation(.easeInOut, value: posts.feed)
         .navigationTitle("Diver")
         .navigationBarTitleDisplayMode(.inline)
         .listStyle(.plain)
@@ -83,7 +83,7 @@ struct TimelineView: View {
 
     posts.getLatestPosts()
 
-    return TimelineView()
+    return FeedView()
         .environment(session)
         .environment(posts)
         .environment(navigator)

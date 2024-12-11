@@ -22,7 +22,7 @@ import Foundation
 /// This type is marked final simply to indicate that it is not intended for subclassing.
 @MainActor @Observable final class Posts {
     /// The posts to be displayed. Note, we use a domain-specific model here instead of the external `Post` model provided by TootSDK.
-    var timeline: [PostInfo] = []
+    var feed: [PostInfo] = []
     /// A dictionary of replies, keyed by their parent posts.
     var threads: [PostInfo.ID: [PostInfo]] = [:]
     /// A boolean to indicate whether an error should be displayed.
@@ -45,7 +45,7 @@ import Foundation
     func getLatestPosts() {
         Task {
             do {
-                timeline = try await repo.getLatestPosts()
+                feed = try await repo.getLatestPosts()
             } catch {
                 failure = Failure(error)
             }
@@ -55,8 +55,8 @@ import Foundation
     func getEarlierPosts() {
         Task {
             do {
-                let more = try await repo.getEarlierPosts().filter { !timeline.contains($0) }
-                timeline.append(contentsOf: more)
+                let more = try await repo.getEarlierPosts().filter { !feed.contains($0) }
+                feed.append(contentsOf: more)
             } catch {
                 failure = Failure(error)
             }
@@ -78,8 +78,8 @@ import Foundation
             do {
                 /// Send the post.
                 let post = try await repo.send(text, media: media, replyingTo: nil)
-                /// Show the post at the top of the timeline.
-                timeline.insert(post, at: 0)
+                /// Show the post at the top of the feed.
+                feed.insert(post, at: 0)
             } catch {
                 failure = Failure(error)
             }
@@ -94,9 +94,9 @@ import Foundation
                 /// Show the reply in post detail.
                 threads[originalPost.id]?.append(reply)
 
-                /// Update the original post in the timeline.
+                /// Update the original post in the feed.
                 let refreshedOriginalPost = try await repo.getPost(originalPost.id)
-                timeline.firstIndex(of: originalPost).map { timeline[$0] = refreshedOriginalPost }
+                feed.firstIndex(of: originalPost).map { feed[$0] = refreshedOriginalPost }
             } catch {
                 failure = Failure(error)
             }
@@ -107,7 +107,7 @@ import Foundation
         Task {
             do {
                 _ = try await repo.delete(id)
-                timeline.removeAll { $0.id == id }
+                feed.removeAll { $0.id == id }
             } catch {
                 failure = Failure(error)
             }
@@ -119,9 +119,9 @@ import Foundation
             do {
                 /// Boost the post. This returns the boost, not the original post.
                 let post = try await repo.boost(post)
-                /// Replace the old copy in the timeline with the newly boosted post.
+                /// Replace the old copy in the feed with the newly boosted post.
                 post.boost.map { boost in
-                    timeline.firstIndex(where: { $0.id == boost.id }).map { index in timeline[index] = boost }
+                    feed.firstIndex(where: { $0.id == boost.id }).map { index in feed[index] = boost }
                 }
             } catch {
                 failure = Failure(error)
@@ -134,8 +134,8 @@ import Foundation
             do {
                 /// Un-boost the post.
                 let post = try await repo.removeBoost(post)
-                /// Replace the old copy in the timeline with the newly un-boosted post.
-                timeline.firstIndex(where: { $0.id == post.id }).map { timeline[$0] = post }
+                /// Replace the old copy in the feed with the newly un-boosted post.
+                feed.firstIndex(where: { $0.id == post.id }).map { feed[$0] = post }
             } catch {
                 failure = Failure(error)
             }
@@ -147,8 +147,8 @@ import Foundation
             do {
                 /// Favorite the post.
                 let post = try await repo.favorite(post)
-                /// Replace the old copy in the timeline with the newly favorited post.
-                timeline.firstIndex(where: { $0.id == post.id }).map { timeline[$0] = post }
+                /// Replace the old copy in the feed with the newly favorited post.
+                feed.firstIndex(where: { $0.id == post.id }).map { feed[$0] = post }
             } catch {
                 failure = Failure(error)
             }
@@ -160,8 +160,8 @@ import Foundation
             do {
                 /// Un-favorite the post.
                 let post = try await repo.removeFavorite(post)
-                /// Replace the old copy in the timeline with the newly un-favorited post.
-                timeline.firstIndex(where: { $0.id == post.id }).map { timeline[$0] = post }
+                /// Replace the old copy in the feed with the newly un-favorited post.
+                feed.firstIndex(where: { $0.id == post.id }).map { feed[$0] = post }
             } catch {
                 failure = Failure(error)
             }

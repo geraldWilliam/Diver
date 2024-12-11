@@ -9,7 +9,7 @@ import SwiftUI
 
 /// The detail screen for a post. It shows the post and its replies.
 struct PostDetailView: View {
-    /// This view uses the same observable as the TimelineView.
+    /// This view uses the same observable as the FeedView.
     @Environment(Posts.self) var posts: Posts
     /// The main post being displayed.
     let post: PostInfo

@@ -10,28 +10,28 @@ import XCTest
 @testable import Diver
 
 final class PostsTests: DiverTests {
-    @MainActor func testItGetsTimeline() async throws {
+    @MainActor func testItGetsFeed() async throws {
         let repo = MockPostsRepository()
         let subject = Posts(repo: repo)
-        try await expect("It should get the timeline") {
+        try await expect("It should get the feed") {
             subject.getLatestPosts()
         } toChange: {
-            _ = subject.timeline
+            _ = subject.feed
         }
-        XCTAssertEqual(12, subject.timeline.count)
+        XCTAssertEqual(12, subject.feed.count)
     }
 
     @MainActor func testItGetsEarlierPosts() async throws {
         let repo = MockPostsRepository()
         let subject = Posts(repo: repo)
-        // Manually set the timeline to the latest posts.
-        subject.timeline = try await repo.getLatestPosts()
+        // Manually set the feed to the latest posts.
+        subject.feed = try await repo.getLatestPosts()
         try await expect("It should get earlier posts") {
             subject.getEarlierPosts()
         } toChange: {
-            _ = subject.timeline
+            _ = subject.feed
         }
-        XCTAssertEqual(24, subject.timeline.count)
+        XCTAssertEqual(24, subject.feed.count)
     }
 
     @MainActor func testItGetsContextForPost() async throws {
@@ -46,10 +46,10 @@ final class PostsTests: DiverTests {
         XCTAssertEqual(12, subject.threads[post.id]?.count)
     }
 
-    @MainActor func testGetTimelineRaisesErrorOnFailure() async throws {
+    @MainActor func testGetFeedRaisesErrorOnFailure() async throws {
         let repo = FailingMockPostsRepository()
         let subject = Posts(repo: repo)
-        try await expect("It should fail to get the timeline") {
+        try await expect("It should fail to get the feed") {
             subject.getLatestPosts()
         } toChange: {
             _ = subject.failure

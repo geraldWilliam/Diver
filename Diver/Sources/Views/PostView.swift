@@ -78,7 +78,7 @@ struct PostView: View {
                 .aspectRatio(contentMode: .fit)
                 .animation(.easeIn, value: url)
             }
-            /// The main post of a PostDetailView hides the reply count. Posts in the TimelineView
+            /// The main post of a PostDetailView hides the reply count. Posts in the FeedView
             /// that are simply boosts also hide the reply count.
             HStack {
                 if isPreview, post.boost == nil {

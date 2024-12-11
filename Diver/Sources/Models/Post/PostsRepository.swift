@@ -13,9 +13,9 @@ import TootSDK
 /// The repository provides a protocol that declares its interface. Observables that depend on the repository should use the protocol so the dependency can be
 /// satisfied by a mock repository in tests and previews.
 protocol PostsRepositoryProtocol {
-    /// Get the latest posts in the timeline.
+    /// Get the latest posts in the feed.
     func getLatestPosts() async throws -> [PostInfo]
-    /// Get a page of earlier posts in the timeline.
+    /// Get a page of earlier posts in the feed.
     func getEarlierPosts() async throws -> [PostInfo]
     /// Get a post by id, use for refreshing.
     func getPost(_ id: PostInfo.ID) async throws -> PostInfo

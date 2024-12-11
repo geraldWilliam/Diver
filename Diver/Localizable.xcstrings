@@ -134,6 +134,9 @@
     "Explore" : {
 
     },
+    "Feed" : {
+
+    },
     "Follow" : {
 
     },
@@ -186,9 +189,6 @@
           }
         }
       }
-    },
-    "Timeline" : {
-
     },
     "Unfollow" : {
 
