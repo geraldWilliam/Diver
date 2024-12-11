@@ -13,29 +13,33 @@ import SwiftUI
     var body: some View {
         @Bindable var session = session
         ZStack {
-            ForEach(0..<4) { index in
-                BubbleView(
-                    isHidden: $session.isLoggedIn,
-                    startAfter: TimeInterval(index)
-                )
-            }
+            BubbleView(isHidden: $session.isLoggedIn)
             ScrollView {
-                VStack(spacing: 20) {
-                    Spacer()
-                        .frame(height: 24)
-                    Group {
-                        Text("Welcome to Diver")
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
+                CardView {
+                    VStack(spacing: 20) {
+                        VStack(spacing: 8) {
+                            Text("WELCOME TO")
+                                .font(.subheadline)
+                                .fontWeight(.light)
 
-                        Text("A Fediverse Client")
-                            .font(.headline)
+                            Text("Diver")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .fontDesign(.rounded)
+
+                            Text("A FEDIVERSE CLIENT")
+                                .font(.headline)
+                                .fontWeight(.light)
+                        }
+                        .foregroundColor(Color.primary)
+
+                        AccountPicker()
                     }
-                    .foregroundColor(Color.primary)
-                    .fontDesign(.rounded)
-                    AccountPicker()
+                    .padding(.vertical, 20)
                 }
+                .padding()
             }
+            .frame(alignment: .center)
         }
         .frame(maxWidth: .infinity)
         .frame(maxHeight: .infinity)

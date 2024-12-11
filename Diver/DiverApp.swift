@@ -107,6 +107,9 @@ import TootSDK
                     // User is authenticated, get content.
                     await posts.getLatestPosts()
                 }
+                if await session.isLoggedIn == false {
+                    await posts.clearFeed()
+                }
                 // Keep observing changes to `session.isLoggedIn`.
                 await observeSession()
             }

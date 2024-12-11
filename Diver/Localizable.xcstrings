@@ -60,7 +60,7 @@
         }
       }
     },
-    "A Fediverse Client" : {
+    "A FEDIVERSE CLIENT" : {
 
     },
     "Add an Account" : {
@@ -193,7 +193,11 @@
     "Unfollow" : {
 
     },
+    "WELCOME TO" : {
+
+    },
     "Welcome to Diver" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

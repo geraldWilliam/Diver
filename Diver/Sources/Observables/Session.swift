@@ -7,6 +7,7 @@
 
 import AuthenticationServices
 import Foundation
+import SwiftUI
 
 @MainActor @Observable final class Session {
     /// A type to represent the state of the logout process. Logout requires confirmation. The view that initiates logout should present an alert if Session‘s
@@ -90,7 +91,9 @@ import Foundation
     func logIn(as account: AccountInfo) {
         if let token = TokenService().token(for: account) {
             currentSession = SessionInfo(token: token, account: account)
-            isLoggedIn = true
+            withAnimation {
+                isLoggedIn = true
+            }
             observeLogout()
         }
     }
@@ -131,7 +134,9 @@ import Foundation
         case .confirmed:
             /// If logout is confirmed, clear the token and update the published `isLoggedIn` property.
 //            currentSession.map { repo.logOut(session: $0) }
-            isLoggedIn = false
+            withAnimation {
+                isLoggedIn = false
+            }
         }
     }
 

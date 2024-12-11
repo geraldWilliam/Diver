@@ -167,6 +167,12 @@ import Foundation
             }
         }
     }
+    
+    func clearFeed() {
+        Task {
+            feed = []
+        }
+    }
 
     // MARK: - Private
 
