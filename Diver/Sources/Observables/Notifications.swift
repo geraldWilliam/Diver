@@ -9,7 +9,8 @@ import UIKit
 
 @Observable class Notifications: NSObject, UNUserNotificationCenterDelegate {
 
-    /// Type-safe declarations of category identifiers for notifications. Remote notifications may use these one of these values for the "category" key.
+    /// Type-safe declarations of category identifiers for notifications. Remote notifications may
+    /// use these one of these values for the "category" key.
     struct NotificationCategory {
         static let deepLink = "DEEP_LINK"
     }

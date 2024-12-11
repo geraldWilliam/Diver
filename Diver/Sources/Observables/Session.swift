@@ -129,11 +129,9 @@ import SwiftUI
     private func handleLogoutChange() {
         switch logout {
         case .undetermined, .requested:
-            /// If logout has not been requested or confirmed, continue observation.
+            /// If logout has not been confirmed, continue observation.
             observeLogout()
         case .confirmed:
-            /// If logout is confirmed, clear the token and update the published `isLoggedIn` property.
-//            currentSession.map { repo.logOut(session: $0) }
             withAnimation {
                 isLoggedIn = false
             }
