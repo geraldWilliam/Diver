@@ -37,13 +37,20 @@ import SwiftUI
                     }
                     .padding(.vertical, 20)
                 }
-                .padding()
+                .offset(y: 100)
             }
-            .frame(alignment: .center)
+            .padding()
         }
-        .frame(maxWidth: .infinity)
-        .frame(maxHeight: .infinity)
-        .background(Color.loginBackground)
+        .background(
+            LinearGradient(
+                colors: [
+                    .loginBackgroundLight,
+                    .loginBackgroundDark
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
         .alert(isPresented: $session.showingError, error: session.failure) {
             Button(action: { session.failure = nil }) {
                 Text("OK")
