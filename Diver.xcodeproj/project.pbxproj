@@ -36,7 +36,6 @@
 		A790BCF92CCBE821004E4761 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCF82CCBE821004E4761 /* ExploreView.swift */; };
 		A790BCFB2CCBE846004E4761 /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCFA2CCBE846004E4761 /* Accounts.swift */; };
 		A790BCFE2CCC3EFF004E4761 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */; };
-		A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */; };
 		A7BB5BC22C4ABD7B00B6DFA1 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */; };
 		A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */; };
 		A7BB5BCD2C50361B00B6DFA1 /* PostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BB5BCC2C50361B00B6DFA1 /* PostsTests.swift */; };
@@ -108,7 +107,6 @@
 		A790BCFA2CCBE846004E4761 /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
 		A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A7BB5BBA2C49AFD700B6DFA1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		A7BB5BC12C4ABD7B00B6DFA1 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		A7BB5BC52C4AEB3F00B6DFA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7BB5BC92C4B04E900B6DFA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 				A7BB5BD62C592AC800B6DFA1 /* Localizable.xcstrings */,
 				A776EDD12C457BB900CA3139 /* Preview Content */,
 				A790BCFC2CCC3ED1004E4761 /* Sources */,
-				A7BB5BBF2C4AB6DF00B6DFA1 /* Values.swift */,
 			);
 			path = Diver;
 			sourceTree = "<group>";
@@ -241,8 +238,8 @@
 		A776EE022C459D3800CA3139 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A775DAC02CC99F7500492319 /* Account */,
 				A776EE052C459DDA00CA3139 /* Failure.swift */,
+				A775DAC02CC99F7500492319 /* Account */,
 				A776EE072C459DE900CA3139 /* Post */,
 				A7BB5BF22C5AD93100B6DFA1 /* Session */,
 			);
@@ -265,7 +262,6 @@
 		A776EE042C459D4B00CA3139 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				743F24FC2D0A916E00B334D6 /* Navs */,
 				A7E3AAC22CDBE2BB0064B62A /* AccountPicker.swift */,
 				A7BB5BDB2C59460400B6DFA1 /* AuthorHeader.swift */,
 				A776EE0C2C45AA2E00CA3139 /* AvatarView.swift */,
@@ -273,13 +269,14 @@
 				74436B152CD87B17007B4B3B /* CardView.swift */,
 				A776EDCC2C457BB800CA3139 /* ContentView.swift */,
 				A790BCF82CCBE821004E4761 /* ExploreView.swift */,
+				A776EE0E2C45B29800CA3139 /* FeedView.swift */,
 				A7BB5C012C5C1E2E00B6DFA1 /* LoginView.swift */,
 				A775DAC42CCACE5700492319 /* PostActionBar.swift */,
 				A7BB5C072C5D624F00B6DFA1 /* PostComposer.swift */,
 				A776EE102C45BF9400CA3139 /* PostDetailView.swift */,
 				A776EE0A2C459FFC00CA3139 /* PostView.swift */,
 				A790BCFD2CCC3EFF004E4761 /* ProfileView.swift */,
-				A776EE0E2C45B29800CA3139 /* FeedView.swift */,
+				743F24FC2D0A916E00B334D6 /* Navs */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -518,7 +515,6 @@
 				A7BB5C042C5D5BC000B6DFA1 /* BubbleView.swift in Sources */,
 				A790BCF72CCBE64A004E4761 /* AccountRepository.swift in Sources */,
 				A790BCFE2CCC3EFF004E4761 /* ProfileView.swift in Sources */,
-				A7BB5BC02C4AB6DF00B6DFA1 /* Values.swift in Sources */,
 				A776EE0D2C45AA2E00CA3139 /* AvatarView.swift in Sources */,
 				A776EDCB2C457BB800CA3139 /* DiverApp.swift in Sources */,
 				A776EE012C45973600CA3139 /* PostInfo.swift in Sources */,
