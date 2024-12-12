@@ -14,7 +14,7 @@ struct ContentView: View {
     @Environment(Navigator.self) var navigator
     @Environment(Session.self) var session
     @Environment(Zoom.self) var zoom
-    
+
     var body: some View {
         if session.isLoggedIn {
             @Bindable var navigator = navigator

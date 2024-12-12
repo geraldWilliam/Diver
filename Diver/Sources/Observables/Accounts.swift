@@ -48,7 +48,7 @@ import Foundation
             }
         }
     }
-    
+
     func unfollow(_ id: AccountInfo.ID) {
         Task {
             do {

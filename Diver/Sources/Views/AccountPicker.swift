@@ -62,7 +62,9 @@ struct AccountPicker: View {
                 setInstanceFieldDisplayed(false)
             }
         }
-        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) { /**/  }
+        .alert("\(instance) is not a valid URL", isPresented: $showingValidationError) {
+
+        }
         .task {
             session.getStoredAccounts()
         }

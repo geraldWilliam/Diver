@@ -98,8 +98,8 @@ struct PostView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    let posts = Posts(repo: MockPostsRepository())
 //    return PostView(post: PostInfo.mock(), isPreview: false)
 //        .environment(posts)
-//}
+// }

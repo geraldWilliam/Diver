@@ -167,7 +167,7 @@ import Foundation
             }
         }
     }
-    
+
     func clearFeed() {
         Task {
             feed = []

@@ -31,7 +31,7 @@ struct PostDetailView: View {
             }
             /// If the thread containing the post has been changed, scroll to the post itself. This
             /// allows focusing the post on first load.
-            .onChange(of: posts.threads) { oldValue, newValue in
+            .onChange(of: posts.threads) { _, newValue in
                 if let thread = newValue[post.id], thread.contains(post) {
                     proxy.scrollTo(post)
                 }

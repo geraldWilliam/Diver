@@ -48,7 +48,7 @@ final class AccountRepository: AccountRepositoryProtocol {
         let account = try await client.getAccount(by: id)
         return AccountInfo(account: account)
     }
-    
+
     func unfollow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         _ = try await client.unfollowAccount(by: id)
         let account = try await client.getAccount(by: id)
@@ -69,7 +69,7 @@ struct MockAccountRepository: AccountRepositoryProtocol {
     func follow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         return .mock()
     }
-    
+
     func unfollow(_ id: AccountInfo.ID) async throws -> AccountInfo {
         return .mock()
     }
