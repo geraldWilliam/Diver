@@ -119,12 +119,12 @@ import TootSDK
 
 class ClientService {
     static var shared = ClientService()
-    var client = TootClient(instanceURL: instanceURL, accessToken: nil)
+    /// Client must be created with a URL. Real requests get URL from session (see updateSession).
+    var client = TootClient(instanceURL: URL(string: "https://sudonym.net")!, accessToken: nil)
     func updateSession(_ session: SessionInfo) async throws {
         guard let url = session.instanceURL else {
             return
         }
-        client = TootClient(instanceURL: url, accessToken: session.token)
-//        client.debugOn()
+        client = TootClient(clientName: "Diver", instanceURL: url, accessToken: session.token)
     }
 }

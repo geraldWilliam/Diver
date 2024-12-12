@@ -30,7 +30,7 @@ struct PostActionBar: View {
             }
             .foregroundStyle(post.favorited ? Color.red : .accentColor)
             /// Share Sheet
-            if let url = post.url {
+            if let url = post.url ?? post.boost?.url {
                 ShareLink(item: url) {
                     Image(systemName: "square.and.arrow.up")
                 }
