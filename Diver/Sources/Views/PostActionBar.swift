@@ -9,11 +9,14 @@ import SwiftUI
 
 struct PostActionBar: View {
     @Environment(Navigator.self) var navigator
-    let posts: Posts
-    let post: PostInfo
+    @Environment(Posts.self) var posts
+    let postID: PostInfo.ID
     @State private var confirmingDelete: Bool = false
 
     var body: some View {
+        /// The view is re-evaluated when `posts` changes. Re-query the feed for the post.
+        /// This makes the button states update correctly for favorites, replies, and boosts.
+        let post = posts.feed.first { $0.id == postID }!
         HStack {
             /// Reply
             Button(action: { navigator.present(.postComposer(post: post)) }) {
@@ -26,9 +29,9 @@ struct PostActionBar: View {
             .foregroundStyle(post.boosted ? Color.red : .accentColor)
             /// Favorite
             Button(action: { post.favorited ? posts.removeFavorite(post) : posts.favorite(post) }) {
-                Image(systemName: "star")
+                Image(systemName: post.favorited ? "star.fill" : "star")
             }
-            .foregroundStyle(post.favorited ? Color.red : .accentColor)
+            .foregroundStyle(post.favorited ? Color.yellow : .accentColor)
             /// Share Sheet
             if let url = post.url ?? post.boost?.url {
                 ShareLink(item: url) {
@@ -55,5 +58,6 @@ struct PostActionBar: View {
 #Preview {
     let posts = Posts(repo: MockPostsRepository())
     let post = PostInfo.mock()
-    PostActionBar(posts: posts, post: post)
+    PostActionBar(postID: post.id)
+        .environment(posts)
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AuthorHeader: View {
+    // TODO: Does it make sense for this to be a PostInfo?
     let post: PostInfo
     var body: some View {
         HStack {

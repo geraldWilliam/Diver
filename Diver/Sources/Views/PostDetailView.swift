@@ -19,10 +19,15 @@ struct PostDetailView: View {
             List {
                 /// Show the full thread, including the main post.
                 ForEach(posts.threads[post.id] ?? []) { post in
-                    NavigationLink(value: Navigator.Destination.postDetail(post)) {
+                    if post == self.post {
                         PostView(post: post, isPreview: post != self.post, showsActions: true)
+                            .id(post) // Allow scrolling to the post.
+                    } else {
+                        NavigationLink(value: Navigator.Destination.postDetail(post)) {
+                            PostView(post: post, isPreview: post != self.post, showsActions: true)
+                        }
+                        .id(post) // Allow scrolling to the post.
                     }
-                    .id(post) // Allow scrolling to the post.
                 }
             }
             /// If the thread is already available, scroll to the post.

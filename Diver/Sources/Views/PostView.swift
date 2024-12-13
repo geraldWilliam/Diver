@@ -91,7 +91,7 @@ struct PostView: View {
             .padding(.top, 5)
 
             if showsActions {
-                PostActionBar(posts: posts, post: post)
+                PostActionBar(postID: post.id)
             }
         }
         .padding(.vertical)
