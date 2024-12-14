@@ -21,11 +21,12 @@ import SwiftUI
 ///
 /// Orchestrating Observables:
 ///
-import TootSDK
 
 @main struct DiverApp: App {
     /// Allows the application to use UIApplicationDelegate callbacks for monitoring lifecycle events, remote notifications, etc.
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    /// A service to wrap the client instance. Trying to work out how best to share this state.
+    var clientService: ClientService
     /// A source of truth for the session, including authentication status.
     var session: Session
     /// A source of truth for the feed, post detail, and compose.
@@ -40,6 +41,7 @@ import TootSDK
     // MARK: - Initialization
 
     init() {
+        clientService = ClientService()
         /// A service for caching the access token to the keychain.
         let tokenService = TokenService()
         /// A service for managing accounts.
@@ -51,20 +53,22 @@ import TootSDK
         session = Session(
             repo: isTesting
                 ? MockSessionRepository()
-                : SessionRepository(tokenService: tokenService)
+                : SessionRepository(clientService: clientService, tokenService: tokenService)
         )
         posts = Posts(
             repo: isTesting
                 ? MockPostsRepository()
-                : PostsRepository()
+                : PostsRepository(clientService: clientService)
         )
         accounts = Accounts(
             repo: isTesting
                 ? MockAccountRepository()
-                : AccountRepository(accountService: accountService)
+                : AccountRepository(clientService: clientService, accountService: accountService)
         )
 
         navigator = Navigator(posts: posts)
+        
+        // TODO: Consider moving this to a different location. ContentView? Maybe Posts should have a ref to session?
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
         if session.isLoggedIn {
             /// Get initial content.
@@ -103,7 +107,7 @@ import TootSDK
         } onChange: {
             Task {
                 if let current = await session.currentSession, await session.isLoggedIn {
-                    try await ClientService.shared.updateSession(current)
+                    try await clientService.updateSession(current)
                     // User is authenticated, get content.
                     await posts.getLatestPosts()
                 }
@@ -114,17 +118,5 @@ import TootSDK
                 await observeSession()
             }
         }
-    }
-}
-
-class ClientService {
-    static var shared = ClientService()
-    /// Client must be created with a URL. Real requests get URL from session (see updateSession).
-    var client = TootClient(instanceURL: URL(string: "https://sudonym.net")!, accessToken: nil)
-    func updateSession(_ session: SessionInfo) async throws {
-        guard let url = session.instanceURL else {
-            return
-        }
-        client = TootClient(clientName: "Diver", instanceURL: url, accessToken: session.token)
     }
 }

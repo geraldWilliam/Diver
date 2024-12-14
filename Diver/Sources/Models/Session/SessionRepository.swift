@@ -22,9 +22,8 @@ protocol SessionRepositoryProtocol {
 // MARK: - Concrete Implementation
 
 final class SessionRepository: SessionRepositoryProtocol {
-    var client: TootClient {
-        ClientService.shared.client
-    }
+    
+    private var client: TootClient { clientService.client }
 
     private let defaults = UserDefaults.standard
 
@@ -33,10 +32,13 @@ final class SessionRepository: SessionRepositoryProtocol {
     private let encoder = JSONEncoder()
 
     private let storedAccountsKey = "stored_accounts"
-
+    
+    private let clientService: ClientService
+    
     private let tokenService: TokenService
 
-    init(tokenService: TokenService) {
+    init(clientService: ClientService, tokenService: TokenService) {
+        self.clientService = clientService
         self.tokenService = tokenService
         Task {
             // This is required for activation.

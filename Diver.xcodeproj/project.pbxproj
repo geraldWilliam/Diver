@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74091F412D0DFA9000FF1420 /* ClientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74091F402D0DFA9000FF1420 /* ClientService.swift */; };
 		74436B162CD87B17007B4B3B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74436B152CD87B17007B4B3B /* CardView.swift */; };
 		74596B722D08966000DAA695 /* Zoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74596B712D08966000DAA695 /* Zoom.swift */; };
 		74596B752D089F8C00DAA695 /* ZoomView in Frameworks */ = {isa = PBXBuildFile; productRef = 74596B742D089F8C00DAA695 /* ZoomView */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		74091F402D0DFA9000FF1420 /* ClientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientService.swift; sourceTree = "<group>"; };
 		74436B142CD8799E007B4B3B /* SCRATCH.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SCRATCH.md; sourceTree = "<group>"; };
 		74436B152CD87B17007B4B3B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		74596B712D08966000DAA695 /* Zoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zoom.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				A775DAC22CCA8BD200492319 /* AccountService.swift */,
+				74091F402D0DFA9000FF1420 /* ClientService.swift */,
 				A7BB5BFD2C5C104800B6DFA1 /* TokenService.swift */,
 			);
 			path = Services;
@@ -499,6 +502,7 @@
 				A7BB5C062C5D5DD300B6DFA1 /* PrimaryButtonStyle.swift in Sources */,
 				74EB58CF2CE85DEB006E23FC /* UnderlineButtonStyle.swift in Sources */,
 				A7BB5BDA2C59372300B6DFA1 /* BlockQuote.swift in Sources */,
+				74091F412D0DFA9000FF1420 /* ClientService.swift in Sources */,
 				A775DAC32CCA8BD700492319 /* AccountService.swift in Sources */,
 				A7BB5BF42C5AD93C00B6DFA1 /* SessionRepository.swift in Sources */,
 				A7BB5BC62C4AEB3F00B6DFA1 /* AppDelegate.swift in Sources */,
