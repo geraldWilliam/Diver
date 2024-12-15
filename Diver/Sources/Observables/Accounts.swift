@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable final class Accounts {
+@MainActor @Observable final class Accounts {
     let repo: AccountRepositoryProtocol
     var searchResults: [AccountInfo] = []
     var following: [AccountInfo] = []
