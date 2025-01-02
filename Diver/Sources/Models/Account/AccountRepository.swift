@@ -11,6 +11,9 @@ import TootSDK
 protocol AccountRepositoryProtocol {
     func search(text: String) async throws -> [AccountInfo]
     func getFollowing() async throws -> [AccountInfo]
+    func getFollowing(_ id: AccountInfo.ID) async throws -> [AccountInfo]
+    func getFollowers() async throws -> [AccountInfo]
+    func getFollowers(for id: AccountInfo.ID) async throws -> [AccountInfo]
     func follow(_ id: AccountInfo.ID) async throws -> AccountInfo
     func unfollow(_ id: AccountInfo.ID) async throws -> AccountInfo
 }
@@ -38,7 +41,25 @@ final class AccountRepository: AccountRepositoryProtocol {
         guard let account = accountService.account else {
             return []
         }
-        let accounts = try await client.getFollowing(for: account.id)
+        return try await getFollowing(account.id)
+    }
+    
+    func getFollowing(_ id: AccountInfo.ID) async throws -> [AccountInfo] {
+        let accounts = try await client.getFollowing(for: id)
+        return accounts.result.map {
+            AccountInfo(account: $0)
+        }
+    }
+    
+    func getFollowers() async throws -> [AccountInfo] {
+        guard let account = accountService.account else {
+            return []
+        }
+        return try await getFollowers(for: account.id)
+    }
+    
+    func getFollowers(for id: AccountInfo.ID) async throws -> [AccountInfo] {
+        let accounts = try await client.getFollowers(for: id)
         return accounts.result.map {
             AccountInfo(account: $0)
         }
@@ -58,12 +79,23 @@ final class AccountRepository: AccountRepositoryProtocol {
 }
 
 struct MockAccountRepository: AccountRepositoryProtocol {
-
     func search(text: String) async throws -> [AccountInfo] {
         return [.mock()]
     }
 
     func getFollowing() async throws -> [AccountInfo] {
+        return [.mock()]
+    }
+    
+    func getFollowing(_ id: AccountInfo.ID) async throws -> [AccountInfo] {
+        return [.mock()]
+    }
+    
+    func getFollowers() async throws -> [AccountInfo] {
+        return [.mock()]
+    }
+    
+    func getFollowers(for id: AccountInfo.ID) async throws -> [AccountInfo] {
         return [.mock()]
     }
 

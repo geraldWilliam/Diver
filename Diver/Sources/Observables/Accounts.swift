@@ -60,4 +60,22 @@ import Foundation
             }
         }
     }
+    
+    func following(_ account: AccountInfo) async -> [AccountInfo] {
+        do {
+            return try await repo.getFollowing(account.id)
+        } catch {
+            failure = Failure(error)
+            return []
+        }
+    }
+    
+    func followers(for account: AccountInfo) async -> [AccountInfo] {
+        do {
+            return try await repo.getFollowers(for: account.id)
+        } catch {
+            failure = Failure(error)
+            return []
+        }
+    }
 }

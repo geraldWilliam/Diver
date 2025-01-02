@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 /// The entry point of the application. Keep this file brief. The App should perform the following tasks:
 ///
 /// - Instantiate global services.
@@ -67,7 +68,7 @@ import SwiftUI
         )
 
         navigator = Navigator(posts: posts)
-        
+
         // TODO: Consider moving this to a different location. ContentView? Maybe Posts should have a ref to session?
         /// Handle initial authentication state. See ContentView.swift for initial UI state based on `isLoggedIn`.
         if session.isLoggedIn {
