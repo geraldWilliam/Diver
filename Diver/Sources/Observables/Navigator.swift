@@ -17,7 +17,7 @@ import SwiftUI
 @MainActor @Observable final class Navigator {
 
     /// Tabs of the application. ContentView is the root of the UI and if the person using the app is authenticated it shows a tabbed interface. List each tab here.
-    enum Tab {
+    enum Tab: CaseIterable {
         case feed
         case profile
         case explore
@@ -37,18 +37,6 @@ import SwiftUI
     enum Destination: Hashable {
         case postDetail(PostInfo)
         case profile(AccountInfo)
-        /// Restrict a destination to a certain tab. This prevents push transitions to the destination in all but the associated tab. You could omit this if destinations
-        /// are reachable from all tabs. To permit navigation to your destination from a subset of tabs, make this property a collection.
-        /// In `go(to destination:)` this property is examined and the Navigator‘s `tabSelection` property is set to the associated tab before pushing
-        /// the view for the destination onto the stack.
-        var tab: Tab {
-            switch self {
-            case .postDetail:
-                .feed
-            case .profile:
-                .explore
-            }
-        }
     }
 
     /// Use Modal values to prompt sheet presentations. This strategy allows us to centralize management of sheets. See `content(for modal:)`.
@@ -66,7 +54,7 @@ import SwiftUI
     /// Required for executing deep link navigation.
     let posts: Posts
     /// Instantiate your TabView with this selection value.
-    var tabSelection: Tab = .feed
+    var tabSelection: Tab = .feed // TODO: Restore from recent?
     /// Instantiate the NavigationStack in the Feed tab with this path.
     var feedPath = NavigationPath()
     /// Instantiate the NavigationStack in the Profile tab with this path.
@@ -88,10 +76,8 @@ import SwiftUI
     ///
     /// - Parameter destination: The destination of the transition.
     func go(to destination: Destination) {
-        /// Make sure the right tab is selected. If a destination‘s tab is optional in your implementation, fall back on the current `tabSelection` here.
-        tabSelection = destination.tab
         /// Navigate to the destination.
-        switch destination.tab {
+        switch tabSelection {
         case .feed:
             feedPath.append(destination)
         case .profile:
